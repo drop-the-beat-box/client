@@ -1,0 +1,38 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    background: gainsboro;
+    width: 90%;
+    height: 100%;
+    color: royalblue;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+
+.body-top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    background-color:burlywood;
+}
+
+.body-second{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    background-color:grey;
+}
+
+.body-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+    background-color: lemonchiffon;
+}

@@ -1,0 +1,45 @@
+div {
+    box-sizing: border-box;
+}
+
+.header{
+    display: flex;
+    background: whitesmoke;
+    width: 100%;
+    height: 100%;
+    color: whitesmoke;
+    align-items: center;
+}
+
+.header-search{
+    display: flex;
+    width: 80%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color:darkcyan;
+}
+
+.header-searchbar{
+    display: flex;
+    width: 50%;
+    height: 100%;
+}
+
+.header-logo{
+    display: flex;
+    width: 10%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+}
+
+.header-profile{
+    display: flex;
+    width: 10%;
+    height: 100%;
+    align-items: center;
+    justify-content: right;
+    background-color: yellowgreen;
+}

@@ -1,0 +1,43 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(118, 118, 118, 0.582);
+    width : 10%;
+    height : 100%;
+}
+
+.sidebar-top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    background-color:cornflowerblue;
+}
+
+.sidebar-topbutton{
+    
+}
+
+.sidebar-middle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    background-color:cadetblue;
+}
+
+.sidebar-middleview{
+
+}
+
+.sidebar-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    background-color:darkslategray;
+}
+
+.sidebar-bottombutton{
+
+}
