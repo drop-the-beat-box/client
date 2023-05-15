@@ -25,6 +25,8 @@ function Body() {
   return (
     <div className="body">
       <div className="body-top"></div>
+        <div className="body-top-left"></div>
+        <div className="body-top-right"></div>
       <div className="body-second"></div>
       <div className="body-main">
         <div className="body-container">{rendering}</div>

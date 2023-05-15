@@ -2,10 +2,11 @@
   display: flex;
   width: 100%;
   height: 100%;
-  color: whitesmoke;
+  color: #7B95B7;
   align-items: center;
   justify-content: center;
-  background: cadetblue;
+  background: white;
+  
   padding: 5px;
 }
 
@@ -15,25 +16,51 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  color: steelblue;
-  background: gainsboro;
+
   font-size: 95%;
+  border: 1px solid #E2E8EF;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
 .header-search {
   display: flex;
+
   width: 70%;
   height: 100%;
+
   align-items: center;
   justify-content: center;
+  gap: 10px;
+
+  color: #415165;
+
+  border: 1px solid #E2E8EF;
 }
 
 .header-searchbar {
   display: flex;
   width: 50%;
-  height: 100%;
+  height: 80%;
+
+  border: 1px solid #E2E8EF;
+  border-radius: 10px;
+
+  font-family: "DMSans-Bold";
+}
+
+.header-searchbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5%;
+  height: 80%;
+
+  color: #415165;
+  border: 1px solid #E2E8EF;
+  border-radius: 10px;
+
+  font-family: "DMSans-Bold";
 }
 
 .header-profile {
@@ -42,9 +69,9 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: gainsboro;
-  color: steelblue;
+  
   font-size: 100%;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  border: 1px solid #E2E8EF;
 }

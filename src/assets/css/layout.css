@@ -1,7 +1,7 @@
 .layout {
   display: flex;
   flex-direction: column;
-  background-color: red;
+  background-color: white;
   gap: 10px;
 }
 
