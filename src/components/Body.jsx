@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Link, useParams} from "react-router-dom";
 import circle from "../img/circle.png";
 
 function Content(props) {
@@ -20,11 +21,12 @@ function BodyTopButton(props) {
     return (
         <button onClick = {(event) => {
             event.preventDefault();
-            props.onClick();
+            window.location.replace(props.linkPage);
         }} 
         className={isHovering? "btbutton-hover" : "btbutton"}
         onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}>
+        onMouseOut={onMouseOut}
+        on>
             <div className= "btbutton-logo">
                 <img src={circle} alt= "circle" className="btbutton-logo-image"/>
             </div>
@@ -54,12 +56,12 @@ function Body() {
       <div className="body-top">
         <BodyTopButton 
         text="Personal"
-        onClick= {() => {}}>
+        linkPage ="/myfilepage">
         </BodyTopButton>
 
         <BodyTopButton 
         text="Group"
-        onClick= {() => {}}>
+        linkPage ="/sharingpage">
         </BodyTopButton>
       </div>
       <div className="body-second"></div>

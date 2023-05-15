@@ -1,13 +1,11 @@
 import SideBarButton from "./SideBarButton";
 
 function SideBar() {
+    
     return(
         <aside className="sidebar">
             <div className="sidebar-top">
-                <SideBarButton name = "ButtonName" onClick = {() => {
-                    console.log("OnClick");
-                }}></SideBarButton>
-                {/* <button className="sidebar-topbutton">TopButton</button> */}
+                <SideBarButton name = {"ButtonName"}></SideBarButton>
             </div>
 
             <div className="sidebar-middle">
@@ -15,7 +13,7 @@ function SideBar() {
             </div>
 
             <div className="sidebar-bottom">
-            <SideBarButton name = "TrashCan"></SideBarButton>
+            <SideBarButton name = {"TrashCan"}></SideBarButton>
             </div>
         </aside>
     )
