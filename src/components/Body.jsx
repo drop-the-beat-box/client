@@ -23,14 +23,13 @@ function Body() {
   }
 
   return (
-    <body className="body">
+    <div className="body">
       <div className="body-top"></div>
       <div className="body-second"></div>
-
       <div className="body-main">
         <div className="body-container">{rendering}</div>
       </div>
-    </body>
+    </div>
   );
 }
 
