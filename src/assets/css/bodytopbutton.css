@@ -1,0 +1,48 @@
+.btbutton {
+    width: 48%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    color: #415165;
+    background: white;
+
+    border: 1px solid #E2E8EF;
+    border-radius: 10px;
+
+    font-family: "DMSans-Regular";
+}
+
+.btbutton-hover {
+    width: 48%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+    border: 1px solid #E2E8EF;
+    border-radius: 10px;
+
+    transition: 0.5s ease-in-out;
+
+    font-family: "DMSans-Regular";
+}
+
+.btbutton-text {
+    width: 90%;
+}
+
+.btbutton-logo {
+    display: flex;
+    width: 10%;
+    height: 80%;
+}
+
+.btbutton-logo-image {
+    display: flex;
+    width: 65%;
+    height: 80%;
+}

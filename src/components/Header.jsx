@@ -10,7 +10,7 @@ function Header() {
 
             <form className="header-search">
                 <input name= "searchId" className="header-searchbar" type="search" placeholder="search" height="100"></input>
-                <input className="header-searchbutton" type="submit" value="submit" height="100"></input>
+                <input className="header-searchbutton" type="submit" value="Go" height="100"></input>
             </form>
 
             <div className="header-profile">

@@ -1,3 +1,6 @@
+import { useState } from "react";
+import circle from "../img/circle.png";
+
 function Content(props) {
   return (
     <div className="content-entity">
@@ -6,6 +9,30 @@ function Content(props) {
       <div>{props.date}</div>
     </div>
   );
+}
+
+function BodyTopButton(props) {
+  const [isHovering, setIsHovering] = useState(false);
+
+    const onMouseOver = () => setIsHovering(true);
+    const onMouseOut=() => setIsHovering(false);
+
+    return (
+        <button onClick = {(event) => {
+            event.preventDefault();
+            props.onClick();
+        }} 
+        className={isHovering? "btbutton-hover" : "btbutton"}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}>
+            <div className= "btbutton-logo">
+                <img src={circle} alt= "circle" className="btbutton-logo-image"/>
+            </div>
+            <div className="btbutton-text">
+                <p>{props.text}</p>
+            </div>
+        </button>
+    )
 }
 
 function Body() {
@@ -24,9 +51,17 @@ function Body() {
 
   return (
     <div className="body">
-      <div className="body-top"></div>
-        <div className="body-top-left"></div>
-        <div className="body-top-right"></div>
+      <div className="body-top">
+        <BodyTopButton 
+        text="Personal"
+        onClick= {() => {}}>
+        </BodyTopButton>
+
+        <BodyTopButton 
+        text="Group"
+        onClick= {() => {}}>
+        </BodyTopButton>
+      </div>
       <div className="body-second"></div>
       <div className="body-main">
         <div className="body-container">{rendering}</div>

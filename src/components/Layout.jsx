@@ -1,9 +1,7 @@
-import {useState} from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import SideBar from './SideBar';
 import Body from './Body';
-import SideBarButton from './SideBarButton';
 
 function Layout() {
     return (

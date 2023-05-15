@@ -53,8 +53,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 5%;
   height: 80%;
+  width: height;
 
   color: #415165;
   border: 1px solid #E2E8EF;
