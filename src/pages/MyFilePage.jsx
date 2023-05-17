@@ -1,9 +1,7 @@
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
 
 function MyFilePage() {
-  return (
-    <Layout/>
-  );
+  return <Layout />;
 }
 
 export default MyFilePage;
