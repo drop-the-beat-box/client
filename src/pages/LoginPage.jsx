@@ -41,6 +41,7 @@ function LoginPage() {
           justifyContent: "center",
         }}
       >
+        <img src={logoImage} width={600} height={500} />
         <h2
           style={{
             fontSize: 28,
