@@ -23,7 +23,7 @@ function LoginPage() {
             alignItems: "center",
           }}
         >
-          <img src={logoImage} width={40} height={40} />
+          <img src={logoImage} alt="logoImage" width={40} height={40} />
           <h1 style={{ fontSize: 20, fontWeight: 700, color: "#7B95B7" }}>
             DropTheBeatBox
           </h1>
@@ -34,14 +34,15 @@ function LoginPage() {
       </div>
       <div
         style={{
-          height: "100vh",
+          height: "90vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <img src={logoImage} width={600} height={500} />
+        <img src={logoImage} alt="logoImage" width={600} height={500} />
+
         <h2
           style={{
             fontSize: 28,
