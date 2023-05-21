@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SideBarButton from "./SideBarButton";
 
-function SideBar() {
+function SideBar({ currentPage }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleButtonClick = () => {
@@ -41,22 +41,53 @@ function SideBar() {
         console.error("파일 업로드 실패:", error);
       });
   };
+  let sidebarTopContent = null;
+  let sidebarMidContent = null;
+  let sidebarBottomContent = null;
+  if (currentPage === "mainpage") {
+  } else if (currentPage === "myfilepage") {
+    sidebarTopContent = (
+      <SideBarButton
+        name={"Upload"}
+        onClick={handleButtonClick}
+      ></SideBarButton>
+    );
+    sidebarMidContent = <div className="sidebar-middleview"></div>;
+    sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
+  } else if (currentPage === "sharingfilepage") {
+    sidebarTopContent = (
+      <SideBarButton
+        name={"Upload"}
+        onClick={handleButtonClick}
+      ></SideBarButton>
+    );
+    sidebarMidContent = <div className="sidebar-middleview"></div>;
+    sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
+  } else if (currentPage === "sharingpage") {
+    sidebarTopContent = (
+      <SideBarButton
+        name={"CreateSharePage"}
+        onClick={handleButtonClick}
+      ></SideBarButton>
+    );
+    sidebarMidContent = <div className="sidebar-middleview"></div>;
+    sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
+  } else if (currentPage === "trashfilepage") {
+    sidebarTopContent = (
+      <SideBarButton
+        name={"Back"}
+        onClick={handleButtonClick}
+      ></SideBarButton>
+    );
+    sidebarMidContent = <div className="sidebar-middleview"></div>;
+    sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
+  }
+
   return (
     <aside className="sidebar">
-      <div className="sidebar-top">
-        <SideBarButton
-          name={"ButtonName"}
-          onClick={handleButtonClick}
-        ></SideBarButton>
-      </div>
-
-      <div className="sidebar-middle">
-        <div className="sidebar-middleview"></div>
-      </div>
-
-      <div className="sidebar-bottom">
-        <SideBarButton name={"TrashCan"}></SideBarButton>
-      </div>
+      <div className="sidebar-top">{sidebarTopContent}</div>
+      <div className="sidebar-middle">{sidebarMidContent}</div>
+      <div className="sidebar-bottom">{sidebarBottomContent}</div>
 
       {isPopupOpen && (
         <div className="popup-overlay">
