@@ -1,48 +1,46 @@
 .btbutton {
-    width: 50%;
+  width: 50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  color: #415165;
+  background: white;
 
-    color: #415165;
-    background: white;
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
 
-    border: 1px solid #E2E8EF;
-    border-radius: 10px;
-
-    font-family: "DMSans-Regular";
+  font-family: "DMSans-Regular";
 }
 
 .btbutton-hover {
-    width: 50%;
+  width: 50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    
-    border: 1px solid #E2E8EF;
-    border-radius: 10px;
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
 
-    transition: 0.5s ease-in-out;
+  transition: 0.2s ease-in-out;
 
-    font-family: "DMSans-Regular";
+  font-family: "DMSans-Regular";
 }
 
 .btbutton-text {
-    width: 90%;
+  width: 90%;
 }
 
 .btbutton-logo {
-    display: flex;
-    width: 10%;
-    height: 80%;
+  display: flex;
+  width: 10%;
+  height: 80%;
 }
 
 .btbutton-logo-image {
-    display: flex;
-    width: 65%;
-    height: 80%;
+  display: flex;
+  width: 65%;
+  height: 80%;
 }
