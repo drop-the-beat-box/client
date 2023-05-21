@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { findMembers } from "../services/DataService";
@@ -9,6 +12,7 @@ import ProfileMenu from "./ProfileMenu";
 function Header() {
   const [searchInput, setSearchInput] = useState("");
   const [memberList, setMemberList] = useState([]);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const searchMemberItems = memberList.map((member, index) => (
     <SearchMember member={member} />
@@ -59,8 +63,16 @@ function Header() {
       <div className="header-profile">
         <div className="header-profile-content">
           <div className="header-profile-avatar-container" />
+          <button
+            className="header-profile-toggle-btn"
+            onClick={() => {
+              setMenuIsOpen(!menuIsOpen);
+            }}
+          >
+            <FontAwesomeIcon icon={faCaretDown} />
+          </button>
         </div>
-        <ProfileMenu />
+        <ProfileMenu isOpen={menuIsOpen} />
       </div>
     </div>
   );

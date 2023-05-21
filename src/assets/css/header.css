@@ -120,3 +120,14 @@
   border-radius: 24px;
   background-color: #E2E8EF;
 }
+
+.header-profile-toggle-btn {
+  margin-left: 4px;
+  border: 0px;
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+.header-profile-toggle-btn:hover {
+  background-color: #41516513;
+}

@@ -8,9 +8,13 @@ function ProfileMenuButton({ text, onClick }) {
   );
 }
 
-function ProfileMenu() {
+function ProfileMenu({ isOpen }) {
   return (
-    <div className="profilemenu-container">
+    <div
+      className={
+        isOpen ? "profilemenu-container" : "profilemenu-container-disabled"
+      }
+    >
       <ProfileMenuButton text="MyFilePage" />
       <ProfileMenuButton text="SharingFilePage" />
       <ProfileMenuButton text="SharingPage" />

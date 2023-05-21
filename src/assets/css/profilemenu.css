@@ -1,4 +1,5 @@
 .profilemenu-container {
+    visibility: visible;
     position: absolute;
     right: 60px;
     display: flex;
@@ -7,6 +8,11 @@
     height: 150px;
     background-color: #EFF2F6;
     border-radius: 15px;
+    box-shadow: 2px 2px 4px 2px #0000001F;
+}
+
+.profilemenu-container-disabled {
+    visibility: hidden;
 }
 
 .profilemenu-button {
