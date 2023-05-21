@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { findMembers } from "../services/DataService";
 import SearchMember from "./SearchMember";
+import ProfileMenu from "./ProfileMenu";
 
 function Header() {
   const [searchInput, setSearchInput] = useState("");
@@ -56,7 +57,10 @@ function Header() {
       </form>
 
       <div className="header-profile">
-        <h2>Profile</h2>
+        <div className="header-profile-content">
+          <div className="header-profile-avatar-container" />
+        </div>
+        <ProfileMenu />
       </div>
     </div>
   );

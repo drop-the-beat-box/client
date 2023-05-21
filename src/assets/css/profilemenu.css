@@ -1,0 +1,21 @@
+.profilemenu-container {
+    position: absolute;
+    right: 60px;
+    display: flex;
+    flex-direction: column;
+    width: 130px;
+    height: 150px;
+    background-color: #EFF2F6;
+    border-radius: 15px;
+}
+
+.profilemenu-button {
+    height: 38px;
+    border: 0px;
+    background-color: transparent;
+    color: #486284;
+}
+
+.profilemenu-button:hover {
+    font-weight: bold;
+}
