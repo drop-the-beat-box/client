@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { findMembers } from "../services/DataService";
+
 function Header() {
   const [searchInput, setSearchInput] = useState("");
 
@@ -25,7 +27,8 @@ function Header() {
             height="100"
             onChange={(e) => {
               setSearchInput(e.target.value);
-              console.log(searchInput);
+              const result = findMembers(e.target.value);
+              console.log(result);
             }}
           ></input>
           <div
