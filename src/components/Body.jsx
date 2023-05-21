@@ -1,7 +1,10 @@
 import { useState } from "react";
 import {Link, useParams} from "react-router-dom";
 import circle from "../img/circle.png";
-import thumbnail from "../img/circle.png";
+import image from "../img/image.png";
+import video from "../img/video.png";
+import document from "../img/document.png";
+import file from "../img/file.png";
 
 function Content(props) {
 
@@ -9,11 +12,15 @@ function Content(props) {
   let name = props.name
   let date = props.date;
   let type = props.type;
-  let image = props.image;
+  let thumbnail = props.imageFile;
+  let isDeleted = false;
 
   return (
     <button className="content-entity">
-      <img src={thumbnail} alt= "Thumbnail" className="content-thumbnail"/>
+      <div className="content-top">
+        <img src = {circle} className="content-top-button"/>
+      </div>
+      <img src={thumbnail} className="content-thumbnail"/>
       <div>{name}</div>
       <div>{date}</div>
     </button>
@@ -59,13 +66,20 @@ function Body() {
 
   const [filter, setFilter] = useState(Filter.Default);
 
+  const filterButtons = [
+    <FilterButton text = "Image" filterType = {1}/>,
+    <FilterButton text = "Video" filterType = {2}/>,
+    <FilterButton text = "Doc" filterType = {3}/>,
+    <FilterButton text = "ETC" filterType = {0}/>,
+  ]
+
   let dataNum = 20;
   let sampleList = GenerateSampleData(dataNum);
   let rendering = [];
 
   // 컨텐츠 렌더링 그려주기
   for (let i = 0; i < sampleList.length; i++) {
-    if(sampleList[i].type != filter)
+    if(sampleList[i].type != filter || sampleList[i].isDeleted)
     {
       continue;
     }
@@ -81,6 +95,7 @@ function Body() {
 
   function FilterButton(props) {
     const [isHovering, setIsHovering] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
   
       const onMouseOver = () => setIsHovering(true);
       const onMouseOut=() => setIsHovering(false);
@@ -105,7 +120,7 @@ function Body() {
     let sampleData = [];
   
     for (let index = 0; index < dataNum; index++) {
-      sampleData.push({ id: index, name: ("Entity " + index), date: "생성일 : 2020-05-15", type: Filter.Default});
+      sampleData.push({ id: index, name: ("Entity " + index), date: "생성일 : 2020-05-15", type: Filter.Default, imageFile: {file}});
     }
   
     return sampleData;
@@ -125,10 +140,7 @@ function Body() {
         </BodyTopButton>
       </div>
       <div className="body-second">
-        <FilterButton text = "Image" filterType = {1}/>
-        <FilterButton text = "Video" filterType = {2}/>
-        <FilterButton text = "Doc" filterType = {3}/>
-        <FilterButton text = "ETC" filterType = {0}/>
+        {filterButtons}
       </div>
       <div className="body-main">
         <div className="body-container">{rendering}</div>

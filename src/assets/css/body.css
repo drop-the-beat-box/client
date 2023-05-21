@@ -71,7 +71,8 @@
   align-items: center;
   justify-content: center;
   background-color: #E2E8EF;
-  box-sizing: border-box;
+
+  border: 1px solid #E2E8EF;
   border-radius: 10px;
   gap: 5%;
 }
@@ -80,4 +81,12 @@
   display: flex;
   width: 50%;
   height: 50%;
+}
+
+.content-top {
+  display: flex;
+
+  justify-content: right;
+  width: 100%;
+  height: 10%;
 }
