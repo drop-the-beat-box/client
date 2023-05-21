@@ -15,16 +15,31 @@ function Content(props) {
   let thumbnail = props.imageFile;
   let isDeleted = false;
 
-  return (
-    <button className="content-entity">
+  if(isDeleted)
+  {
+    return (
+      <button className="content-entity">
       <div className="content-top">
         <img src = {circle} className="content-top-button"/>
       </div>
       <img src={thumbnail} className="content-thumbnail"/>
       <div>{name}</div>
-      <div>{date}</div>
-    </button>
-  );
+      <div>삭제됨</div>
+      </button>
+    )
+  }
+  else{
+    return (
+      <button className="content-entity">
+        <div className="content-top">
+          <img src = {circle} className="content-top-button"/>
+        </div>
+        <img src={thumbnail} className="content-thumbnail"/>
+        <div>{name}</div>
+        <div>{date}</div>
+      </button>
+    );
+  }
 }
 
 
