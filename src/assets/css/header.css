@@ -87,7 +87,27 @@
 }
 
 .header-bottombox-disabled {
-  position: absolute;
+  visibility: hidden;
+}
+
+.header-bottombox-empty-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-bottombox-empty-img {
+  opacity: 0.3;
+  width: 30%;
+  height: auto;
+}
+
+.header-bottombox-empty-text {
+  color: #7B95B7;
+  font-size: 18;
+  margin-block-start: 0em;
 }
 
 .header-searchbutton {

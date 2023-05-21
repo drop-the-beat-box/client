@@ -18,6 +18,17 @@ function Header() {
     <SearchMember member={member} />
   ));
 
+  const searchEmptyItem = (
+    <div className="header-bottombox-empty-container">
+      <img
+        className="header-bottombox-empty-img"
+        src="https://ar-color-book.s3.ap-northeast-2.amazonaws.com/dropthebeatboxicon.png"
+        alt="logoimg"
+      />
+      <p className="header-bottombox-empty-text">No Result.</p>
+    </div>
+  );
+
   return (
     <div className="header">
       <div className="header-logo">
@@ -62,7 +73,7 @@ function Header() {
               searchInput ? "header-bottombox" : "header-bottombox-disabled"
             }
           >
-            {searchInput ? searchMemberItems : null}
+            {memberList.length > 0 ? searchMemberItems : searchEmptyItem}
           </div>
         </div>
       </form>
