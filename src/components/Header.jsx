@@ -1,9 +1,15 @@
 import { useState } from "react";
 
 import { findMembers } from "../services/DataService";
+import SearchMember from "./SearchMember";
 
 function Header() {
   const [searchInput, setSearchInput] = useState("");
+  const [memberList, setMemberList] = useState([]);
+
+  const searchMemberItems = memberList.map((member, index) => (
+    <SearchMember member={member} />
+  ));
 
   return (
     <div className="header">
@@ -28,14 +34,16 @@ function Header() {
             onChange={(e) => {
               setSearchInput(e.target.value);
               const result = findMembers(e.target.value);
-              console.log(result);
+              setMemberList(result);
             }}
           ></input>
           <div
             className={
               searchInput ? "header-bottombox" : "header-bottombox-disabled"
             }
-          ></div>
+          >
+            {searchInput ? searchMemberItems : null}
+          </div>
         </div>
         <input
           className="header-searchbutton"

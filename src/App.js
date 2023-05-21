@@ -13,6 +13,7 @@ import "./assets/css/footer.css";
 import "./assets/css/layout.css";
 import "./assets/css/sidebarbutton.css";
 import "./assets/css/bodytopbutton.css";
+import "./assets/css/searchmember.css";
 import MainPage from "./pages/MainPage";
 import MyFilePage from "./pages/MyFilePage";
 import SharingPage from "./pages/SharingPage";

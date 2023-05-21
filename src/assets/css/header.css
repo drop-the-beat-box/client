@@ -58,10 +58,11 @@
 .header-bottombox {
   position: absolute;
   width: inherit;
-  height: 120px;
+  height: 360px;
   border: 1px solid #E2E8EF;
   border-radius: 10px;
   background-color: #ffffff;
+  overflow: auto;
 }
 
 .header-bottombox-disabled {

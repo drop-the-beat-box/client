@@ -14,7 +14,7 @@ const datas = [
 function findMembers(keyword) {
   let result = [];
   datas.forEach((member) => {
-    if (member.name.includes(keyword) || member.email.includes(keyword)) {
+    if (member.name.toLowerCase().includes(keyword.toLowerCase())) {
       result.push(member);
     }
   });
