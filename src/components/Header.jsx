@@ -27,7 +27,14 @@ function Header() {
           width="50px"
           height="50px"
         ></img>
-        <h2 className="header-title">DropTheBeatBox</h2>
+        <button
+          className="header-title"
+          onClick={(event) => {
+            window.location.replace("/mainpage");
+          }}
+        >
+          DropTheBeatBox
+        </button>
       </div>
 
       <form className="header-search">

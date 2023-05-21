@@ -1,9 +1,14 @@
 import React from "react";
 
-function ProfileMenuButton({ text, onClick }) {
+function ProfileMenuButton(props) {
   return (
-    <button className="profilemenu-button" onClick={onClick}>
-      {text}
+    <button
+      className="profilemenu-button"
+      onClick={(event) => {
+        window.location.replace(props.linkPage);
+      }}
+    >
+      {props.text}
     </button>
   );
 }
@@ -15,10 +20,10 @@ function ProfileMenu({ isOpen }) {
         isOpen ? "profilemenu-container" : "profilemenu-container-disabled"
       }
     >
-      <ProfileMenuButton text="MyFilePage" />
-      <ProfileMenuButton text="SharingFilePage" />
-      <ProfileMenuButton text="SharingPage" />
-      <ProfileMenuButton text="TrashFilePage" />
+      <ProfileMenuButton text="MyFilePage" linkPage="/myfilepage" />
+      <ProfileMenuButton text="SharingFilePage" linkPage="/sharingfilepage" />
+      <ProfileMenuButton text="SharingPage" linkPage="/sharingpage" />
+      <ProfileMenuButton text="TrashFilePage" linkPage="/trashfilepage" />
     </div>
   );
 }
