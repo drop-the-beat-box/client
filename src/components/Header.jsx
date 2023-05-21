@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { findMembers } from "../services/DataService";
 import SearchMember from "./SearchMember";
@@ -25,18 +27,24 @@ function Header() {
 
       <form className="header-search">
         <div className="header-searchbar-container">
-          <input
-            name="searchId"
-            className="header-searchbar"
-            type="search"
-            placeholder="search"
-            height="100"
-            onChange={(e) => {
-              setSearchInput(e.target.value);
-              const result = findMembers(e.target.value);
-              setMemberList(result);
-            }}
-          ></input>
+          <div className="header-searchbar-big-container">
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              style={{ color: "#6c86b2" }}
+            />
+            <input
+              name="searchId"
+              className="header-searchbar"
+              type="search"
+              placeholder="Find friends..."
+              height="100"
+              onChange={(e) => {
+                setSearchInput(e.target.value);
+                const result = findMembers(e.target.value);
+                setMemberList(result);
+              }}
+            ></input>
+          </div>
           <div
             className={
               searchInput ? "header-bottombox" : "header-bottombox-disabled"
@@ -45,12 +53,6 @@ function Header() {
             {searchInput ? searchMemberItems : null}
           </div>
         </div>
-        <input
-          className="header-searchbutton"
-          type="submit"
-          value="Go"
-          height="100"
-        ></input>
       </form>
 
       <div className="header-profile">
