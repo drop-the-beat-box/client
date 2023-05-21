@@ -23,7 +23,6 @@ function Header() {
       <img
         className="header-bottombox-empty-img"
         src="https://ar-color-book.s3.ap-northeast-2.amazonaws.com/dropthebeatboxicon.png"
-        alt="logoimg"
       />
       <p className="header-bottombox-empty-text">No Result.</p>
     </div>
