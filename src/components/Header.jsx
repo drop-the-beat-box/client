@@ -36,6 +36,10 @@ function Header() {
           alt="logo"
           width="50px"
           height="50px"
+          style={{ cursor: "pointer" }}
+          onClick={(event) => {
+            window.location.replace("/mainpage");
+          }}
         ></img>
         <button
           className="header-title"
@@ -43,7 +47,7 @@ function Header() {
             window.location.replace("/mainpage");
           }}
         >
-          DropTheBeatBox
+          <p style={{ cursor: "pointer" }}>DropTheBeatBox</p>
         </button>
       </div>
 
