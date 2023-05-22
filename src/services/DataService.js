@@ -11,7 +11,7 @@ let datas = [
   },
   { id: 5, name: "Vere", email: "vaynold5@mysql.com", following: false },
   { id: 6, name: "Claudia", email: "cmoakler6@digg.com", following: false },
-  { id: 7, name: "Kiri", email: "kyoskowitz7@topsy.com", following: false },
+  { id: 7, name: "Kiri", email: "abcabc7@topsy.com", following: false },
   {
     id: 8,
     name: "Phillis",
@@ -24,6 +24,37 @@ let datas = [
     email: "gchadburn9@disqus.com",
     following: false,
   },
+  { id: 10, name: "Charles", email: "abcabc7@topsy.com", following: false },
+  {
+    id: 11,
+    name: "Hwang Yuhwan",
+    email: "abcabc7@topsy.com",
+    following: false,
+  },
+  { id: 12, name: "Park Chansu", email: "abcabc7@topsy.com", following: false },
+  { id: 13, name: "Jo Yerin", email: "abcabc7@topsy.com", following: false },
+  {
+    id: 14,
+    name: "Song Minseok",
+    email: "abcabc7@topsy.com",
+    following: false,
+  },
+  {
+    id: 15,
+    name: "Choi Youngwook",
+    email: "abcabc7@topsy.com",
+    following: false,
+  },
+  {
+    id: 16,
+    name: "Jung Sunghoon",
+    email: "abcabc7@topsy.com",
+    following: false,
+  },
+  { id: 17, name: "Kibi", email: "abcabc7@topsy.com", following: false },
+  { id: 18, name: "Bivi", email: "abcabc7@topsy.com", following: false },
+  { id: 19, name: "Ireasi", email: "abcabc7@topsy.com", following: false },
+  { id: 20, name: "Iselaz", email: "abcabc7@topsy.com", following: false },
 ];
 
 function findMembers(keyword) {
