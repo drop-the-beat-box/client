@@ -4,13 +4,16 @@ import Following from "./Following";
 
 function SideBar({ currentPage }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupType, setPopupType] = useState(null);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (type) => {
     setIsPopupOpen(true);
+    setPopupType(type);
   };
 
   const handlePopupClose = () => {
     setIsPopupOpen(false);
+    setPopupType(null);
   };
   const [selectedFiles, setSelectedFiles] = useState([]);
 
@@ -51,25 +54,20 @@ function SideBar({ currentPage }) {
     sidebarTopContent = (
       <SideBarButton
         name={"Upload"}
-        onClick={handleButtonClick}
+        onClick={() => handleButtonClick("upload")}
       ></SideBarButton>
     );
     sidebarMidContent = <div className="sidebar-middleview"></div>;
     sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
   } else if (currentPage === "sharingfilepage") {
-    sidebarTopContent = (
-      <SideBarButton
-        name={"Upload"}
-        onClick={handleButtonClick}
-      ></SideBarButton>
-    );
+    sidebarTopContent = <SideBarButton name={"Upload"}></SideBarButton>;
     sidebarMidContent = <div className="sidebar-middleview"></div>;
     sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
   } else if (currentPage === "sharingpage") {
     sidebarTopContent = (
       <SideBarButton
         name={"CreateSharePage"}
-        onClick={handleButtonClick}
+        onClick={() => handleButtonClick("createsharepage")}
       ></SideBarButton>
     );
     sidebarMidContent = <div className="sidebar-middleview"></div>;
@@ -78,7 +76,7 @@ function SideBar({ currentPage }) {
     sidebarTopContent = (
       <SideBarButton
         name={"Back"}
-        onClick={handleButtonClick}
+        onClick={() => handleButtonClick("back")}
       ></SideBarButton>
     );
     sidebarMidContent = <div className="sidebar-middleview"></div>;
@@ -91,17 +89,17 @@ function SideBar({ currentPage }) {
       <div className="sidebar-middle">{sidebarMidContent}</div>
       <div className="sidebar-bottom">{sidebarBottomContent}</div>
 
-      {isPopupOpen && (
-        <div className="popup-overlay">
-          <div className="popup-content">
+      {isPopupOpen && popupType === "upload" && (
+        <div className="popup-overlay-upload">
+          <div className="popup-content-upload">
             <input
               type="file"
               multiple
               onChange={handleFileChange}
               style={{ marginLeft: "10%" }}
             />
-            <div className="popup-inner">
-              <div className="popup-inner-content">
+            <div className="popup-inner-upload">
+              <div className="popup-inner-content-upload">
                 <div>
                   {selectedFiles.map((file, index) => (
                     <p key={index}>{file.name}</p>
@@ -113,6 +111,17 @@ function SideBar({ currentPage }) {
             <button onClick={handlePopupClose}>Close</button>
           </div>
         </div>
+      )}
+      {isPopupOpen && popupType === "createsharepage" && (
+        // CreateSharePage 버튼 클릭 시에 팝업 레이아웃 내용
+        <div className="popup-overlay-createshare">
+          <div className="popup-content-createshare"></div>
+        </div>
+      )}
+
+      {isPopupOpen && popupType === "back" && (
+        // Back 버튼 클릭 시에 팝업 레이아웃 내용
+        <div />
       )}
     </aside>
   );

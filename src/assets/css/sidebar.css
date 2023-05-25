@@ -46,19 +46,20 @@
 .sidebar-bottombutton {
 }
 
-.popup-overlay {
+/*Upload 버튼*/
+.popup-overlay-upload {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.popup-content {
+.popup-content-upload {
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 10px;
@@ -70,7 +71,7 @@
   width: 600px;
 }
 
-.popup-inner {
+.popup-inner-upload {
   border-radius: 10px;
   background-color: #e2e8ef;
   padding: 20px;
@@ -81,7 +82,7 @@
   margin-bottom: 20px;
 }
 
-.popup-inner-content {
+.popup-inner-content-upload {
   /* 팝업 내용 스타일 */
   padding: 10px;
 }
@@ -90,4 +91,28 @@
   padding: 5px 20px;
   margin-bottom: 10px;
   border-radius: 3px;
+}
+
+/*CreateSharePage 버튼*/
+.popup-overlay-createshare {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content-createshare {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+
+  border: 1px solid white;
+  padding: 20px;
+  background-color: #e2e8ef;
+  border-radius: 10px;
+  height: 70%;
+  width: 70%;
 }
