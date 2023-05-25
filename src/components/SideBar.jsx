@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SideBarButton from "./SideBarButton";
+import Following from "./Following";
 
 function SideBar({ currentPage }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -45,6 +46,7 @@ function SideBar({ currentPage }) {
   let sidebarMidContent = null;
   let sidebarBottomContent = null;
   if (currentPage === "mainpage") {
+    sidebarMidContent = <Following></Following>;
   } else if (currentPage === "myfilepage") {
     sidebarTopContent = (
       <SideBarButton
