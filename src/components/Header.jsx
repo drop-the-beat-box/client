@@ -1,23 +1,125 @@
+import { useState, useCallback } from "react";
+import {
+  faMagnifyingGlass,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { findMembers, follow, unfollow } from "../services/DataService";
+import SearchMember from "./SearchMember";
+import ProfileMenu from "./ProfileMenu";
+import FollowConfirm from "./FollowConfirm";
 
 function Header() {
-    return (
-        <div className = 'header'>
-            <div className="header-logo">
-                <img src = "https://ar-color-book.s3.ap-northeast-2.amazonaws.com/dropthebeatboxicon.png"
-                alt="logo" width="50px" height = "50px"></img>
-                <h2 className='header-title'>DropTheBeatBox</h2>
-            </div>
+  const [searchInput, setSearchInput] = useState("");
+  const [memberList, setMemberList] = useState([]);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState();
 
-            <form className="header-search">
-                <input name= "searchId" className="header-searchbar" type="search" placeholder="search" height="100"></input>
-                <input className="header-searchbutton" type="submit" value="Go" height="100"></input>
-            </form>
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
-            <div className="header-profile">
-                <h2>Profile</h2>
-            </div>
+  const searchMemberItems = memberList.map((member, index) => (
+    <SearchMember
+      member={member}
+      onClick={() => {
+        if (!member.following) {
+          setSelectedMember(member);
+        } else {
+          unfollow(member.id);
+        }
+        forceUpdate();
+      }}
+    />
+  ));
+
+  const searchEmptyItem = (
+    <div className="header-bottombox-empty-container">
+      <img
+        className="header-bottombox-empty-img"
+        src="https://ar-color-book.s3.ap-northeast-2.amazonaws.com/dropthebeatboxicon.png"
+      />
+      <p className="header-bottombox-empty-text">No Result.</p>
+    </div>
+  );
+
+  return (
+    <div className="header">
+      {selectedMember && (
+        <FollowConfirm
+          member={selectedMember}
+          onOk={() => {
+            follow(selectedMember.id);
+            setSelectedMember();
+          }}
+          onCancel={() => {
+            setSelectedMember();
+          }}
+        />
+      )}
+      <div className="header-logo">
+        <img
+          src="https://ar-color-book.s3.ap-northeast-2.amazonaws.com/dropthebeatboxicon.png"
+          alt="logo"
+          width="50px"
+          height="50px"
+        ></img>
+        <button
+          className="header-title"
+          onClick={(event) => {
+            window.location.replace("/mainpage");
+          }}
+        >
+          DropTheBeatBox
+        </button>
+      </div>
+
+      <form className="header-search">
+        <div className="header-searchbar-container">
+          <div className="header-searchbar-big-container">
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              style={{ color: "#6c86b2" }}
+            />
+            <input
+              name="searchId"
+              className="header-searchbar"
+              type="search"
+              placeholder="Find friends..."
+              height="100"
+              onChange={(e) => {
+                setSearchInput(e.target.value);
+                const result = findMembers(e.target.value);
+                setMemberList(result);
+              }}
+            ></input>
+          </div>
+          <div
+            className={
+              searchInput ? "header-bottombox" : "header-bottombox-disabled"
+            }
+          >
+            {memberList.length > 0 ? searchMemberItems : searchEmptyItem}
+          </div>
         </div>
-    )
+      </form>
+
+      <div className="header-profile">
+        <div className="header-profile-content">
+          <div className="header-profile-avatar-container" />
+          <button
+            className="header-profile-toggle-btn"
+            onClick={() => {
+              setMenuIsOpen(!menuIsOpen);
+            }}
+          >
+            <FontAwesomeIcon icon={faCaretDown} />
+          </button>
+        </div>
+        <ProfileMenu isOpen={menuIsOpen} />
+      </div>
+    </div>
+  );
 }
 
 export default Header;
