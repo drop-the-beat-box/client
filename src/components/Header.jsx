@@ -5,7 +5,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { findMembers, follow, unfollow } from "../services/DataService";
+import { findMembers, follow, unfollow, datas } from "../services/DataService";
 import SearchMember from "./SearchMember";
 import ProfileMenu from "./ProfileMenu";
 import FollowConfirm from "./FollowConfirm";
@@ -63,7 +63,9 @@ function Header() {
           alt="logo"
           width="50px"
           height="50px"
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+          }}
           onClick={(event) => {
             window.location.replace("/mainpage");
           }}
