@@ -46,6 +46,12 @@
 .sidebar-bottombutton {
 }
 
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 /*Upload 버튼*/
 .popup-overlay-upload {
   position: fixed;
@@ -60,6 +66,7 @@
 }
 
 .popup-content-upload {
+  position: relative;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 10px;
@@ -87,10 +94,11 @@
   padding: 10px;
 }
 
-.popup-content button {
+.popup-content-upload button {
   padding: 5px 20px;
   margin-bottom: 10px;
-  border-radius: 3px;
+  border: 1px solid white;
+  border-radius: 6px;
 }
 
 /*CreateSharePage 버튼*/
@@ -107,12 +115,23 @@
 }
 
 .popup-content-createshare {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-
   border: 1px solid white;
   padding: 20px;
   background-color: #e2e8ef;
   border-radius: 10px;
   height: 70%;
   width: 70%;
+}
+
+.popup-content-createshare button {
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8ef;
+  background-color: #e2e8ef;
+  font-size: x-large;
+  border-radius: 6px;
 }
