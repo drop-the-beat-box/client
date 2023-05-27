@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes, useRoutes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useRoutes,
+} from "react-router-dom";
 import Layout from "./components/Layout";
 import "./App.css";
 import "./assets/css/body.css";
@@ -17,60 +22,19 @@ import MyFilePage from "./pages/MyFilePage";
 import SharingPage from "./pages/SharingPage";
 import SharingFilePage from "./pages/SharingFilePage";
 import TrashFilePage from "./pages/TrashFilePage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
     <div>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={<MainPage />}
-          />
-          <Route
-            path="/mainpage"
-            element={<MainPage />}
-          />
-          <Route
-            path="/myfilepage"
-            element={<MyFilePage />}
-          />
-          <Route
-            path="/sharingpage"
-            element={<SharingPage />}
-          />
-          <Route
-            path="/sharingfilepage"
-            element={<SharingFilePage />}
-          />
-          <Route
-            path="/trashfilepage"
-            element={<TrashFilePage />}
-          />
-          <Route
-            path="/"
-            element={<MainPage />}
-          />
-          <Route
-            path="/mainpage"
-            element={<MainPage />}
-          />
-          <Route
-            path="/myfilepage"
-            element={<MyFilePage />}
-          />
-          <Route
-            path="/sharingpage"
-            element={<SharingPage />}
-          />
-          <Route
-            path="/sharingfilepage"
-            element={<SharingFilePage />}
-          />
-          <Route
-            path="/trashfilepage"
-            element={<TrashFilePage />}
-          />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/mainpage" element={<MainPage />} />
+          <Route path="/myfilepage" element={<MyFilePage />} />
+          <Route path="/sharingpage" element={<SharingPage />} />
+          <Route path="/sharingfilepage" element={<SharingFilePage />} />
+          <Route path="/trashfilepage" element={<TrashFilePage />} />
         </Routes>
       </Router>
     </div>
