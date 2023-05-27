@@ -1,12 +1,12 @@
-import React from "react";
-import circle from "../img/circle.png";
+import React, { useState } from "react";
+import {
+  setDataChangeHandler,
+  getFollowingMembers,
+} from "../services/DataService";
 import { Avatar } from "@material-ui/core";
 
-export const persons = [];
+export let persons = [];
 
-for (let i = 1; i <= 20; i++) {
-  persons.push({ id: i, image: circle, name: `Following_${i}` });
-}
 function Profile({ image, name }) {
   return (
     <div>
@@ -19,14 +19,16 @@ function Profile({ image, name }) {
 }
 
 function Following() {
+  const [persons, setPersons] = useState([]);
+
+  setDataChangeHandler(() => {
+    setPersons(getFollowingMembers(0));
+  });
+
   return (
     <div className="following-container">
       {persons.map((person, index) => (
-        <Profile
-          key={index}
-          image={person.image}
-          name={person.name}
-        />
+        <Profile key={index} image={person.image} name={person.name} />
       ))}
     </div>
   );
