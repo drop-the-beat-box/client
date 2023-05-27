@@ -21,7 +21,7 @@ import MainPage from "./pages/MainPage";
 import MyFilePage from "./pages/MyFilePage";
 import SharingPage from "./pages/SharingPage";
 import SharingFilePage from "./pages/SharingFilePage";
-import TrashFilePage from "./pages/TrashFilePage";
+import Trashcan from "./pages/Trashcan";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
           <Route path="/myfilepage" element={<MyFilePage />} />
           <Route path="/sharingpage" element={<SharingPage />} />
           <Route path="/sharingfilepage" element={<SharingFilePage />} />
-          <Route path="/trashfilepage" element={<TrashFilePage />} />
+          <Route path="/trashcan" element={<Trashcan />} />
         </Routes>
       </Router>
     </div>

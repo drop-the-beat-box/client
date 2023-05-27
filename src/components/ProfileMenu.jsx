@@ -23,7 +23,7 @@ function ProfileMenu({ isOpen }) {
       <ProfileMenuButton text="MyFilePage" linkPage="/myfilepage" />
       <ProfileMenuButton text="SharingFilePage" linkPage="/sharingfilepage" />
       <ProfileMenuButton text="SharingPage" linkPage="/sharingpage" />
-      <ProfileMenuButton text="TrashFilePage" linkPage="/trashfilepage" />
+      <ProfileMenuButton text="Trashcan" linkPage="/trashcan" />
     </div>
   );
 }
