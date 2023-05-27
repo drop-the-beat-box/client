@@ -1,0 +1,74 @@
+.followconfirm-shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000013;
+    z-index: 3;
+    visibility: visible;
+}
+
+.followconfirm-hidden {
+    visibility: hidden;
+}
+
+.followconfirm-dialog {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.followconfirm-text {
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.followconfirm-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.followconfirm-button-ok {
+    width: 72px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #486284;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 100%;
+    margin: 20px;
+}
+
+.followconfirm-button-ok:hover {
+    background-color: #203d63;
+}
+
+.followconfirm-button-cancel {
+    width: 72px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #486284;
+    border: 1px solid #486284;
+    border-radius: 12px;
+    margin: 20px;
+}
+
+.followconfirm-button-cancel:hover {
+    background-color: #d1d9e4;
+}
