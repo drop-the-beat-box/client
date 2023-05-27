@@ -32,7 +32,7 @@ function BodyTopButton(props) {
     </button>
   );
 }
-
+// 최상위 컴포넌트
 function Body() {
   const Filter = {
     Default: 0,
@@ -97,6 +97,7 @@ function Body() {
     );
   }
 
+  // 개별 파일 데이터
   function Content(props) {
     let id = props.id;
     let name = props.name;
@@ -139,6 +140,7 @@ function Body() {
     }
   }
 
+  // 필터 버튼 4 개
   function FilterButton(props) {
     const [isHovering, setIsHovering] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
@@ -165,6 +167,7 @@ function Body() {
     };
     const onMouseClick = () => {
       setIsClicked((prevState) => !prevState);
+      setFilter(props.filterType);
       setRecentButton((prevState) => (prevState = props.text));
     };
 
