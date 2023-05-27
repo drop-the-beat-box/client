@@ -1,33 +1,63 @@
 .sbbutton {
-    width: 80%;
+  width: 80%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background-color: #486284;
-    color: white;
+  background-color: #486284;
+  color: white;
 
-    border: 1px solid #E2E8EF;
-    border-radius: 10px;
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
 
-    font-family: "DMSans-Regular";
+  font-family: "DMSans-Regular";
 }
 
 .sbbutton-hover {
-    width: 80%;
+  width: 80%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background-color: #415165;
-    color: white;
+  background-color: #415165;
+  color: white;
 
-    border: 1px solid #E2E8EF;
-    border-radius: 10px;
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
 
-    transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 
-    font-family: "DMSans-Regular";
+  font-family: "DMSans-Regular";
+}
+
+.popup-container {
+  height: 100%;
+}
+
+.room-name {
+  height: 15%;
+}
+
+.following-list-container {
+  border-radius: 5px;
+  height: 80%;
+  background-color: white;
+  overflow: auto;
+}
+
+.room-name-input {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  padding: 8px;
+}
+
+.room-creation {
+  height: 10px;
 }

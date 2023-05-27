@@ -2,22 +2,21 @@
   display: flex;
   width: 100%;
   height: 100%;
-  color: #7B95B7;
+  color: #7b95b7;
   align-items: center;
   justify-content: space-between;
   background: white;
-  border: 1px solid #E2E8EF;
-
+  border: 1px solid #e2e8ef;
   padding: 5px;
 }
 
 .header-title {
   background-color: transparent;
   border: 0px;
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   font-size: 20px;
   font-weight: 700;
-  color: #7B95B7;
+  color: #7b95b7;
 }
 
 .header-logo {
@@ -28,6 +27,9 @@
   justify-content: center;
 
   font-size: 95%;
+  border: 1px solid #e2e8ef;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .header-search {
@@ -41,6 +43,7 @@
   gap: 10px;
 
   color: #415165;
+  border: 1px solid #e2e8ef;
 }
 
 .header-searchbar {
@@ -49,6 +52,8 @@
   width: 100%;
   height: 100%;
 
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
 
   font-family: "DMSans-Bold";
   border: 0px;
@@ -71,7 +76,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid #E2E8EF;
+  border: 1px solid #e2e8ef;
   border-radius: 10px;
   padding-left: 16px;
 }
@@ -80,7 +85,7 @@
   position: absolute;
   width: 560px;
   height: 360px;
-  border: 1px solid #E2E8EF;
+  border: 1px solid #e2e8ef;
   border-radius: 10px;
   background-color: #ffffff;
   overflow: auto;
@@ -105,7 +110,7 @@
 }
 
 .header-bottombox-empty-text {
-  color: #7B95B7;
+  color: #7b95b7;
   font-size: 18;
   margin-block-start: 0em;
 }
@@ -118,7 +123,7 @@
   width: height;
 
   color: #415165;
-  border: 1px solid #E2E8EF;
+  border: 1px solid #e2e8ef;
   border-radius: 10px;
 
   font-family: "DMSans-Bold";
@@ -127,10 +132,13 @@
 .header-profile {
   width: 10%;
   height: 100%;
+  align-items: center;
+  justify-content: center;
 
   font-size: 100%;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  border: 1px solid #e2e8ef;
 }
 
 .header-profile-content {
@@ -147,7 +155,7 @@
   height: 48px;
   overflow: hidden;
   border-radius: 24px;
-  background-color: #E2E8EF;
+  background-color: #e2e8ef;
 }
 
 .header-profile-toggle-btn {

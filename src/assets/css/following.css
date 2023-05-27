@@ -1,0 +1,16 @@
+.following-container {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  padding: 20px;
+}
+
+.profile {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.profile p {
+  margin-left: 15px;
+}
