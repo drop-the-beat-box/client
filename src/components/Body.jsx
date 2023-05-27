@@ -9,9 +9,16 @@ import Modal from "react-modal";
 
 function BodyTopButton(props) {
   const [isHovering, setIsHovering] = useState(false);
+  const [buttonType, setButtonType] = useState("/filepage");
 
   const onMouseOver = () => setIsHovering(true);
   const onMouseOut = () => setIsHovering(false);
+
+  const images = Array.from({ length: 3 }, (_, index) => ({
+    id: index,
+    src: circle,
+    alt: `Image ${index}`,
+  }));
 
   return (
     <button
@@ -24,7 +31,13 @@ function BodyTopButton(props) {
       onMouseOut={onMouseOut}
     >
       <div className="btbutton-logo">
-        <img src={circle} alt="circle" className="btbutton-logo-image" />
+        {props.linkPage == "/myfilepage" ? (
+          <img src={circle} alt="circle" className="btbutton-logo-image" />
+        ) : (
+          images.map((image) => (
+            <img key={image.id} src={image.src} alt={image.alt} />
+          ))
+        )}
       </div>
       <div className="btbutton-text">
         <p>{props.text}</p>
@@ -205,7 +218,6 @@ function Body() {
     <div className="body">
       <div className="body-top">
         <BodyTopButton text="Personal" linkPage="/myfilepage"></BodyTopButton>
-
         <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
       </div>
       <div className="body-second">{filterButtons}</div>
