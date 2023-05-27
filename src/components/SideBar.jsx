@@ -1,6 +1,7 @@
 import React from "react";
 import SideBarButton from "./SideBarButton";
 import Following from "./Following";
+import { colors } from "@material-ui/core";
 
 function SideBar({ currentPage }) {
   let sidebarTopContent = null;
@@ -9,6 +10,7 @@ function SideBar({ currentPage }) {
 
   switch (currentPage) {
     case "mainpage":
+      sidebarTopContent = <h2 style={{ color: "#7B95B7" }}>Following List</h2>;
       sidebarMidContent = <Following />;
       break;
     case "myfilepage":
@@ -18,7 +20,7 @@ function SideBar({ currentPage }) {
       break;
     case "sharingfilepage":
       sidebarTopContent = <SideBarButton name={"Upload"}></SideBarButton>;
-      sidebarMidContent = <div className="sidebar-middleview"></div>;
+      sidebarMidContent = <Following />;
       sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
       break;
     case "sharingpage":

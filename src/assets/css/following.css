@@ -3,6 +3,8 @@
   width: 100%;
   overflow: auto;
   padding: 20px;
+  background-color: #eff2f6;
+  border-radius: 20px;
 }
 
 .profile {

@@ -4,7 +4,7 @@ import { Avatar } from "@material-ui/core";
 
 export const persons = [];
 
-for (let i = 1; i <= 20; i++) {
+for (let i = 1; i <= 5; i++) {
   persons.push({ id: i, image: circle, name: `Following_${i}` });
 }
 function Profile({ image, name }) {
