@@ -15,6 +15,7 @@ import "./assets/css/sidebarbutton.css";
 import "./assets/css/bodytopbutton.css";
 import "./assets/css/searchmember.css";
 import "./assets/css/profilemenu.css";
+import "./assets/css/followconfirm.css";
 import MainPage from "./pages/MainPage";
 import MyFilePage from "./pages/MyFilePage";
 import SharingPage from "./pages/SharingPage";

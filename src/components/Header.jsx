@@ -1,21 +1,36 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import {
   faMagnifyingGlass,
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { findMembers } from "../services/DataService";
+import { findMembers, follow, unfollow } from "../services/DataService";
 import SearchMember from "./SearchMember";
 import ProfileMenu from "./ProfileMenu";
+import FollowConfirm from "./FollowConfirm";
 
 function Header() {
   const [searchInput, setSearchInput] = useState("");
   const [memberList, setMemberList] = useState([]);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState();
+
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   const searchMemberItems = memberList.map((member, index) => (
-    <SearchMember member={member} />
+    <SearchMember
+      member={member}
+      onClick={() => {
+        if (!member.following) {
+          setSelectedMember(member);
+        } else {
+          unfollow(member.id);
+        }
+        forceUpdate();
+      }}
+    />
   ));
 
   const searchEmptyItem = (
@@ -30,16 +45,24 @@ function Header() {
 
   return (
     <div className="header">
+      {selectedMember && (
+        <FollowConfirm
+          member={selectedMember}
+          onOk={() => {
+            follow(selectedMember.id);
+            setSelectedMember();
+          }}
+          onCancel={() => {
+            setSelectedMember();
+          }}
+        />
+      )}
       <div className="header-logo">
         <img
           src="https://ar-color-book.s3.ap-northeast-2.amazonaws.com/dropthebeatboxicon.png"
           alt="logo"
           width="50px"
           height="50px"
-          style={{ cursor: "pointer" }}
-          onClick={(event) => {
-            window.location.replace("/mainpage");
-          }}
         ></img>
         <button
           className="header-title"
@@ -47,7 +70,7 @@ function Header() {
             window.location.replace("/mainpage");
           }}
         >
-          <p style={{ cursor: "pointer" }}>DropTheBeatBox</p>
+          DropTheBeatBox
         </button>
       </div>
 

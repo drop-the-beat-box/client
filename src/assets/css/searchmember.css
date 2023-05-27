@@ -63,3 +63,11 @@
     font-size: 90%;
     font-weight: 300;
 }
+
+.searchmember-container .searchmember-plus {
+    visibility: hidden;
+}
+
+.searchmember-container:hover .searchmember-plus {
+    visibility: visible;
+}

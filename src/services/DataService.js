@@ -11,7 +11,7 @@ let datas = [
   },
   { id: 5, name: "Vere", email: "vaynold5@mysql.com", following: false },
   { id: 6, name: "Claudia", email: "cmoakler6@digg.com", following: false },
-  { id: 7, name: "Kiri", email: "abcabc7@topsy.com", following: false },
+  { id: 7, name: "mkaos", email: "ajso2981@naver.com", following: false },
   {
     id: 8,
     name: "Phillis",
