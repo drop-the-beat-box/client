@@ -1,5 +1,6 @@
 import React from "react";
 import logoImage from "../img/mainlogo.png";
+import MainPage from "./MainPage";
 
 function LoginPage() {
   return (
@@ -60,8 +61,20 @@ function LoginPage() {
           DropTheBeatBox
         </h1>
         <div>
-          <button>Google</button>
-          <button>Kakao</button>
+          <button
+            onClick={() => {
+              window.location.replace("/mainpage");
+            }}
+          >
+            Google
+          </button>
+          <button
+            onClick={() => {
+              window.location.replace("/mainpage");
+            }}
+          >
+            Kakao
+          </button>
         </div>
       </div>
     </>

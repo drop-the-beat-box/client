@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {Link, useParams} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import circle from "../img/circle.png";
 
 function Content(props) {
@@ -15,26 +15,32 @@ function Content(props) {
 function BodyTopButton(props) {
   const [isHovering, setIsHovering] = useState(false);
 
-    const onMouseOver = () => setIsHovering(true);
-    const onMouseOut=() => setIsHovering(false);
+  const onMouseOver = () => setIsHovering(true);
+  const onMouseOut = () => setIsHovering(false);
 
-    return (
-        <button onClick = {(event) => {
-            event.preventDefault();
-            window.location.replace(props.linkPage);
-        }} 
-        className={isHovering? "btbutton-hover" : "btbutton"}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-        on>
-            <div className= "btbutton-logo">
-                <img src={circle} alt= "circle" className="btbutton-logo-image"/>
-            </div>
-            <div className="btbutton-text">
-                <p>{props.text}</p>
-            </div>
-        </button>
-    )
+  return (
+    <button
+      onClick={(event) => {
+        event.preventDefault();
+        window.location.replace(props.linkPage);
+      }}
+      className={isHovering ? "btbutton-hover" : "btbutton"}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+      on
+    >
+      <div className="btbutton-logo">
+        <img
+          src={circle}
+          alt="circle"
+          className="btbutton-logo-image"
+        />
+      </div>
+      <div className="btbutton-text">
+        <p>{props.text}</p>
+      </div>
+    </button>
+  );
 }
 
 function Body() {
@@ -54,15 +60,15 @@ function Body() {
   return (
     <div className="body">
       <div className="body-top">
-        <BodyTopButton 
-        text="Personal"
-        linkPage ="/myfilepage">
-        </BodyTopButton>
+        <BodyTopButton
+          text="Personal"
+          linkPage="/myfilepage"
+        ></BodyTopButton>
 
-        <BodyTopButton 
-        text="Group"
-        linkPage ="/sharingpage">
-        </BodyTopButton>
+        <BodyTopButton
+          text="Group"
+          linkPage="/sharingpage"
+        ></BodyTopButton>
       </div>
       <div className="body-second"></div>
       <div className="body-main">

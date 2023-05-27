@@ -1,22 +1,44 @@
+import React from "react";
 import SideBarButton from "./SideBarButton";
+import Following from "./Following";
 
-function SideBar() {
-    
-    return(
-        <aside className="sidebar">
-            <div className="sidebar-top">
-                <SideBarButton name = {"ButtonName"}></SideBarButton>
-            </div>
+function SideBar({ currentPage }) {
+  let sidebarTopContent = null;
+  let sidebarMidContent = null;
+  let sidebarBottomContent = null;
 
-            <div className="sidebar-middle">
-                <div className="sidebar-middleview"></div>
-            </div>
+  switch (currentPage) {
+    case "mainpage":
+      sidebarMidContent = <Following />;
+      break;
+    case "myfilepage":
+      sidebarTopContent = <SideBarButton name={"Upload"}></SideBarButton>;
+      sidebarMidContent = <div className="sidebar-middleview"></div>;
+      sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
+      break;
+    case "sharingfilepage":
+      sidebarTopContent = <SideBarButton name={"Upload"}></SideBarButton>;
+      sidebarMidContent = <div className="sidebar-middleview"></div>;
+      sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
+      break;
+    case "sharingpage":
+      sidebarTopContent = <SideBarButton name={"CreateSharePage"}></SideBarButton>;
+      sidebarMidContent = <div className="sidebar-middleview"></div>;
+      sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
+      break;
+    case "trashfilepage":
+      sidebarTopContent = <SideBarButton name={"Back"}></SideBarButton>;
+      sidebarMidContent = <div className="sidebar-middleview"></div>;
+      sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
+      break;
+  }
 
-            <div className="sidebar-bottom">
-            <SideBarButton name = {"TrashCan"}></SideBarButton>
-            </div>
-        </aside>
-    )
+  return (
+    <aside className="sidebar">
+      <div className="sidebar-top">{sidebarTopContent}</div>
+      <div className="sidebar-middle">{sidebarMidContent}</div>
+      <div className="sidebar-bottom">{sidebarBottomContent}</div>
+    </aside>
+  );
 }
-
 export default SideBar;

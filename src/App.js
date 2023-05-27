@@ -13,6 +13,10 @@ import "./assets/css/footer.css";
 import "./assets/css/layout.css";
 import "./assets/css/sidebarbutton.css";
 import "./assets/css/bodytopbutton.css";
+import "./assets/css/following.css";
+import "./assets/css/searchmember.css";
+import "./assets/css/profilemenu.css";
+import "./assets/css/followconfirm.css";
 import MainPage from "./pages/MainPage";
 import MyFilePage from "./pages/MyFilePage";
 import SharingPage from "./pages/SharingPage";
@@ -25,7 +29,7 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />;
+          <Route path="/" element={<LoginPage />} />
           <Route path="/mainpage" element={<MainPage />} />
           <Route path="/myfilepage" element={<MyFilePage />} />
           <Route path="/sharingpage" element={<SharingPage />} />

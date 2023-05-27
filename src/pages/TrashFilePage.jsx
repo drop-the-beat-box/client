@@ -1,9 +1,7 @@
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
 
 function TrashFilePage() {
-  return (
-    <Layout/>
-  );
+  return <Layout currentPage="trashfilepage" />;
 }
 
 export default TrashFilePage;

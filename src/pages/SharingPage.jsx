@@ -1,9 +1,7 @@
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
 
 function SharingPage() {
-  return (
-    <Layout/>
-  );
+  return <Layout currentPage="sharingpage" />;
 }
 
 export default SharingPage;
