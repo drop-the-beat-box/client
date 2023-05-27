@@ -148,12 +148,21 @@ function SideBarButton({ name }) {
                     key={user.id}
                     className="following-list"
                   >
-                    <input
-                      type="checkbox"
-                      checked={selectedUsers.some((selectedUser) => selectedUser.id === user.id)}
-                      onChange={() => handleUserSelect(user)}
-                    />
-                    <label>{user.name}</label>
+                    <label className="checkbox-container">
+                      <input
+                        type="checkbox"
+                        checked={selectedUsers.some((selectedUser) => selectedUser.id === user.id)}
+                        onChange={() => handleUserSelect(user)}
+                      />
+                      <span
+                        className={`custom-checkbox ${
+                          selectedUsers.some((selectedUser) => selectedUser.id === user.id)
+                            ? "checked"
+                            : ""
+                        }`}
+                      ></span>
+                    </label>
+                    <span>{user.name}</span>
                   </div>
                 ))}
               </div>

@@ -114,3 +114,53 @@
   color: white;
   border-radius: 7px;
 }
+
+/* 체크박스 컨테이너 스타일 */
+.checkbox-container {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* 숨겨진 실제 체크박스 */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* 커스텀 체크박스 디자인 */
+.custom-checkbox {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  background-color: #fff;
+}
+.custom-checkbox.checked {
+  background-color: #486284;
+  border-color: #486284;
+}
+
+/* 체크박스 체크된 상태에서의 체크 아이콘 */
+.custom-checkbox.checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+/* 체크박스에 마우스 호버 효과 */
+.checkbox-container:hover .custom-checkbox {
+  border-color: black;
+}
+
+/* 체크박스에 포커스 효과 */
+.checkbox-container input:focus ~ .custom-checkbox {
+  box-shadow: 0 0 3px #888;
+}
