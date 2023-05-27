@@ -117,8 +117,9 @@
 
 .popup-content-createshare {
   position: relative;
+  justify-content: center;
+  align-items: center;
   display: flex;
-  flex-direction: column;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   border: 1px solid white;
   padding: 20px;

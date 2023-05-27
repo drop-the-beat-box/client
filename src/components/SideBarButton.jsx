@@ -82,6 +82,7 @@ function SideBarButton({ name }) {
     setSelectedUsers([]);
     setRoomName("");
   };
+
   return (
     <>
       <button
@@ -134,20 +135,19 @@ function SideBarButton({ name }) {
             >
               X
             </button>
-            <div className="popup-container">
-              {/* 방 이름 입력 */}
-              <div className="room-name">
-                <input
-                  className="room-name-input"
-                  type="text"
-                  value={roomName}
-                  onChange={handleRoomNameChange}
-                />
+
+            <div className="left-side">
+              <div className="left-top">
+                <h1>팔로잉 목록</h1>
+                <p>개설방의 멤버를 선택해 주십시오</p>
               </div>
               {/* 사용자 목록 렌더링 */}
               <div className="following-list-container">
                 {persons.map((user) => (
-                  <div key={user.id}>
+                  <div
+                    key={user.id}
+                    className="following-list"
+                  >
                     <input
                       type="checkbox"
                       checked={selectedUsers.some((selectedUser) => selectedUser.id === user.id)}
@@ -157,9 +157,36 @@ function SideBarButton({ name }) {
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="right-side">
+              {/* 방 이름 입력 */}
+              <input
+                className="room-name-input"
+                type="text"
+                value={roomName}
+                onChange={handleRoomNameChange}
+                placeholder="개설방의 이름을 설정해주십시오"
+                style={{ fontSize: "18px" }}
+              />
+
+              {/*누가 추가 되었는가*/}
+              <div className="added-list-container">
+                {selectedUsers.map((user) => (
+                  <div key={user.id}>
+                    <p>{user.name}</p>
+                    {/* 다른 요소들을 표시할 수 있음 */}
+                  </div>
+                ))}
+              </div>
+
               {/* 방 개설 버튼 */}
               <div className="room-creation">
-                <button onClick={handleRoomCreation}>방 개설</button>
+                <button
+                  onClick={handleRoomCreation}
+                  style={{ position: "absolute", bottom: 0 }}
+                >
+                  방 만들기
+                </button>
               </div>
             </div>
           </div>

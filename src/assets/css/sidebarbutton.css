@@ -33,31 +33,84 @@
 }
 
 .popup-container {
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.room-name {
-  height: 15%;
+.left-side {
+  flex: 1;
+  padding-right: 5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.left-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 20%;
+  width: 100%;
 }
 
 .following-list-container {
   border-radius: 5px;
-  height: 80%;
   background-color: white;
+  height: 70%;
+  width: 90%;
   overflow: auto;
+}
+.following-list {
+  padding: 10px;
+}
+
+/*오른쪽 섹션*/
+.right-side {
+  flex: 1;
+  padding-left: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .room-name-input {
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
+  width: 80%;
+  height: 10%;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 7px;
   padding: 8px;
 }
 
+.added-list-container {
+  height: 50%;
+  width: 90%;
+  overflow: auto;
+  background-color: white;
+  border-radius: 7px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
 .room-creation {
-  height: 10px;
+  height: 10%;
+  margin-top: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-creation button {
+  background-color: #486284;
+  color: white;
+  border-radius: 7px;
 }
