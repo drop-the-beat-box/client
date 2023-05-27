@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import { persons } from "./Following";
 
 function SideBarButton({ name }) {
   const [isHovering, setIsHovering] = useState(false);
@@ -49,6 +50,38 @@ function SideBarButton({ name }) {
       });
   };
 
+  /*방 개설 동작*/
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [roomName, setRoomName] = useState("");
+
+  const handleUserSelect = (user) => {
+    // 이미 선택된 사용자인지 확인
+    const isUserSelected = selectedUsers.some((selectedUser) => selectedUser.id === user.id);
+
+    if (isUserSelected) {
+      // 이미 선택된 사용자라면 선택 해제
+      setSelectedUsers((prevSelectedUsers) =>
+        prevSelectedUsers.filter((selectedUser) => selectedUser.id !== user.id)
+      );
+    } else {
+      // 새로운 사용자를 선택
+      setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, user]);
+    }
+  };
+
+  const handleRoomNameChange = (event) => {
+    setRoomName(event.target.value);
+  };
+  const handleRoomCreation = () => {
+    // 선택한 사용자와 방 이름을 사용하여 방을 개설하는 동작 수행
+    // 예를 들어, 서버 요청을 보내거나 필요한 작업을 수행할 수 있음
+    console.log("선택한 사용자:", selectedUsers);
+    console.log("방 이름:", roomName);
+
+    // 상태 초기화
+    setSelectedUsers([]);
+    setRoomName("");
+  };
   return (
     <>
       <button
@@ -71,6 +104,7 @@ function SideBarButton({ name }) {
             >
               X
             </button>
+
             <input
               type="file"
               multiple
@@ -100,6 +134,34 @@ function SideBarButton({ name }) {
             >
               X
             </button>
+            <div className="popup-container">
+              {/* 방 이름 입력 */}
+              <div className="room-name">
+                <input
+                  className="room-name-input"
+                  type="text"
+                  value={roomName}
+                  onChange={handleRoomNameChange}
+                />
+              </div>
+              {/* 사용자 목록 렌더링 */}
+              <div className="following-list-container">
+                {persons.map((user) => (
+                  <div key={user.id}>
+                    <input
+                      type="checkbox"
+                      checked={selectedUsers.some((selectedUser) => selectedUser.id === user.id)}
+                      onChange={() => handleUserSelect(user)}
+                    />
+                    <label>{user.name}</label>
+                  </div>
+                ))}
+              </div>
+              {/* 방 개설 버튼 */}
+              <div className="room-creation">
+                <button onClick={handleRoomCreation}>방 개설</button>
+              </div>
+            </div>
           </div>
         </div>
       )}
