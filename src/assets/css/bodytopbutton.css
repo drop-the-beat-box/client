@@ -1,5 +1,6 @@
 .btbutton {
   width: 50%;
+  height: 100%;
 
   display: flex;
   align-items: center;
@@ -16,6 +17,7 @@
 
 .btbutton-hover {
   width: 50%;
+  height: 100%;
 
   display: flex;
   align-items: center;
@@ -35,12 +37,16 @@
 
 .btbutton-logo {
   display: flex;
-  width: 10%;
+  align-items: center;
+  justify-content: left;
+
+  gap: 5%;
+  width: 40%;
   height: 80%;
 }
 
 .btbutton-logo-image {
   display: flex;
-  width: 65%;
-  height: 80%;
+  height: 120%;
+  object-fit: contain;
 }
