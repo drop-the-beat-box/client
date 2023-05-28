@@ -1,13 +1,12 @@
-.btbutton {
-  width: 50%;
-  height: 100%;
+.filterbutton {
+  width: 48%;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: #415165;
-  background: white;
+  color: white;
+  background: #415165;
 
   border: 1px solid #e2e8ef;
   border-radius: 10px;
@@ -15,9 +14,8 @@
   font-family: "DMSans-Regular";
 }
 
-.btbutton-hover {
-  width: 50%;
-  height: 100%;
+.filterbutton-hover {
+  width: 48%;
 
   display: flex;
   align-items: center;
@@ -31,22 +29,23 @@
   font-family: "DMSans-Regular";
 }
 
-.btbutton-text {
-  width: 90%;
-}
+.filterbutton-clicked {
+  width: 48%;
 
-.btbutton-logo {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
 
-  gap: 5%;
-  width: 40%;
-  height: 80%;
+  background-color: #e2e8ef;
+
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
+
+  transition: 0.2s ease-in-out;
+
+  font-family: "DMSans-Regular";
 }
 
-.btbutton-logo-image {
-  display: flex;
-  height: 120%;
-  object-fit: contain;
+.filterbutton-text {
+  width: 90%;
 }
