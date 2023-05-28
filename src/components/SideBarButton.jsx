@@ -1,22 +1,7 @@
 import { useState } from "react";
 import React from "react";
-import { persons } from "./Following";
-import Following from "./Following";
-import { Avatar } from "@material-ui/core";
+import Profile from "./Profile";
 import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
-
-/*임시*/
-function Profile({ image, name }) {
-  return (
-    <div>
-      <div className="profile">
-        <Avatar src={image}></Avatar>
-        <p>{name}</p>
-      </div>
-    </div>
-  );
-}
-//
 
 function SideBarButton({ name }) {
   /*임시*/
