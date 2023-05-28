@@ -11,7 +11,7 @@ function SideBar({ currentPage }) {
   switch (currentPage) {
     case "mainpage":
       sidebarTopContent = <h2 style={{ color: "#7B95B7" }}>Following List</h2>;
-      sidebarMidContent = <Following />;
+      sidebarMidContent = <Following name={"MainPage"} />;
       break;
     case "myfilepage":
       sidebarTopContent = <SideBarButton name={"Upload"}></SideBarButton>;
@@ -20,7 +20,7 @@ function SideBar({ currentPage }) {
       break;
     case "sharingfilepage":
       sidebarTopContent = <SideBarButton name={"Upload"}></SideBarButton>;
-      sidebarMidContent = <Following />;
+      sidebarMidContent = <Following name={"SharingFilePage"} />;
       sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
       break;
     case "sharingpage":

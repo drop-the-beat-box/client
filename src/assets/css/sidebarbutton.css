@@ -52,19 +52,19 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 20%;
+  height: 10%;
   width: 100%;
 }
 
 .following-list-container {
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: white;
-  height: 70%;
+  height: 80%;
   width: 90%;
   overflow: auto;
 }
 .following-list {
-  padding: 10px;
+  padding: 15px;
 }
 
 /*오른쪽 섹션*/
@@ -95,7 +95,7 @@
   width: 70%;
   overflow: auto;
   background-color: white;
-  border-radius: 7px;
+  border-radius: 15px;
   padding: 25px;
   margin-top: 30px;
 }

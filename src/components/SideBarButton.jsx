@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import { persons } from "./Following";
+import { Avatar } from "@material-ui/core";
 
 function SideBarButton({ name }) {
   const [isHovering, setIsHovering] = useState(false);
@@ -138,8 +139,7 @@ function SideBarButton({ name }) {
 
             <div className="left-side">
               <div className="left-top">
-                <h1>팔로잉 목록</h1>
-                <p>개설방의 멤버를 선택해 주십시오</p>
+                <h2 style={{ color: "#486284" }}>개설방의 멤버를 선택해 주십시오</h2>
               </div>
               {/* 사용자 목록 렌더링 */}
               <div className="following-list-container">

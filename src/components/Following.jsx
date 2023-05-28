@@ -18,18 +18,32 @@ function Profile({ image, name }) {
   );
 }
 
-function Following() {
-  return (
-    <div className="following-container">
-      {persons.map((person, index) => (
-        <Profile
-          key={index}
-          image={person.image}
-          name={person.name}
-        />
-      ))}
-    </div>
-  );
+function Following({ name }) {
+  if (name === "MainPage") {
+    return (
+      <div className="following-container">
+        {persons.map((person, index) => (
+          <Profile
+            key={index}
+            image={person.image}
+            name={person.name}
+          />
+        ))}
+      </div>
+    );
+  } else if (name === "SharingFilePage") {
+    return (
+      <div className="following-container">
+        {persons.map((person, index) => (
+          <Profile
+            key={index}
+            image={person.image}
+            name={person.name}
+          />
+        ))}
+      </div>
+    );
+  }
 }
 
 export default Following;
