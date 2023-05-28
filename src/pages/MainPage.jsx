@@ -1,9 +1,7 @@
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
 
 function MainPage() {
-  return (
-    <Layout/>
-  );
+  return <Layout currentPage="mainpage" />;
 }
 
 export default MainPage;

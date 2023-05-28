@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   height: 10%;
-  border: 1px solid #E2E8EF;
+  border: 1px solid #e2e8ef;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -26,7 +26,7 @@
   justify-content: center;
   height: 80%;
 
-  border: 1px solid #E2E8EF;
+  border: 1px solid #e2e8ef;
 }
 
 .sidebar-middleview {
@@ -38,10 +38,100 @@
   justify-content: center;
   height: 10%;
 
-  border: 1px solid #E2E8EF;
+  border: 1px solid #e2e8ef;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
 .sidebar-bottombutton {
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/*Upload 버튼*/
+.popup-overlay-upload {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content-upload {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+  width: 600px;
+}
+
+.popup-inner-upload {
+  border-radius: 10px;
+  background-color: #e2e8ef;
+  padding: 20px;
+  height: 400px;
+  width: 550px;
+  overflow: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.popup-inner-content-upload {
+  /* 팝업 내용 스타일 */
+  padding: 10px;
+}
+
+.popup-content-upload button {
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  border: 1px solid white;
+  border-radius: 6px;
+}
+
+/*CreateSharePage 버튼*/
+.popup-overlay-createshare {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.popup-content-createshare {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid white;
+  padding: 20px;
+  background-color: #e2e8ef;
+  border-radius: 10px;
+  height: 70%;
+  width: 70%;
+}
+
+.popup-content-createshare button {
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8ef;
+  background-color: #e2e8ef;
+  font-size: large;
 }
