@@ -16,3 +16,10 @@
 .profile p {
   margin-left: 15px;
 }
+
+.plus-button {
+  margin-left: 15px;
+  font-size: 25px;
+  background-color: white;
+  border-radius: 10px;
+}
