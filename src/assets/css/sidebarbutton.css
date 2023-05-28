@@ -47,6 +47,7 @@
   justify-content: center;
   flex-direction: column;
 }
+
 .left-top {
   display: flex;
   align-items: center;
@@ -63,6 +64,7 @@
   width: 90%;
   overflow: auto;
 }
+
 .following-list {
   display: flex;
   padding: 15px;
@@ -92,8 +94,8 @@
 }
 
 .added-list-container {
-  height: 50%;
-  width: 70%;
+  height: 80%;
+  width: 80%;
   overflow: auto;
   background-color: white;
   border-radius: 15px;
@@ -141,6 +143,7 @@
   background-color: #fff;
   margin-right: 10px;
 }
+
 .custom-checkbox.checked {
   background-color: #486284;
   border-color: #486284;
@@ -158,12 +161,13 @@
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
 /* 체크박스에 마우스 호버 효과 */
 .checkbox-container:hover .custom-checkbox {
   border-color: black;
 }
 
 /* 체크박스에 포커스 효과 */
-.checkbox-container input:focus ~ .custom-checkbox {
+.checkbox-container input:focus~.custom-checkbox {
   box-shadow: 0 0 3px #888;
 }
