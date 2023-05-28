@@ -105,6 +105,9 @@ function SideBarButton({ name }) {
     // 상태 초기화
     setSelectedUsers([]);
     setRoomName("");
+
+    //팝업 닫기
+    handlePopupClose();
   };
 
   return (
