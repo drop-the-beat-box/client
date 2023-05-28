@@ -33,31 +33,137 @@
 }
 
 .popup-container {
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.room-name {
-  height: 15%;
+.left-side {
+  flex: 1;
+  padding-right: 5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.left-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 10%;
+  width: 100%;
 }
 
 .following-list-container {
-  border-radius: 5px;
-  height: 80%;
+  border-radius: 15px;
   background-color: white;
+  height: 80%;
+  width: 90%;
   overflow: auto;
+}
+.following-list {
+  display: flex;
+  padding: 15px;
+}
+
+/*오른쪽 섹션*/
+.right-side {
+  flex: 1;
+  padding-left: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .room-name-input {
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
+  width: 80%;
+  height: 8%;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 7px;
+  border-radius: 35px;
   padding: 8px;
 }
 
+.added-list-container {
+  height: 50%;
+  width: 70%;
+  overflow: auto;
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
 .room-creation {
-  height: 10px;
+  height: 10%;
+  margin-top: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-creation button {
+  background-color: #486284;
+  color: white;
+  border-radius: 7px;
+}
+
+/* 체크박스 컨테이너 스타일 */
+.checkbox-container {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* 숨겨진 실제 체크박스 */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* 커스텀 체크박스 디자인 */
+.custom-checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-top: 15px;
+  background-color: #fff;
+  margin-right: 10px;
+}
+.custom-checkbox.checked {
+  background-color: #486284;
+  border-color: #486284;
+}
+
+/* 체크박스 체크된 상태에서의 체크 아이콘 */
+.custom-checkbox.checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+/* 체크박스에 마우스 호버 효과 */
+.checkbox-container:hover .custom-checkbox {
+  border-color: black;
+}
+
+/* 체크박스에 포커스 효과 */
+.checkbox-container input:focus ~ .custom-checkbox {
+  box-shadow: 0 0 3px #888;
 }

@@ -1,8 +1,10 @@
 .following-container {
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 90%;
   overflow: auto;
   padding: 20px;
+  background-color: #eff2f6;
+  border-radius: 20px;
 }
 
 .profile {
@@ -13,4 +15,11 @@
 
 .profile p {
   margin-left: 15px;
+}
+
+.plus-button {
+  margin-left: 15px;
+  font-size: 25px;
+  background-color: white;
+  border-radius: 10px;
 }
