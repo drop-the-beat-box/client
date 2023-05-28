@@ -183,9 +183,11 @@ function SideBarButton({ name }) {
                 {selectedUsers.map((user) => (
                   <div key={user.id}>
                     <p>{user.name}</p>
-                    {/* 다른 요소들을 표시할 수 있음 */}
                   </div>
                 ))}
+              </div>
+              <div>
+                <h3>초대 인원: {selectedUsers.length}</h3>
               </div>
 
               {/* 방 개설 버튼 */}
