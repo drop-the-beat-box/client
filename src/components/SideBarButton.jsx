@@ -1,9 +1,32 @@
 import { useState } from "react";
 import React from "react";
 import { persons } from "./Following";
+import Following from "./Following";
 import { Avatar } from "@material-ui/core";
+import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
+
+/*임시*/
+function Profile({ image, name }) {
+  return (
+    <div>
+      <div className="profile">
+        <Avatar src={image}></Avatar>
+        <p>{name}</p>
+      </div>
+    </div>
+  );
+}
+//
 
 function SideBarButton({ name }) {
+  /*임시*/
+  const [persons, setPersons] = useState([]);
+
+  setDataChangeHandler(() => {
+    setPersons(getFollowingMembers(0));
+  });
+  /**/
+
   const [isHovering, setIsHovering] = useState(false);
   const onMouseOver = () => setIsHovering(true);
   const onMouseOut = () => setIsHovering(false);
@@ -144,10 +167,7 @@ function SideBarButton({ name }) {
               {/* 사용자 목록 렌더링 */}
               <div className="following-list-container">
                 {persons.map((user) => (
-                  <div
-                    key={user.id}
-                    className="following-list"
-                  >
+                  <div className="following-list">
                     <label className="checkbox-container">
                       <input
                         type="checkbox"
@@ -162,7 +182,11 @@ function SideBarButton({ name }) {
                         }`}
                       ></span>
                     </label>
-                    <span>{user.name}</span>
+                    <Profile
+                      key={user.id}
+                      image={user.image}
+                      name={user.name}
+                    />
                   </div>
                 ))}
               </div>
@@ -182,7 +206,11 @@ function SideBarButton({ name }) {
               <div className="added-list-container">
                 {selectedUsers.map((user) => (
                   <div key={user.id}>
-                    <p>{user.name}</p>
+                    <Profile
+                      key={user.id}
+                      image={user.image}
+                      name={user.name}
+                    />
                   </div>
                 ))}
               </div>

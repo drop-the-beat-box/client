@@ -64,6 +64,7 @@
   overflow: auto;
 }
 .following-list {
+  display: flex;
   padding: 15px;
 }
 
@@ -135,7 +136,8 @@
   width: 20px;
   height: 20px;
   border: 2px solid #ccc;
-  border-radius: 6px;
+  border-radius: 5px;
+  margin-top: 15px;
   background-color: #fff;
   margin-right: 10px;
 }
