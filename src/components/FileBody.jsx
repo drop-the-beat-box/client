@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage, faVideo, faFileAlt } from "@fortawesome/free-solid-svg-icons";
 
 import circle from "../img/circle.png";
-import image from "../img/image.png";
-import video from "../img/video.png";
-import document from "../img/document.png";
 import file from "../img/file.png";
 import PopupMenu from "../components/PopupMenu";
 
@@ -75,6 +74,8 @@ function Content(props) {
   let thumbnail = props.imageFile;
   let isDeleted = false;
 
+  const thumbnailIcons = [faImage, faVideo, faFileAlt];
+
   if (isDeleted) {
     return (
       <button className="content-entity">
@@ -99,76 +100,34 @@ function Content(props) {
           />
         </div>
         <Popup />
-        <img src={thumbnail} className="content-thumbnail" />
-        <div>{name}</div>
-        <div>{date}</div>
+        <FontAwesomeIcon
+          size={"3x"}
+          icon={thumbnailIcons[type]}
+          style={{ color: "#6c86b2" }}
+        />
+        <h1>{name}</h1>
+        <p>{date}</p>
       </button>
     );
   }
 }
 
-// 필터 버튼 4 개
-function FilterButton(props) {
-  const [isHovering, setIsHovering] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [stateName, setStateName] = useState("filterbutton");
-
-  if (props.recentButton == props.text) {
-    if (stateName != "filterbutton-clicked") {
-      setStateName((prevState) => (prevState = "filterbutton-clicked"));
-      console.log(props.text, " Rendered");
-    }
-  }
-
-  const onMouseOver = () => {
-    if (isClicked) {
-      return;
-    }
-    setStateName("filterbutton-hover");
-  };
-  const onMouseOut = () => {
-    if (isClicked) {
-      return;
-    }
-    setStateName("filterbutton");
-  };
-  const onMouseClick = () => {
-    setIsClicked((prevState) => !prevState);
-    props.setFilter(props.filterType);
-    props.setRecentButton((prevState) => (prevState = props.text));
-  };
-
-  return (
-    <button
-      className={stateName}
-      onClick={onMouseClick}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      <div className="filterbutton-text">
-        <p>{props.text}</p>
-      </div>
-    </button>
-  );
-}
-
 function FileBody() {
   const Filter = {
-    Default: 0,
-    Image: 1,
-    Video: 2,
-    Document: 3,
-    Etc: 4,
+    Image: 0,
+    Video: 1,
+    Document: 2,
+    Favorite: 3,
   };
 
   const [filter, setFilter] = useState(Filter.Default);
   const [recentButton, setRecentButton] = useState("Default");
 
   const filterButtons = [
-    <FilterButton text="Image" filterType={1} />,
-    <FilterButton text="Video" filterType={2} />,
-    <FilterButton text="Doc" filterType={3} />,
-    <FilterButton text="ETC" filterType={0} />,
+    <FilterButton text="Image" filterType={0} />,
+    <FilterButton text="Video" filterType={1} />,
+    <FilterButton text="Doc" filterType={2} />,
+    <FilterButton text="Favorite" filterType={3} />,
   ];
 
   let dataNum = 20;
@@ -201,12 +160,57 @@ function FileBody() {
         id: index,
         name: "Entity " + index,
         date: "생성일 : 2020-05-15",
-        type: Filter.Default,
+        type: Filter.Document,
         imageFile: { file },
       });
     }
 
     return sampleData;
+  }
+
+  // 필터 버튼 4 개
+  function FilterButton(props) {
+    const [isHovering, setIsHovering] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+    const [stateName, setStateName] = useState("filterbutton");
+
+    if (props.recentButton == props.text) {
+      if (stateName != "filterbutton-clicked") {
+        setStateName((prevState) => (prevState = "filterbutton-clicked"));
+        console.log(props.text, " Rendered");
+      }
+    }
+
+    const onMouseOver = () => {
+      if (isClicked) {
+        return;
+      }
+      setStateName("filterbutton-hover");
+    };
+    const onMouseOut = () => {
+      if (isClicked) {
+        return;
+      }
+      setStateName("filterbutton");
+    };
+    const onMouseClick = () => {
+      setIsClicked((prevState) => !prevState);
+      setFilter(props.filterType);
+      setRecentButton((prevState) => (prevState = props.text));
+    };
+
+    return (
+      <button
+        className={stateName}
+        onClick={onMouseClick}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        <div className="filterbutton-text">
+          <p>{props.text}</p>
+        </div>
+      </button>
+    );
   }
 
   return (
