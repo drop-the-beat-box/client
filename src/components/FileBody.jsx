@@ -17,6 +17,7 @@ function FileBody() {
 
   const [filter, setFilter] = useState(Filter.Default);
   const [recentButton, setRecentButton] = useState("Default");
+  const [selectedItemId, setSelectedItemId] = useState(null);
 
   const filterButtons = [
     <FilterButton text="Image" filterType={0} />,
@@ -43,9 +44,6 @@ function FileBody() {
       ></Content>
     );
   }
-
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
 
   function GenerateSampleData(dataNum) {
     let sampleData = [];
@@ -142,7 +140,11 @@ function FileBody() {
               <img
                 src={circle}
                 onClick={(event) => {
-                  setIsPopupOpen(true);
+                  if (selectedItemId === props.id) {
+                    setSelectedItemId(null);
+                  } else {
+                    setSelectedItemId(props.id);
+                  }
                 }}
                 className="content-top-button"
               />
@@ -161,7 +163,7 @@ function FileBody() {
                     },
                   },
                 ]}
-                isOpen={isPopupOpen}
+                isOpen={props.id == selectedItemId}
               />
             </div>
           </div>
