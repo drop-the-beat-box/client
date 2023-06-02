@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import React from "react";
 import Profile from "./Profile";
 import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
@@ -81,20 +81,39 @@ function SideBarButton({ name }) {
   const handleRoomNameChange = (event) => {
     setRoomName(event.target.value);
   };
+
+  const [shareroom, setShareroom] = useState([]);
+  const roomId = useRef(0);
+
   const handleRoomCreation = () => {
     // 선택한 사용자와 방 이름을 사용하여 방을 개설하는 동작 수행
     // 예를 들어, 서버 요청을 보내거나 필요한 작업을 수행할 수 있음
     console.log("선택한 사용자:", selectedUsers);
     console.log("방 이름:", roomName);
 
+    // 새로운 방 객체 생성
+    const newRoom = {
+      id: roomId.current,
+      name: roomName,
+      users: selectedUsers,
+    };
+
+    // shareroom 상태 업데이트: 새로운 방을 배열에 추가
+    setShareroom((prevShareroom) => [...prevShareroom, newRoom]);
+
     // 상태 초기화
     setSelectedUsers([]);
     setRoomName("");
 
+    // 방 고유 식별자 증가
+    roomId.current += 1;
+
     //팝업 닫기
     handlePopupClose();
   };
-
+  useEffect(() => {
+    console.log("새로운 shareroom:", shareroom);
+  }, [shareroom]);
   return (
     <>
       <button
