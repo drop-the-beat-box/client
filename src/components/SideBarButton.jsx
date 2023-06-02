@@ -1,7 +1,8 @@
-import { useRef, useState, useEffect } from "react";
+import { useContext, useRef, useState, useEffect } from "react";
 import React from "react";
 import Profile from "./Profile";
 import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
+import { SharedRoomContext } from "./SharedRoomContext";
 
 function SideBarButton({ name }) {
   /*임시*/
@@ -82,7 +83,7 @@ function SideBarButton({ name }) {
     setRoomName(event.target.value);
   };
 
-  const [shareroom, setShareroom] = useState([]);
+  const { shareroom, setShareroom } = useContext(SharedRoomContext);
   const roomId = useRef(0);
 
   const handleRoomCreation = () => {

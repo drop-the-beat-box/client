@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
+import { useContext } from "react";
+import { SharedRoomContext } from "./SharedRoomContext";
 import circle from "../img/circle.png";
-import RoomList from "./RoomList";
 
 function BodyTopButton(props) {
   const [isHovering, setIsHovering] = useState(false);
@@ -50,6 +50,7 @@ function BodyTopButton(props) {
   );
 }
 function SharingBody() {
+  const { shareroom } = useContext(SharedRoomContext);
   return (
     <div className="sharingbody">
       <div className="sharingbody-top">
@@ -64,7 +65,29 @@ function SharingBody() {
       </div>
 
       <div className="sharingbody-main">
-        <RoomList />
+        <div className="sharingbody-main-listcontainer">
+          <div className="sharingbody-main-list-roomname">
+            <h2>Dummy Room</h2>
+          </div>
+        </div>
+        {shareroom.map((room) => (
+          <div
+            className="sharingbody-main-listcontainer"
+            key={room.id}
+          >
+            <div className="sharingbody-main-list-roomname">
+              <h2>{room.name}</h2>
+            </div>
+
+            <div className="sharingbody-main-list-itemcontainer">
+              <ul>
+                {room.users.map((user) => (
+                  <li key={user.id}>{user.name}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
