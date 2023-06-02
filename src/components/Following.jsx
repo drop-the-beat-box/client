@@ -2,22 +2,8 @@ import React, { useState } from "react";
 
 import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
 import { Avatar } from "@material-ui/core";
-
-export let persons = [];
-
-function Profile({ image, name }) {
-  return (
-    <div>
-      <div className="profile">
-        <Avatar src={image}></Avatar>
-        <p>{name}</p>
-      </div>
-    </div>
-  );
-}
-
-import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
 import Profile from "./Profile";
+export let persons = [];
 
 function Following() {
   const [persons, setPersons] = useState([]);
