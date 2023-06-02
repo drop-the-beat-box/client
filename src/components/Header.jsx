@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { findMembers, follow, unfollow, datas } from "../services/DataService";
 import SearchMember from "./SearchMember";
-import ProfileMenu from "./ProfileMenu";
+import PopupMenu from "./PopupMenu";
 import FollowConfirm from "./FollowConfirm";
 
 function Header() {
@@ -32,6 +32,13 @@ function Header() {
       }}
     />
   ));
+
+  const popupItems = [
+    { text: "My File Page", linkPage: "/myfilepage" },
+    { text: "Sharing Page", linkPage: "/sharingpage" },
+    { text: "Sharing File Page", linkPage: "/sharingfilepage" },
+    { text: "Trash Can", linkPage: "/trashcan" },
+  ];
 
   const searchEmptyItem = (
     <div className="header-bottombox-empty-container">
@@ -112,6 +119,10 @@ function Header() {
 
       <div className="header-profile">
         <div className="header-profile-content">
+          <div className="header-profile-popup-container">
+            <div></div>
+            <PopupMenu isOpen={menuIsOpen} items={popupItems} />
+          </div>
           <div className="header-profile-avatar-container" />
           <button
             className="header-profile-toggle-btn"
@@ -122,7 +133,6 @@ function Header() {
             <FontAwesomeIcon icon={faCaretDown} />
           </button>
         </div>
-        <ProfileMenu isOpen={menuIsOpen} />
       </div>
     </div>
   );

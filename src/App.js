@@ -15,7 +15,7 @@ import "./assets/css/sidebarbutton.css";
 import "./assets/css/bodytopbutton.css";
 import "./assets/css/following.css";
 import "./assets/css/searchmember.css";
-import "./assets/css/profilemenu.css";
+import "./assets/css/popupmenu.css";
 import "./assets/css/followconfirm.css";
 import "./assets/css/filterbutton.css";
 import MainPage from "./pages/MainPage";

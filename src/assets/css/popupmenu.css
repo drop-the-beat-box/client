@@ -1,14 +1,15 @@
 .profilemenu-container {
     visibility: visible;
-    position: absolute;
+    position: relative;
+    top: 0px;
     right: 60px;
     display: flex;
     flex-direction: column;
-    width: 130px;
-    height: 150px;
-    background-color: #EFF2F6;
+    width: max-content;
+    height: auto;
+    background-color: #eff2f6;
     border-radius: 15px;
-    box-shadow: 2px 2px 4px 2px #0000001F;
+    box-shadow: 2px 2px 4px 2px #0000001f;
 }
 
 .profilemenu-container-disabled {
@@ -20,6 +21,8 @@
     border: 0px;
     background-color: transparent;
     color: #486284;
+    margin-inline-start: 8px;
+    margin-inline-end: 8px;
 }
 
 .profilemenu-button:hover {
