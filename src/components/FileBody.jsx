@@ -7,111 +7,6 @@ import circle from "../img/circle.png";
 import file from "../img/file.png";
 import PopupMenu from "../components/PopupMenu";
 
-function BodyTopButton(props) {
-  const [isHovering, setIsHovering] = useState(false);
-  const [buttonType, setButtonType] = useState("/filepage");
-
-  const onMouseOver = () => setIsHovering(true);
-  const onMouseOut = () => setIsHovering(false);
-
-  const images = Array.from({ length: 3 }, (_, index) => ({
-    id: index,
-    src: circle,
-    alt: `Image ${index}`,
-  }));
-
-  return (
-    <button
-      onClick={(event) => {
-        event.preventDefault();
-        window.location.replace(props.linkPage);
-      }}
-      className={isHovering ? "btbutton-hover" : "btbutton"}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      <div className="btbutton-logo">
-        {props.linkPage == "/myfilepage" ? (
-          <img src={circle} alt="circle" className="btbutton-logo-image" />
-        ) : (
-          images.map((image) => (
-            <img key={image.id} src={image.src} alt={image.alt} />
-          ))
-        )}
-      </div>
-      <div className="btbutton-text">
-        <p>{props.text}</p>
-      </div>
-    </button>
-  );
-}
-
-function Popup(props) {
-  return (
-    <Modal
-      isOpen={props.isOpen}
-      onRequestClose={() => props.setIsPopupOpen(false)}
-      style={{
-        content: {
-          width: "400px",
-          height: "300px",
-          top: props.x,
-          left: props.y,
-        },
-      }}
-    >
-      Hello
-    </Modal>
-  );
-}
-
-// 개별 파일 데이터
-function Content(props) {
-  let id = props.id;
-  let name = props.name;
-  let date = props.date;
-  let type = props.type;
-  let thumbnail = props.imageFile;
-  let isDeleted = false;
-
-  const thumbnailIcons = [faImage, faVideo, faFileAlt];
-
-  if (isDeleted) {
-    return (
-      <button className="content-entity">
-        <div className="content-top">
-          <img src={circle} className="content-top-button" />
-        </div>
-        <img src={thumbnail} className="content-thumbnail" />
-        <div>{name}</div>
-        <div>삭제됨</div>
-      </button>
-    );
-  } else {
-    return (
-      <button className="content-entity">
-        <div className="content-top">
-          <img
-            src={circle}
-            onClick={(event) => {
-              props.setIsPopupOpen(true);
-            }}
-            className="content-top-button"
-          />
-        </div>
-        <Popup />
-        <FontAwesomeIcon
-          size={"3x"}
-          icon={thumbnailIcons[type]}
-          style={{ color: "#6c86b2" }}
-        />
-        <h1>{name}</h1>
-        <p>{date}</p>
-      </button>
-    );
-  }
-}
-
 function FileBody() {
   const Filter = {
     Image: 0,
@@ -168,6 +63,10 @@ function FileBody() {
     return sampleData;
   }
 
+  function moveToTrashcan(item) {}
+
+  function download(item) {}
+
   // 필터 버튼 4 개
   function FilterButton(props) {
     const [isHovering, setIsHovering] = useState(false);
@@ -213,6 +112,110 @@ function FileBody() {
     );
   }
 
+  // 개별 파일 데이터
+  function Content(props) {
+    let id = props.id;
+    let name = props.name;
+    let date = props.date;
+    let type = props.type;
+    let thumbnail = props.imageFile;
+    let isDeleted = false;
+
+    const thumbnailIcons = [faImage, faVideo, faFileAlt];
+
+    if (isDeleted) {
+      return (
+        <button className="content-entity">
+          <div className="content-top">
+            <img src={circle} className="content-top-button" />
+          </div>
+          <img src={thumbnail} className="content-thumbnail" />
+          <div>{name}</div>
+          <div>삭제됨</div>
+        </button>
+      );
+    } else {
+      return (
+        <button className="content-entity">
+          <div className="content-top">
+            <div className="content-top-button-container">
+              <img
+                src={circle}
+                onClick={(event) => {
+                  setIsPopupOpen(true);
+                }}
+                className="content-top-button"
+              />
+              <PopupMenu
+                items={[
+                  {
+                    text: "Delete",
+                    callback: () => {
+                      moveToTrashcan(props);
+                    },
+                  },
+                  {
+                    text: "Download",
+                    callback: () => {
+                      download(props);
+                    },
+                  },
+                ]}
+                isOpen={isPopupOpen}
+              />
+            </div>
+          </div>
+          <FontAwesomeIcon
+            size={"3x"}
+            icon={thumbnailIcons[type]}
+            style={{ color: "#6c86b2" }}
+          />
+          <h1>{name}</h1>
+          <p>{date}</p>
+        </button>
+      );
+    }
+  }
+
+  function BodyTopButton(props) {
+    const [isHovering, setIsHovering] = useState(false);
+    const [buttonType, setButtonType] = useState("/filepage");
+
+    const onMouseOver = () => setIsHovering(true);
+    const onMouseOut = () => setIsHovering(false);
+
+    const images = Array.from({ length: 3 }, (_, index) => ({
+      id: index,
+      src: circle,
+      alt: `Image ${index}`,
+    }));
+
+    return (
+      <button
+        onClick={(event) => {
+          event.preventDefault();
+          window.location.replace(props.linkPage);
+        }}
+        className={isHovering ? "btbutton-hover" : "btbutton"}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        <div className="btbutton-logo">
+          {props.linkPage == "/myfilepage" ? (
+            <img src={circle} alt="circle" className="btbutton-logo-image" />
+          ) : (
+            images.map((image) => (
+              <img key={image.id} src={image.src} alt={image.alt} />
+            ))
+          )}
+        </div>
+        <div className="btbutton-text">
+          <p>{props.text}</p>
+        </div>
+      </button>
+    );
+  }
+
   return (
     <div className="body">
       <div className="body-top">
@@ -221,7 +224,6 @@ function FileBody() {
       </div>
       <div className="body-second">{filterButtons}</div>
       <div className="body-main">
-        <Popup />
         <div className="body-container">{rendering}</div>
       </div>
     </div>

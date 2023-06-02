@@ -119,6 +119,10 @@ function Header() {
 
       <div className="header-profile">
         <div className="header-profile-content">
+          <div className="header-profile-popup-container">
+            <div></div>
+            <PopupMenu isOpen={menuIsOpen} items={popupItems} />
+          </div>
           <div className="header-profile-avatar-container" />
           <button
             className="header-profile-toggle-btn"
@@ -129,7 +133,6 @@ function Header() {
             <FontAwesomeIcon icon={faCaretDown} />
           </button>
         </div>
-        <PopupMenu isOpen={menuIsOpen} items={popupItems} />
       </div>
     </div>
   );

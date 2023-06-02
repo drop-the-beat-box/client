@@ -130,7 +130,7 @@
 }
 
 .header-profile {
-  width: 10%;
+  width: min-content;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -141,11 +141,10 @@
 
 .header-profile-content {
   height: 100%;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: right;
-  right: 60px;
+  margin-inline-end: 60px;
 }
 
 .header-profile-avatar-container {
@@ -165,4 +164,13 @@
 
 .header-profile-toggle-btn:hover {
   background-color: #41516513;
+}
+
+.header-profile-popup-container {
+  width: 0;
+  height: 100%;
+}
+
+.header-profile-popup-container div:first-child {
+  height: 100%;
 }
