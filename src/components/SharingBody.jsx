@@ -49,8 +49,33 @@ function BodyTopButton(props) {
     </button>
   );
 }
+
+function Circle({ name }) {
+  const [gradientColor] = useState(getRandomColor());
+
+  // 랜덤 색상을 생성하는 함수
+  function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  return (
+    <div className="circlecontainer">
+      <div
+        className="circle-"
+        style={{ background: gradientColor }}
+      />
+      <h2>{name}</h2>
+    </div>
+  );
+}
 function SharingBody() {
   const { shareroom } = useContext(SharedRoomContext);
+
   return (
     <div className="sharingbody">
       <div className="sharingbody-top">
@@ -67,24 +92,36 @@ function SharingBody() {
       <div className="sharingbody-main">
         <div className="sharingbody-main-listcontainer">
           <div className="sharingbody-main-list-roomname">
+            <div className="circle" />
             <h2>Dummy Room</h2>
           </div>
+
+          <div className="sharingbody-main-list-itemcontainer">
+            <span>test</span>
+          </div>
         </div>
-        {shareroom.map((room) => (
+        {shareroom.map((room, index) => (
           <div
             className="sharingbody-main-listcontainer"
             key={room.id}
           >
             <div className="sharingbody-main-list-roomname">
-              <h2>{room.name}</h2>
+              <Circle
+                className="circle"
+                key={index}
+                name={room.name}
+              />
             </div>
 
             <div className="sharingbody-main-list-itemcontainer">
-              <ul>
-                {room.users.map((user) => (
-                  <li key={user.id}>{user.name}</li>
-                ))}
-              </ul>
+              {room.users.map((user) => (
+                <div
+                  className="test"
+                  key={user.id}
+                >
+                  {user.name}
+                </div>
+              ))}
             </div>
           </div>
         ))}

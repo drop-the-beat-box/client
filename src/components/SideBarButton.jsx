@@ -11,7 +11,7 @@ function SideBarButton({ name }) {
   setDataChangeHandler(() => {
     setPersons(getFollowingMembers(0));
   });
-  /**/
+  //
 
   const [isHovering, setIsHovering] = useState(false);
   const onMouseOver = () => setIsHovering(true);
@@ -20,6 +20,7 @@ function SideBarButton({ name }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupType, setPopupType] = useState(null);
 
+  /* 팝업 레이아웃 */
   const handleButtonClick = (type) => {
     setIsPopupOpen(true);
     setPopupType(type);

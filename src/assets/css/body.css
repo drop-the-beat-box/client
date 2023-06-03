@@ -172,7 +172,7 @@
 
 .sharingbody-main-list-roomname {
   width: 20%;
-  height: 50%;
+  height: 100%;
   border: 1px solid #e2e8ef;
   border-radius: 10px;
 
@@ -181,14 +181,36 @@
   align-items: center;
 }
 
+.circlecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circle- {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+
+  /* background: linear-gradient(to bottom, #000000, #0000ff);*/
+}
+
 .sharingbody-main-list-itemcontainer {
   width: 80%;
   height: 100%;
   margin-left: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
 
   /*나중에 제거할 속성*/
-  border: 1px solid blueviolet;
+  /*border: 1px solid blueviolet;*/
 }
 
-.sharingbody-main-list-item {
+.test {
+  display: inline-block;
+  width: 250px;
+  height: 100%;
+  border: 1px solid #e2e8ef;
+  border-radius: 5px;
+  margin-right: 20px;
 }
