@@ -99,7 +99,14 @@ function SharingBody() {
           </div>
 
           <div className="sharingbody-main-list-itemcontainer">
-            <span>test</span>
+            <div className="test">test1</div>
+            <div className="test">test2</div>
+            <div className="test">test3</div>
+            <div className="test">test4</div>
+            <div className="test">test5</div>
+            <div className="test">test6</div>
+            <div className="test">test7</div>
+            <div className="test">test8</div>
           </div>
         </div>
         {shareroom.map((room, index) => (

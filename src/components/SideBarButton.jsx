@@ -122,8 +122,8 @@ function SideBarButton({ name }) {
   }, [persons]);
 
   useEffect(() => {
-    if (roomName.length >= 10) {
-      alert("방 길이는 10자를 넘을 수 없습니다. 다시 입력해주세요");
+    if (roomName.length >= 13) {
+      alert("방 길이는 13자를 넘을 수 없습니다. 다시 입력해주세요");
       setRoomName("");
     }
   }, [roomName]);

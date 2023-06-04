@@ -188,8 +188,8 @@
 }
 .circle {
   left: 0;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin-right: 15px;
 
@@ -205,16 +205,16 @@
   margin-left: 20px;
   overflow-x: auto;
   white-space: nowrap;
-
   /*나중에 제거할 속성*/
   /*border: 1px solid blueviolet;*/
 }
 
 .test {
   display: inline-block;
-  width: 250px;
+  background-color: #e2e8ef;
+  width: 300px;
   height: 100%;
   border: 1px solid #e2e8ef;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-right: 20px;
 }
