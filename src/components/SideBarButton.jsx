@@ -1,8 +1,17 @@
 import { useState } from "react";
 import React from "react";
-import { persons } from "./Following";
+import Profile from "./Profile";
+import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
 
 function SideBarButton({ name }) {
+  /*임시*/
+  const [persons, setPersons] = useState([]);
+
+  setDataChangeHandler(() => {
+    setPersons(getFollowingMembers(0));
+  });
+  /**/
+
   const [isHovering, setIsHovering] = useState(false);
   const onMouseOver = () => setIsHovering(true);
   const onMouseOut = () => setIsHovering(false);
@@ -81,7 +90,11 @@ function SideBarButton({ name }) {
     // 상태 초기화
     setSelectedUsers([]);
     setRoomName("");
+
+    //팝업 닫기
+    handlePopupClose();
   };
+
   return (
     <>
       <button
@@ -134,32 +147,73 @@ function SideBarButton({ name }) {
             >
               X
             </button>
-            <div className="popup-container">
-              {/* 방 이름 입력 */}
-              <div className="room-name">
-                <input
-                  className="room-name-input"
-                  type="text"
-                  value={roomName}
-                  onChange={handleRoomNameChange}
-                />
+
+            <div className="left-side">
+              <div className="left-top">
+                <h2 style={{ color: "#486284" }}>개설방의 멤버를 선택해 주십시오</h2>
               </div>
               {/* 사용자 목록 렌더링 */}
               <div className="following-list-container">
                 {persons.map((user) => (
-                  <div key={user.id}>
-                    <input
-                      type="checkbox"
-                      checked={selectedUsers.some((selectedUser) => selectedUser.id === user.id)}
-                      onChange={() => handleUserSelect(user)}
+                  <div className="following-list">
+                    <label className="checkbox-container">
+                      <input
+                        type="checkbox"
+                        checked={selectedUsers.some((selectedUser) => selectedUser.id === user.id)}
+                        onChange={() => handleUserSelect(user)}
+                      />
+                      <span
+                        className={`custom-checkbox ${
+                          selectedUsers.some((selectedUser) => selectedUser.id === user.id)
+                            ? "checked"
+                            : ""
+                        }`}
+                      ></span>
+                    </label>
+                    <Profile
+                      key={user.id}
+                      image={user.image}
+                      name={user.name}
                     />
-                    <label>{user.name}</label>
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="right-side">
+              {/* 방 이름 입력 */}
+              <input
+                className="room-name-input"
+                type="text"
+                value={roomName}
+                onChange={handleRoomNameChange}
+                placeholder="개설방의 이름을 설정해주십시오"
+                style={{ fontSize: "18px" }}
+              />
+
+              {/*누가 추가 되었는가*/}
+              <div className="added-list-container">
+                {selectedUsers.map((user) => (
+                  <div key={user.id}>
+                    <Profile
+                      key={user.id}
+                      image={user.image}
+                      name={user.name}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div>
+                <h3>초대 인원: {selectedUsers.length}</h3>
+              </div>
+
               {/* 방 개설 버튼 */}
               <div className="room-creation">
-                <button onClick={handleRoomCreation}>방 개설</button>
+                <button
+                  onClick={handleRoomCreation}
+                  style={{ position: "absolute", bottom: 0 }}
+                >
+                  방 만들기
+                </button>
               </div>
             </div>
           </div>

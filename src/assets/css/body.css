@@ -120,3 +120,26 @@
   width: 100px;
   height: 100px;
 }
+
+/*Trashcan body*/
+.trashbody {
+  height: 100%;
+  width: 100%;
+  border: 1.5px solid #e2e8ef;
+  border-radius: 10px;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  overflow: auto;
+}
+
+.trashbody-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+
+  gap: 30px;
+  padding: 15px;
+}
