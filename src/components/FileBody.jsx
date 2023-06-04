@@ -7,7 +7,6 @@ import Content from "./Content";
 import circle from "../img/circle.png";
 import file from "../img/file.png";
 import PopupMenu from "../components/PopupMenu";
-import { GetJWTToken } from "../services/APIService";
 
 function FileBody() {
   const Filter = {
@@ -149,8 +148,6 @@ function FileBody() {
       </button>
     );
   }
-
-  console.log(GetJWTToken);
 
   return (
     <div className="body">
