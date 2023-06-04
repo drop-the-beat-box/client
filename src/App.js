@@ -18,12 +18,14 @@ import "./assets/css/searchmember.css";
 import "./assets/css/popupmenu.css";
 import "./assets/css/followconfirm.css";
 import "./assets/css/filterbutton.css";
+import "./assets/css/loginpage.css";
 import MainPage from "./pages/MainPage";
 import MyFilePage from "./pages/MyFilePage";
 import SharingPage from "./pages/SharingPage";
 import SharingFilePage from "./pages/SharingFilePage";
 import Trashcan from "./pages/Trashcan";
 import LoginPage from "./pages/LoginPage";
+import KakaoLogin from "./components/logins/KakaoLogin";
 
 function App() {
   return (
@@ -31,11 +33,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/mainpage" element={<MainPage />} />
+          <Route path="/mainpage" element={<MyFilePage />} />
           <Route path="/myfilepage" element={<MyFilePage />} />
           <Route path="/sharingpage" element={<SharingPage />} />
           <Route path="/sharingfilepage" element={<SharingFilePage />} />
           <Route path="/trashcan" element={<Trashcan />} />
+          <Route path="/token" element={<KakaoLogin />} />
         </Routes>
       </Router>
     </div>
