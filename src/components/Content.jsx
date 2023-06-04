@@ -5,8 +5,7 @@ import { faImage, faVideo, faFileAlt } from "@fortawesome/free-solid-svg-icons";
 import circle from "../img/circle.png";
 import PopupMenu from "../components/PopupMenu";
 
-function Content(props) {
-  const { id, name, date, type, imageFile, isDeleted } = props;
+function Content({ id, name, date, type, imageFile, isDeleted }) {
   const [selectedItemId, setSelectedItemId] = useState(null);
   const thumbnailIcons = [faImage, faVideo, faFileAlt];
 
@@ -22,15 +21,9 @@ function Content(props) {
     return (
       <button className="content-entity">
         <div className="content-top">
-          <img
-            src={circle}
-            className="content-top-button"
-          />
+          <img src={circle} className="content-top-button" />
         </div>
-        <img
-          src={imageFile}
-          className="content-thumbnail"
-        />
+        <img src={imageFile} className="content-thumbnail" />
         <div>{name}</div>
         <div>삭제됨</div>
       </button>
@@ -56,13 +49,13 @@ function Content(props) {
                 {
                   text: "Delete",
                   callback: () => {
-                    moveToTrashcan(props);
+                    moveToTrashcan("props");
                   },
                 },
                 {
                   text: "Download",
                   callback: () => {
-                    download(props);
+                    download("props");
                   },
                 },
               ]}

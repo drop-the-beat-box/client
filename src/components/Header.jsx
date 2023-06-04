@@ -1,23 +1,29 @@
 import { useState, useCallback } from "react";
+import { useCookies } from "react-cookie";
 import {
   faMagnifyingGlass,
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { findMembers, follow, unfollow, datas } from "../services/DataService";
+import { searchMembers, follow, unfollow } from "../services/APIService";
 import SearchMember from "./SearchMember";
 import PopupMenu from "./PopupMenu";
 import FollowConfirm from "./FollowConfirm";
+import ProfileImage from "../img/profile.jpeg";
 
 function Header() {
   const [searchInput, setSearchInput] = useState("");
   const [memberList, setMemberList] = useState([]);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState();
+  const [cookies] = useCookies();
+  const token = cookies["jwt-token"];
 
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
+
+  const debounceTimout = 300;
 
   const searchMemberItems = memberList.map((member, index) => (
     <SearchMember
@@ -26,7 +32,7 @@ function Header() {
         if (!member.following) {
           setSelectedMember(member);
         } else {
-          unfollow(member.id);
+          unfollow(token, member.memberId);
         }
         forceUpdate();
       }}
@@ -44,11 +50,14 @@ function Header() {
     <div className="header-bottombox-empty-container">
       <img
         className="header-bottombox-empty-img"
+        alt="search result empty"
         src="https://ar-color-book.s3.ap-northeast-2.amazonaws.com/dropthebeatboxicon.png"
       />
       <p className="header-bottombox-empty-text">No Result.</p>
     </div>
   );
+
+  let debounce = null;
 
   return (
     <div className="header">
@@ -56,7 +65,7 @@ function Header() {
         <FollowConfirm
           member={selectedMember}
           onOk={() => {
-            follow(selectedMember.id);
+            follow(token, selectedMember.memberId);
             setSelectedMember();
           }}
           onCancel={() => {
@@ -101,9 +110,14 @@ function Header() {
               placeholder="Find friends..."
               height="100"
               onChange={(e) => {
-                setSearchInput(e.target.value);
-                const result = findMembers(e.target.value);
-                setMemberList(result);
+                // Debounce
+                clearTimeout(debounce);
+                debounce = setTimeout(() => {
+                  setSearchInput(e.target.value);
+                  searchMembers(token, e.target.value).then((result) => {
+                    setMemberList(result);
+                  });
+                }, debounceTimout);
               }}
             ></input>
           </div>
@@ -123,7 +137,11 @@ function Header() {
             <div></div>
             <PopupMenu isOpen={menuIsOpen} items={popupItems} />
           </div>
-          <div className="header-profile-avatar-container" />
+          <img
+            src={ProfileImage}
+            alt="profile"
+            className="header-profile-avatar-container"
+          />
           <button
             className="header-profile-toggle-btn"
             onClick={() => {

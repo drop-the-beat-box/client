@@ -17,8 +17,7 @@
   border-top-right-radius: 10px;
 }
 
-.sidebar-topbutton {
-}
+.sidebar-topbutton {}
 
 .sidebar-middle {
   display: flex;
@@ -29,8 +28,7 @@
   border: 1px solid #e2e8ef;
 }
 
-.sidebar-middleview {
-}
+.sidebar-middleview {}
 
 .sidebar-bottom {
   display: flex;
@@ -43,8 +41,7 @@
   border-bottom-right-radius: 10px;
 }
 
-.sidebar-bottombutton {
-}
+.sidebar-bottombutton {}
 
 .close-button {
   position: absolute;
@@ -76,6 +73,7 @@
   align-items: center;
   height: 500px;
   width: 600px;
+  z-index: 10;
 }
 
 .popup-inner-upload {
@@ -112,7 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; <- 방 개설 맴버선택 시 아랫쪽 멤버를 선택하면 레이아웃이 이상해지는 문제와 연관됨.*/
 }
 
 .popup-content-createshare {

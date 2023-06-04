@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
-import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
-import { Avatar } from "@material-ui/core";
+import {
+  setDataChangeHandler,
+  getFollowingMembers,
+} from "../services/DataService";
 import Profile from "./Profile";
-export let persons = [];
+import { getFriends } from "../services/APIService";
 
 function Following() {
   const [persons, setPersons] = useState([]);
+  const [cookie] = useCookies();
+  const token = cookie["jwt-token"];
+
+  useEffect(() => {
+    console.log("Effect");
+    getFriends(token).then((result) => {
+      setPersons(result);
+    });
+  }, []);
 
   setDataChangeHandler(() => {
     setPersons(getFollowingMembers(0));
@@ -15,11 +27,7 @@ function Following() {
   return (
     <div className="following-container">
       {persons.map((person, index) => (
-        <Profile
-          key={index}
-          image={person.image}
-          name={person.name}
-        />
+        <Profile member={person} />
       ))}
     </div>
   );

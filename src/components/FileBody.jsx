@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage, faVideo, faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+import ReactLoading from "react-loading";
 
 import Content from "./Content";
-import circle from "../img/circle.png";
-import file from "../img/file.png";
-import PopupMenu from "../components/PopupMenu";
+import ProfileImage from "../img/circle.png";
+import { getMyFiles } from "../services/APIService";
 
 function FileBody() {
   const Filter = {
@@ -16,74 +14,64 @@ function FileBody() {
     Favorite: 3,
   };
 
-  const [filter, setFilter] = useState(Filter.Default);
+  const [filter, setFilter] = useState(Filter.Image);
   const [recentButton, setRecentButton] = useState("Default");
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [cookies] = useCookies();
+  const token = cookies["jwt-token"];
 
   const filterButtons = [
-    <FilterButton
-      text="Image"
-      filterType={0}
-    />,
-    <FilterButton
-      text="Video"
-      filterType={1}
-    />,
-    <FilterButton
-      text="Doc"
-      filterType={2}
-    />,
-    <FilterButton
-      text="Favorite"
-      filterType={3}
-    />,
+    <FilterButton text="Image" filterType={0} />,
+    <FilterButton text="Video" filterType={1} />,
+    <FilterButton text="Doc" filterType={2} />,
+    <FilterButton text="Favorite" filterType={3} />,
   ];
 
-  let dataNum = 20;
-  let sampleList = GenerateSampleData(dataNum);
-  let rendering = [];
+  useEffect(() => {
+    setIsLoading(true);
+    getMyFiles(token).then((result) => {
+      setItems(
+        result
+          .filter((item) => getType(item.url) === filter)
+          .map((item) => (
+            <Content
+              id={item.fileId}
+              name={item.name}
+              date={item.createdAt}
+              type={getType(item.url)}
+              imageFile={null}
+              isDeleted={false}
+            ></Content>
+          ))
+      );
+      setIsLoading(false);
+    });
+  }, [filter]);
 
-  // 컨텐츠 렌더링 그려주기
-  for (let i = 0; i < sampleList.length; i++) {
-    if (sampleList[i].type != filter || sampleList[i].isDeleted) {
-      continue;
+  function getType(url) {
+    const [last] = url.split(".").slice(-1);
+    switch (last) {
+      case "png":
+      case "jpg":
+      case "jpeg":
+        return 0;
+      case "mov":
+      case "avi":
+      case "mp4":
+        return 1;
+      default:
+        return 2;
     }
-    rendering.push(
-      <Content
-        key={sampleList[i].id}
-        id={sampleList[i].id}
-        name={sampleList[i].name}
-        date={sampleList[i].date}
-        type={sampleList[i].type}
-        imageFile={sampleList[i].imageFile}
-        isDeleted={sampleList[i].isDeleted}
-      ></Content>
-    );
-  }
-
-  function GenerateSampleData(dataNum) {
-    let sampleData = [];
-
-    for (let index = 0; index < dataNum; index++) {
-      sampleData.push({
-        id: index,
-        name: "Entity " + index,
-        date: "생성일 : 2020-05-15",
-        type: Filter.Document,
-        imageFile: { file },
-      });
-    }
-
-    return sampleData;
   }
 
   // 필터 버튼 4 개
   function FilterButton(props) {
-    const [isHovering, setIsHovering] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const [stateName, setStateName] = useState("filterbutton");
 
-    if (props.recentButton == props.text) {
-      if (stateName != "filterbutton-clicked") {
+    if (props.recentButton === props.text) {
+      if (stateName !== "filterbutton-clicked") {
         setStateName((prevState) => (prevState = "filterbutton-clicked"));
         console.log(props.text, " Rendered");
       }
@@ -124,14 +112,13 @@ function FileBody() {
   // 개별 파일 데이터
   function BodyTopButton(props) {
     const [isHovering, setIsHovering] = useState(false);
-    const [buttonType, setButtonType] = useState("/filepage");
 
     const onMouseOver = () => setIsHovering(true);
     const onMouseOut = () => setIsHovering(false);
 
     const images = Array.from({ length: 3 }, (_, index) => ({
       id: index,
-      src: circle,
+      src: ProfileImage,
       alt: `Image ${index}`,
     }));
 
@@ -148,8 +135,8 @@ function FileBody() {
         <div className="btbutton-logo">
           {props.linkPage === "/myfilepage" ? (
             <img
-              src={circle}
-              alt="circle"
+              src={ProfileImage}
+              alt="profile"
               className="btbutton-logo-image"
             />
           ) : (
@@ -158,6 +145,7 @@ function FileBody() {
                 key={image.id}
                 src={image.src}
                 alt={image.alt}
+                className="btbutton-logo-image"
               />
             ))
           )}
@@ -172,18 +160,16 @@ function FileBody() {
   return (
     <div className="body">
       <div className="body-top">
-        <BodyTopButton
-          text="Personal"
-          linkPage="/myfilepage"
-        ></BodyTopButton>
-        <BodyTopButton
-          text="Group"
-          linkPage="/sharingpage"
-        ></BodyTopButton>
+        <BodyTopButton text="Personal" linkPage="/myfilepage"></BodyTopButton>
+        <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
       </div>
       <div className="body-second">{filterButtons}</div>
       <div className="body-main">
-        <div className="body-container">{rendering}</div>
+        {isLoading ? (
+          <ReactLoading type="bars" color="#415165"></ReactLoading>
+        ) : (
+          <div className="body-container">{items}</div>
+        )}
       </div>
     </div>
   );

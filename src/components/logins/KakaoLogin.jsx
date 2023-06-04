@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 function KakaoLogin() {
   const location = useLocation();
-  const [cookies, setCookie, _] = useCookies();
+  const [cookies, setCookie] = useCookies();
 
   const token = location.search.split("=")[1];
   setCookie("jwt-token", token, { path: "/", secure: true });
