@@ -7,6 +7,7 @@ import Content from "./Content";
 import circle from "../img/circle.png";
 import file from "../img/file.png";
 import PopupMenu from "../components/PopupMenu";
+import { GetJWTToken } from "../services/APIService";
 
 function FileBody() {
   const Filter = {
@@ -20,22 +21,10 @@ function FileBody() {
   const [recentButton, setRecentButton] = useState("Default");
 
   const filterButtons = [
-    <FilterButton
-      text="Image"
-      filterType={0}
-    />,
-    <FilterButton
-      text="Video"
-      filterType={1}
-    />,
-    <FilterButton
-      text="Doc"
-      filterType={2}
-    />,
-    <FilterButton
-      text="Favorite"
-      filterType={3}
-    />,
+    <FilterButton text="Image" filterType={0} />,
+    <FilterButton text="Video" filterType={1} />,
+    <FilterButton text="Doc" filterType={2} />,
+    <FilterButton text="Favorite" filterType={3} />,
   ];
 
   let dataNum = 20;
@@ -147,18 +136,10 @@ function FileBody() {
       >
         <div className="btbutton-logo">
           {props.linkPage === "/myfilepage" ? (
-            <img
-              src={circle}
-              alt="circle"
-              className="btbutton-logo-image"
-            />
+            <img src={circle} alt="circle" className="btbutton-logo-image" />
           ) : (
             images.map((image) => (
-              <img
-                key={image.id}
-                src={image.src}
-                alt={image.alt}
-              />
+              <img key={image.id} src={image.src} alt={image.alt} />
             ))
           )}
         </div>
@@ -169,17 +150,13 @@ function FileBody() {
     );
   }
 
+  console.log(GetJWTToken);
+
   return (
     <div className="body">
       <div className="body-top">
-        <BodyTopButton
-          text="Personal"
-          linkPage="/myfilepage"
-        ></BodyTopButton>
-        <BodyTopButton
-          text="Group"
-          linkPage="/sharingpage"
-        ></BodyTopButton>
+        <BodyTopButton text="Personal" linkPage="/myfilepage"></BodyTopButton>
+        <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
       </div>
       <div className="body-second">{filterButtons}</div>
       <div className="body-main">
