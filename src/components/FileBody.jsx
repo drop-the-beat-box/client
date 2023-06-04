@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faVideo, faFileAlt } from "@fortawesome/free-solid-svg-icons";
 
+import Content from "./Content";
 import circle from "../img/circle.png";
 import file from "../img/file.png";
 import PopupMenu from "../components/PopupMenu";
@@ -17,13 +18,24 @@ function FileBody() {
 
   const [filter, setFilter] = useState(Filter.Default);
   const [recentButton, setRecentButton] = useState("Default");
-  const [selectedItemId, setSelectedItemId] = useState(null);
 
   const filterButtons = [
-    <FilterButton text="Image" filterType={0} />,
-    <FilterButton text="Video" filterType={1} />,
-    <FilterButton text="Doc" filterType={2} />,
-    <FilterButton text="Favorite" filterType={3} />,
+    <FilterButton
+      text="Image"
+      filterType={0}
+    />,
+    <FilterButton
+      text="Video"
+      filterType={1}
+    />,
+    <FilterButton
+      text="Doc"
+      filterType={2}
+    />,
+    <FilterButton
+      text="Favorite"
+      filterType={3}
+    />,
   ];
 
   let dataNum = 20;
@@ -37,10 +49,13 @@ function FileBody() {
     }
     rendering.push(
       <Content
+        key={sampleList[i].id}
         id={sampleList[i].id}
         name={sampleList[i].name}
         date={sampleList[i].date}
         type={sampleList[i].type}
+        imageFile={sampleList[i].imageFile}
+        isDeleted={sampleList[i].isDeleted}
       ></Content>
     );
   }
@@ -60,10 +75,6 @@ function FileBody() {
 
     return sampleData;
   }
-
-  function moveToTrashcan(item) {}
-
-  function download(item) {}
 
   // 필터 버튼 4 개
   function FilterButton(props) {
@@ -111,74 +122,6 @@ function FileBody() {
   }
 
   // 개별 파일 데이터
-  function Content(props) {
-    let id = props.id;
-    let name = props.name;
-    let date = props.date;
-    let type = props.type;
-    let thumbnail = props.imageFile;
-    let isDeleted = false;
-
-    const thumbnailIcons = [faImage, faVideo, faFileAlt];
-
-    if (isDeleted) {
-      return (
-        <button className="content-entity">
-          <div className="content-top">
-            <img src={circle} className="content-top-button" />
-          </div>
-          <img src={thumbnail} className="content-thumbnail" />
-          <div>{name}</div>
-          <div>삭제됨</div>
-        </button>
-      );
-    } else {
-      return (
-        <button className="content-entity">
-          <div className="content-top">
-            <div className="content-top-button-container">
-              <img
-                src={circle}
-                onClick={(event) => {
-                  if (selectedItemId === props.id) {
-                    setSelectedItemId(null);
-                  } else {
-                    setSelectedItemId(props.id);
-                  }
-                }}
-                className="content-top-button"
-              />
-              <PopupMenu
-                items={[
-                  {
-                    text: "Delete",
-                    callback: () => {
-                      moveToTrashcan(props);
-                    },
-                  },
-                  {
-                    text: "Download",
-                    callback: () => {
-                      download(props);
-                    },
-                  },
-                ]}
-                isOpen={props.id == selectedItemId}
-              />
-            </div>
-          </div>
-          <FontAwesomeIcon
-            size={"3x"}
-            icon={thumbnailIcons[type]}
-            style={{ color: "#6c86b2" }}
-          />
-          <h1>{name}</h1>
-          <p>{date}</p>
-        </button>
-      );
-    }
-  }
-
   function BodyTopButton(props) {
     const [isHovering, setIsHovering] = useState(false);
     const [buttonType, setButtonType] = useState("/filepage");
@@ -203,11 +146,19 @@ function FileBody() {
         onMouseOut={onMouseOut}
       >
         <div className="btbutton-logo">
-          {props.linkPage == "/myfilepage" ? (
-            <img src={circle} alt="circle" className="btbutton-logo-image" />
+          {props.linkPage === "/myfilepage" ? (
+            <img
+              src={circle}
+              alt="circle"
+              className="btbutton-logo-image"
+            />
           ) : (
             images.map((image) => (
-              <img key={image.id} src={image.src} alt={image.alt} />
+              <img
+                key={image.id}
+                src={image.src}
+                alt={image.alt}
+              />
             ))
           )}
         </div>
@@ -221,8 +172,14 @@ function FileBody() {
   return (
     <div className="body">
       <div className="body-top">
-        <BodyTopButton text="Personal" linkPage="/myfilepage"></BodyTopButton>
-        <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
+        <BodyTopButton
+          text="Personal"
+          linkPage="/myfilepage"
+        ></BodyTopButton>
+        <BodyTopButton
+          text="Group"
+          linkPage="/sharingpage"
+        ></BodyTopButton>
       </div>
       <div className="body-second">{filterButtons}</div>
       <div className="body-main">
