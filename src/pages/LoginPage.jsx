@@ -6,25 +6,8 @@ import MainPage from "./MainPage";
 function LoginPage() {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          paddingLeft: 100,
-          paddingRight: 100,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            height: 72,
-            marginLeft: 8,
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+      <div className="loginpage-container">
+        <div className="loginpage-header">
           <img src={logoImage} alt="logoImage" width={40} height={40} />
           <h1 style={{ fontSize: 20, fontWeight: 700, color: "#7B95B7" }}>
             DropTheBeatBox
@@ -64,7 +47,10 @@ function LoginPage() {
           DropTheBeatBox
         </h1>
         <div>
-          <Link to="http://api.drop-the-beatbox.store/oauth2/authorization/kakao">
+          <Link
+            className="loginpage-kakao-login-button"
+            to="http://api.drop-the-beatbox.store/oauth2/authorization/kakao"
+          >
             Kakao 로그인
           </Link>
         </div>
