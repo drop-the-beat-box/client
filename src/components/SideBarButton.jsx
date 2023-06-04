@@ -116,6 +116,17 @@ function SideBarButton({ name }) {
   useEffect(() => {
     console.log("새로운 shareroom:", shareroom);
   }, [shareroom]);
+
+  useEffect(() => {
+    console.log("person 추가");
+  }, [persons]);
+
+  useEffect(() => {
+    if (roomName.length >= 10) {
+      alert("방 길이는 10자를 넘을 수 없습니다. 다시 입력해주세요");
+      setRoomName("");
+    }
+  }, [roomName]);
   return (
     <>
       <button

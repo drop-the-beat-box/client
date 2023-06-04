@@ -66,7 +66,7 @@ function Circle({ name }) {
   return (
     <div className="circlecontainer">
       <div
-        className="circle-"
+        className="circle"
         style={{ background: gradientColor }}
       />
       <h2>{name}</h2>
@@ -92,8 +92,10 @@ function SharingBody() {
       <div className="sharingbody-main">
         <div className="sharingbody-main-listcontainer">
           <div className="sharingbody-main-list-roomname">
-            <div className="circle" />
-            <h2>Dummy Room</h2>
+            <Circle
+              key={100}
+              name={"Dummy Room"}
+            />
           </div>
 
           <div className="sharingbody-main-list-itemcontainer">
@@ -107,7 +109,6 @@ function SharingBody() {
           >
             <div className="sharingbody-main-list-roomname">
               <Circle
-                className="circle"
                 key={index}
                 name={room.name}
               />

@@ -186,15 +186,19 @@
   justify-content: center;
   align-items: center;
 }
-.circle- {
-  width: 80px;
-  height: 80px;
+.circle {
+  left: 0;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin-right: 15px;
 
   /* background: linear-gradient(to bottom, #000000, #0000ff);*/
 }
 
+.circlecontainer h2 {
+  font-size: large;
+}
 .sharingbody-main-list-itemcontainer {
   width: 80%;
   height: 100%;
