@@ -31,7 +31,7 @@ function SideBarButton({ name }) {
 
   const handleUpload = () => {
     const token =
-      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb25nbXMwOTA5QG5hdmVyLmNvbSIsImF1dGhvcml0aWVzS2V5IjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sImV4cCI6MTY4NzA5MTk2NH0.8Li5rTSfVrnRmzz8lxFKgjz4VLwSX6LIU6OQZ_Ub1Dy0KDBeCIOezpa-Oag_jBGgxT2TLqv0ZsdpFzn-71COFA";
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb25nbXMwOTA5QG5hdmVyLmNvbSIsImF1dGhvcml0aWVzS2V5IjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sImV4cCI6MTY4NzA5ODA0Mn0.j-afgOLdk1RsM7eZKzs88wYnxDgJ-jvr2X4SF9fnzMYEenHH7EnFGpqsI4GUvw7OOfMvzCu73H9fAkgXRwISJA";
     const fileInput = document.getElementById("fileInput");
     const description = "test";
 
@@ -51,6 +51,10 @@ function SideBarButton({ name }) {
       .then((data) => {
         // 업로드 성공 시에 수행할 작업 처리
         console.log("파일 업로드 성공:", data);
+        alert("파일 업로드 성공");
+
+        //팝업 닫기
+        handlePopupClose();
       })
       .catch((error) => {
         // 업로드 실패 시에 수행할 작업 처리
