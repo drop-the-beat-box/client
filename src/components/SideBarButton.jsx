@@ -10,7 +10,7 @@ function SideBarButton({ name }) {
   setDataChangeHandler(() => {
     setPersons(getFollowingMembers(0));
   });
-  /**/
+  //
 
   const [isHovering, setIsHovering] = useState(false);
   const onMouseOver = () => setIsHovering(true);
@@ -28,24 +28,23 @@ function SideBarButton({ name }) {
     setIsPopupOpen(false);
     setPopupType(null);
   };
-  const [selectedFiles, setSelectedFiles] = useState([]);
-
-  const handleFileChange = (event) => {
-    setSelectedFiles(Array.from(event.target.files));
-  };
 
   const handleUpload = () => {
-    // 파일 업로드를 수행하는 로직 구현
-    // 예를 들어, 선택된 파일들을 FormData로 랩핑하여 서버에 전송하는 코드를 작성할 수 있음
-    const formData = new FormData();
-    selectedFiles.forEach((file, index) => {
-      formData.append(`file${index}`, file);
-    });
+    const token =
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb25nbXMwOTA5QG5hdmVyLmNvbSIsImF1dGhvcml0aWVzS2V5IjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sImV4cCI6MTY4NzA5MTk2NH0.8Li5rTSfVrnRmzz8lxFKgjz4VLwSX6LIU6OQZ_Ub1Dy0KDBeCIOezpa-Oag_jBGgxT2TLqv0ZsdpFzn-71COFA";
+    const fileInput = document.getElementById("fileInput");
+    const description = "test";
 
-    // AJAX 또는 fetch를 사용하여 서버에 파일을 전송
-    // 예시로 fetch를 사용한 코드를 작성
-    fetch("/upload", {
+    console.log(fileInput.files[0]);
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+    formData.append("description", description);
+
+    fetch("/member/file", {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     })
       .then((response) => response.json())
@@ -120,18 +119,11 @@ function SideBarButton({ name }) {
 
             <input
               type="file"
-              multiple
-              onChange={handleFileChange}
+              id="fileInput"
               style={{ marginLeft: "10%" }}
             />
             <div className="popup-inner-upload">
-              <div className="popup-inner-content-upload">
-                <div>
-                  {selectedFiles.map((file, index) => (
-                    <p key={index}>{file.name}</p>
-                  ))}
-                </div>
-              </div>
+              <div className="popup-inner-content-upload"></div>
             </div>
             <button onClick={handleUpload}>파일 업로드</button>
           </div>
