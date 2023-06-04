@@ -17,10 +17,15 @@ import TrashcanBody from "./TrashcanBody";
 // TODO: Login 기능 연동하기.
 
 // 최상위 컴포넌트
-function Body({ currentPage }) {
+function Body({ currentPage, files, onAddFile }) {
   let bodyContent;
   if (currentPage === "myfilepage") {
-    bodyContent = <FileBody />;
+    bodyContent = (
+      <FileBody
+        files={files}
+        onAddFile={onAddFile}
+      />
+    );
   } else if (currentPage === "sharingpage") {
     bodyContent = <SharingBody />;
   } else if (currentPage === "sharingfilepage") {

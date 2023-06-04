@@ -3,7 +3,7 @@ import SideBarButton from "./SideBarButton";
 import Following from "./Following";
 import { colors } from "@material-ui/core";
 
-function SideBar({ currentPage }) {
+function SideBar({ currentPage, files, onAddFile }) {
   let sidebarTopContent = null;
   let sidebarMidContent = null;
   let sidebarBottomContent = null;
@@ -14,7 +14,13 @@ function SideBar({ currentPage }) {
       sidebarMidContent = <Following name={"MainPage"} />;
       break;
     case "myfilepage":
-      sidebarTopContent = <SideBarButton name={"Upload"}></SideBarButton>;
+      sidebarTopContent = (
+        <SideBarButton
+          name={"Upload"}
+          files={files}
+          onAddFile={onAddFile}
+        ></SideBarButton>
+      );
       sidebarMidContent = <div className="sidebar-middleview"></div>;
       sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
       break;

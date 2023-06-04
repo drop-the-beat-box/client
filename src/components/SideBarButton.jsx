@@ -3,7 +3,7 @@ import React from "react";
 import Profile from "./Profile";
 import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
 
-function SideBarButton({ name }) {
+function SideBarButton({ name, files, onAddFile }) {
   /*임시*/
   const [persons, setPersons] = useState([]);
 
@@ -31,7 +31,7 @@ function SideBarButton({ name }) {
 
   const handleUpload = () => {
     const token =
-      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb25nbXMwOTA5QG5hdmVyLmNvbSIsImF1dGhvcml0aWVzS2V5IjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sImV4cCI6MTY4NzA5ODA0Mn0.j-afgOLdk1RsM7eZKzs88wYnxDgJ-jvr2X4SF9fnzMYEenHH7EnFGpqsI4GUvw7OOfMvzCu73H9fAkgXRwISJA";
+      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb25nbXMwOTA5QG5hdmVyLmNvbSIsImF1dGhvcml0aWVzS2V5IjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sImV4cCI6MTY4NzEwNjYxNX0.GxGFnKxJafdlCZX7EptdPlpu9kTFx2aScqDDR36lx1MZF3dFgFGLk66zgwBgfc9LEx0JIx1UHsRG8HIrNJ00Tw";
     const fileInput = document.getElementById("fileInput");
     const description = "test";
 
@@ -50,8 +50,28 @@ function SideBarButton({ name }) {
       .then((response) => response.json())
       .then((data) => {
         // 업로드 성공 시에 수행할 작업 처리
+        const { fileId } = data;
         console.log("파일 업로드 성공:", data);
+        console.log("파일 ID:", fileId);
         alert("파일 업로드 성공");
+
+        fetch(`/member/file/${fileId}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("GET 요청 성공:", data);
+            const updatedFiles = [...files, data];
+            onAddFile(updatedFiles);
+
+            console.log(updatedFiles);
+          })
+          .catch((error) => {
+            console.error("GET 요청 실패:", error);
+          });
 
         //팝업 닫기
         handlePopupClose();

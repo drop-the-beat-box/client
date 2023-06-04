@@ -8,7 +8,7 @@ import circle from "../img/circle.png";
 import file from "../img/file.png";
 import PopupMenu from "../components/PopupMenu";
 
-function FileBody() {
+function FileBody({ files, onAddFile }) {
   const Filter = {
     Image: 0,
     Video: 1,
