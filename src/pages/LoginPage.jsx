@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logoImage from "../img/mainlogo.png";
 import MainPage from "./MainPage";
 
@@ -63,20 +64,9 @@ function LoginPage() {
           DropTheBeatBox
         </h1>
         <div>
-          <button
-            onClick={() => {
-              window.location.replace("/mainpage");
-            }}
-          >
-            Google
-          </button>
-          <button
-            onClick={() => {
-              window.location.replace("/mainpage");
-            }}
-          >
-            Kakao
-          </button>
+          <Link to="http://api.drop-the-beatbox.store/oauth2/authorization/kakao">
+            Kakao 로그인
+          </Link>
         </div>
       </div>
     </>

@@ -24,6 +24,7 @@ import SharingPage from "./pages/SharingPage";
 import SharingFilePage from "./pages/SharingFilePage";
 import Trashcan from "./pages/Trashcan";
 import LoginPage from "./pages/LoginPage";
+import KakaoLogin from "./components/logins/KakaoLogin";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/sharingpage" element={<SharingPage />} />
           <Route path="/sharingfilepage" element={<SharingFilePage />} />
           <Route path="/trashcan" element={<Trashcan />} />
+          <Route path="/token" element={<KakaoLogin />} />
         </Routes>
       </Router>
     </div>
