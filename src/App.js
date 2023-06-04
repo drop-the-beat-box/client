@@ -33,7 +33,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/mainpage" element={<MainPage />} />
+          <Route path="/mainpage" element={<MyFilePage />} />
           <Route path="/myfilepage" element={<MyFilePage />} />
           <Route path="/sharingpage" element={<SharingPage />} />
           <Route path="/sharingfilepage" element={<SharingFilePage />} />
