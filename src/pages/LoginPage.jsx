@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logoImage from "../img/mainlogo.png";
-import MainPage from "./MainPage";
 
 function LoginPage() {
   return (

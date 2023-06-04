@@ -82,6 +82,10 @@
   margin-block-start: 0.2em;
   margin-block-end: 0em;
   font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 200px;
 }
 
 .content-entity p {
@@ -121,25 +125,102 @@
   height: 100px;
 }
 
-/*Trashcan body*/
-.trashbody {
-  height: 100%;
-  width: 100%;
-  border: 1.5px solid #e2e8ef;
-  border-radius: 10px;
-  padding: 20px;
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-  overflow: auto;
+/*Sharingpage CSS*/
+.sharingbody {
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  gap: 5px;
+  background: white;
+  width: 85%;
+  height: auto;
+  color: royalblue;
+  justify-content: center;
+  align-items: center;
 }
 
-.trashbody-main {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+.sharingbody-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 10%;
 
-  gap: 30px;
-  padding: 15px;
+  padding: 1%;
+  gap: 1%;
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
+}
+
+.sharingbody-main {
+  width: 100%;
+  height: 90%;
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
+  background-color: white;
+
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+.sharingbody-main-listcontainer {
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 250px;
+}
+
+.sharingbody-main-list-roomname {
+  width: 20%;
+  height: 100%;
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circlecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+
+  /* background: linear-gradient(to bottom, #000000, #0000ff);*/
+}
+
+.circlecontainer h2 {
+  font-size: large;
+}
+
+.sharingbody-main-list-itemcontainer {
+  width: 80%;
+  height: 100%;
+  margin-left: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+  /*나중에 제거할 속성*/
+  /*border: 1px solid blueviolet;*/
+}
+
+.test {
+  display: inline-block;
+  background-color: #e2e8ef;
+  width: 300px;
+  height: 100%;
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
+  margin-right: 20px;
 }

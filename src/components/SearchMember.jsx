@@ -1,8 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { faCheckCircle, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { follow, unfollow } from "../services/DataService";
 
 function SearchMember({ member, onClick }) {
   const followingIndicate = (
@@ -30,7 +28,11 @@ function SearchMember({ member, onClick }) {
       onClick={onClick}
     >
       <div className="searchmember-avatar-container">
-        <img src={member.image} style={{ maxWidth: "100%", height: "auto" }} />
+        <img
+          src={member.profileUrl}
+          alt="profile"
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
       </div>
       <div className="searchmember-text-container">
         <p className="searchmember-name">{member.name}</p>

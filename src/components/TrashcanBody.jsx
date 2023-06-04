@@ -1,7 +1,6 @@
 import React from "react";
 import Content from "./Content";
 import file from "../img/file.png";
-import { render } from "@testing-library/react";
 
 function TrashcanBody() {
   let dataNum = 30;

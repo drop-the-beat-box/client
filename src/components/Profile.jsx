@@ -1,11 +1,11 @@
 import { Avatar } from "@material-ui/core";
 
-function Profile({ index, image, name }) {
+function Profile({ member }) {
   return (
     <div>
       <div className="profile">
-        <Avatar src={image}></Avatar>
-        <p>{name}</p>
+        <Avatar src={member.profileUrl}></Avatar>
+        <p>{member.name}</p>
       </div>
     </div>
   );
