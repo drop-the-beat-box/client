@@ -25,7 +25,7 @@ function Body({ currentPage }) {
     bodyContent = <SharingBody />;
   } else if (currentPage === "sharingfilepage") {
     bodyContent = <FileBody />;
-  } else {
+  } else if (currentPage === "trashcan") {
     bodyContent = <TrashcanBody />;
   }
   return bodyContent;
