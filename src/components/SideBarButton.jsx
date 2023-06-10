@@ -44,6 +44,9 @@ function SideBarButton({ name }) {
         console.log("파일 업로드 성공:", data);
         alert("파일 업로드 성공");
 
+        //페이지 새로고침
+        window.location.reload();
+
         //팝업 닫기
         handlePopupClose();
       })
@@ -69,9 +72,7 @@ function SideBarButton({ name }) {
     if (isUserSelected) {
       // 이미 선택된 사용자라면 선택 해제
       setSelectedUsers((prevSelectedUsers) =>
-        prevSelectedUsers.filter(
-          (selectedUser) => selectedUser.friendId !== user.friendId
-        )
+        prevSelectedUsers.filter((selectedUser) => selectedUser.friendId !== user.friendId)
       );
     } else {
       // 새로운 사용자를 선택
@@ -139,11 +140,18 @@ function SideBarButton({ name }) {
       {isPopupOpen && popupType === "Upload" && (
         <div className="popup-overlay-upload">
           <div className="popup-content-upload">
-            <button onClick={handlePopupClose} className="close-button">
+            <button
+              onClick={handlePopupClose}
+              className="close-button"
+            >
               X
             </button>
 
-            <input type="file" id="fileInput" style={{ marginLeft: "10%" }} />
+            <input
+              type="file"
+              id="fileInput"
+              style={{ marginLeft: "10%" }}
+            />
             <div className="popup-inner-upload">
               <div className="popup-inner-content-upload"></div>
             </div>
@@ -155,15 +163,16 @@ function SideBarButton({ name }) {
         // CreateSharePage 버튼 클릭 시에 팝업 레이아웃 내용
         <div className="popup-overlay-createshare">
           <div className="popup-content-createshare">
-            <button onClick={handlePopupClose} className="close-button">
+            <button
+              onClick={handlePopupClose}
+              className="close-button"
+            >
               X
             </button>
 
             <div className="left-side">
               <div className="left-top">
-                <h2 style={{ color: "#486284" }}>
-                  개설방의 멤버를 선택해 주십시오
-                </h2>
+                <h2 style={{ color: "#486284" }}>개설방의 멤버를 선택해 주십시오</h2>
               </div>
               {/* 사용자 목록 렌더링 */}
               <div className="following-list-container">
@@ -173,16 +182,14 @@ function SideBarButton({ name }) {
                       <input
                         type="checkbox"
                         checked={selectedUsers.some(
-                          (selectedUser) =>
-                            selectedUser.friendId === user.friendId
+                          (selectedUser) => selectedUser.friendId === user.friendId
                         )}
                         onChange={() => handleUserSelect(user)}
                       />
                       <span
                         className={`custom-checkbox ${
                           selectedUsers.some(
-                            (selectedUser) =>
-                              selectedUser.friendId === user.friendId
+                            (selectedUser) => selectedUser.friendId === user.friendId
                           )
                             ? "checked"
                             : ""

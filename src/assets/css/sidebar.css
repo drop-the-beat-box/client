@@ -17,7 +17,8 @@
   border-top-right-radius: 10px;
 }
 
-.sidebar-topbutton {}
+.sidebar-topbutton {
+}
 
 .sidebar-middle {
   display: flex;
@@ -28,7 +29,8 @@
   border: 1px solid #e2e8ef;
 }
 
-.sidebar-middleview {}
+.sidebar-middleview {
+}
 
 .sidebar-bottom {
   display: flex;
@@ -41,7 +43,8 @@
   border-bottom-right-radius: 10px;
 }
 
-.sidebar-bottombutton {}
+.sidebar-bottombutton {
+}
 
 .close-button {
   position: absolute;
