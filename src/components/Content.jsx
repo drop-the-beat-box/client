@@ -13,7 +13,13 @@ function Content({ id, name, date, type, imageFile, isDeleted }) {
 
   function moveToTrashcan(item) {
     console.log("trashcan", name);
-    setShowDeleteModal(true);
+  }
+
+  function handleConfirmDelete() {
+    moveToTrashcan("props");
+    setShowDeleteModal(false);
+    alert(`${name}이 삭제되었습니다.`);
+    window.location.reload(); // 페이지 새로고침
   }
 
   function download(item) {
@@ -73,11 +79,13 @@ function Content({ id, name, date, type, imageFile, isDeleted }) {
             {showDeleteModal && (
               <DeleteConfirm
                 name={name}
+                //취소를 눌렀을 때 동작
+                //모달창을 닫음
                 onCancel={() => setShowDeleteModal(false)}
-                onConfirm={() => {
-                  moveToTrashcan("props");
-                  setShowDeleteModal(false);
-                }}
+                //확인을 눌렀을 때 동작
+                //moveToTrashcan 함수 실행
+                //모달창을 닫음
+                onConfirm={handleConfirmDelete}
               />
             )}
           </div>
