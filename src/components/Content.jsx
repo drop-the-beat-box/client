@@ -49,14 +49,17 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted, remai
         window.location.reload();
       });
   }
-
-  function download(item) {
+  const closePopupMenu = () => {
+    setSelectedItemId(null);
+  };
+  function download() {
     console.log("download");
     const downloadLink = link;
     const anchor = document.createElement("a");
     anchor.href = downloadLink;
     anchor.download = "file.pdf";
     anchor.click();
+    closePopupMenu();
   }
 
   function restore(item) {
@@ -120,7 +123,7 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted, remai
                   {
                     text: "Download",
                     callback: () => {
-                      download("props");
+                      download();
                     },
                   },
                 ]}
@@ -129,12 +132,7 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted, remai
               {showDeleteModal && (
                 <DeleteConfirm
                   name={name}
-                  //취소를 눌렀을 때 동작
-                  //모달창을 닫음
                   onCancel={() => setShowDeleteModal(false)}
-                  //확인을 눌렀을 때 동작
-                  //moveToTrashcan 함수 실행
-                  //모달창을 닫음
                   onConfirm={handleTempDelete}
                 />
               )}
