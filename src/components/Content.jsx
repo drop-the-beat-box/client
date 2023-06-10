@@ -10,26 +10,19 @@ import { deletePermanent } from "../services/APIService";
 import { restoreFile } from "../services/APIService";
 import { useCookies } from "react-cookie";
 
-function Content({ identifier, id, name, date, type, imageFile, isDeleted, remainDay }) {
+function Content({ identifier, id, name, date, type, imageFile, isDeleted, remainDay, link }) {
   const [selectedItemId, setSelectedItemId] = useState(null);
   const thumbnailIcons = [faImage, faVideo, faFileAlt];
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [cookies] = useCookies();
   const token = cookies["jwt-token"];
 
-  function moveToTrashcan(item) {
-    console.log("trashcan", name, id);
-    console.log(token);
-  }
-
   //임시삭제 (휴지통으로 이동)
   function handleTempDelete() {
-    moveToTrashcan("props");
-
     deleteFile(token, id)
       .then((data) => {
         console.log("파일 삭제:", data);
-        alert(`${name} 파일이 삭제되었습니다.`);
+        alert(`${name} ${link}파일이 삭제되었습니다.`);
 
         //페이지 새로고침
         window.location.reload();
@@ -59,6 +52,11 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted, remai
 
   function download(item) {
     console.log("download");
+    const downloadLink = link;
+    const anchor = document.createElement("a");
+    anchor.href = downloadLink;
+    anchor.download = "file.pdf";
+    anchor.click();
   }
 
   function restore(item) {

@@ -53,6 +53,7 @@ function FileBody() {
               name={item.name}
               date={item.createdAt}
               type={getType(item.url)}
+              link={item.url}
               imageFile={null}
               isDeleted={false}
             ></Content>

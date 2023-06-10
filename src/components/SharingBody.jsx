@@ -27,10 +27,19 @@ function BodyTopButton(props) {
     >
       <div className="btbutton-logo">
         {props.linkPage === "/myfilepage" ? (
-          <img src={circle} alt="circle" className="btbutton-logo-image" />
+          <img
+            src={circle}
+            alt="profile"
+            className="btbutton-logo-image"
+          />
         ) : (
           images.map((image) => (
-            <img key={image.id} src={image.src} alt={image.alt} />
+            <img
+              key={image.id}
+              src={image.src}
+              alt={image.alt}
+              className="btbutton-logo-image"
+            />
           ))
         )}
       </div>
@@ -56,7 +65,10 @@ function Circle({ name }) {
 
   return (
     <div className="circlecontainer">
-      <div className="circle" style={{ background: gradientColor }} />
+      <div
+        className="circle"
+        style={{ background: gradientColor }}
+      />
       <h2>{name}</h2>
     </div>
   );
@@ -67,14 +79,23 @@ function SharingBody() {
   return (
     <div className="sharingbody">
       <div className="sharingbody-top">
-        <BodyTopButton text="Personal" linkPage="/myfilepage"></BodyTopButton>
-        <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
+        <BodyTopButton
+          text="Personal"
+          linkPage="/myfilepage"
+        ></BodyTopButton>
+        <BodyTopButton
+          text="Group"
+          linkPage="/sharingpage"
+        ></BodyTopButton>
       </div>
 
       <div className="sharingbody-main">
         <div className="sharingbody-main-listcontainer">
           <div className="sharingbody-main-list-roomname">
-            <Circle key={100} name={"Dummy Room"} />
+            <Circle
+              key={100}
+              name={"Dummy Room"}
+            />
           </div>
 
           <div className="sharingbody-main-list-itemcontainer">
@@ -89,14 +110,23 @@ function SharingBody() {
           </div>
         </div>
         {shareroom.map((room, index) => (
-          <div className="sharingbody-main-listcontainer" key={room.id}>
+          <div
+            className="sharingbody-main-listcontainer"
+            key={room.id}
+          >
             <div className="sharingbody-main-list-roomname">
-              <Circle key={index} name={room.name} />
+              <Circle
+                key={index}
+                name={room.name}
+              />
             </div>
 
             <div className="sharingbody-main-list-itemcontainer">
               {room.users.map((user) => (
-                <div className="test" key={user.id}>
+                <div
+                  className="test"
+                  key={user.id}
+                >
                   {user.name}
                 </div>
               ))}
