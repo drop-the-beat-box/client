@@ -12,7 +12,7 @@ function Content({ id, name, date, type, imageFile, isDeleted }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   function moveToTrashcan(item) {
-    console.log("trashcan", name);
+    console.log("trashcan", name, id);
   }
 
   function handleConfirmDelete() {

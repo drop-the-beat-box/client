@@ -1,45 +1,72 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+// 현재 내 파일들 목록 조회 (getMyFiles)
+// 휴지통 api 개발되면 휴지통 목록 조회로 변경
+import { getMyFiles } from "../services/APIService";
+import ReactLoading from "react-loading";
 import Content from "./Content";
 import file from "../img/file.png";
 
 function TrashcanBody() {
-  let dataNum = 30;
-  let sampleList = GenerateSampleData(dataNum);
-  let rendering = [];
-  function GenerateSampleData(dataNum) {
-    let sampleData = [];
-    for (let index = 0; index < dataNum; index++) {
-      sampleData.push({
-        id: index,
-        name: "Entity " + index,
-        date: "생성일 : 2020-05-15",
-        imageFile: { file },
-        type: "0",
-      });
-    }
+  const Filter = {
+    Image: 0,
+    Video: 1,
+    Document: 2,
+    Favorite: 3,
+  };
 
-    return sampleData;
+  function getType(url) {
+    const [last] = url.split(".").slice(-1);
+    switch (last) {
+      case "png":
+      case "jpg":
+      case "jpeg":
+        return 0;
+      case "mov":
+      case "avi":
+      case "mp4":
+        return 1;
+      default:
+        return 2;
+    }
   }
 
-  for (let i = 0; i < sampleList.length; i++) {
-    if (sampleList[i].isDeleted) {
-      continue;
-    }
-    rendering.push(
-      <Content
-        key={sampleList[i].id}
-        id={sampleList[i].id}
-        name={sampleList[i].name}
-        date={sampleList[i].date}
-        type={sampleList[i].type}
-        imageFile={sampleList[i].imageFile}
-        isDeleted={sampleList[i].isDeleted}
-      ></Content>
-    );
-  }
+  const [filter, setFilter] = useState(Filter.Image);
+  const [items, setItems] = useState([]);
+  const [cookies] = useCookies();
+  const token = cookies["jwt-token"];
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setIsLoading(true);
+    getMyFiles(token).then((result) => {
+      setItems(
+        result.map((item) => (
+          <Content
+            id={item.fileId}
+            name={item.name}
+            date={item.createdAt}
+            type={getType(item.url)}
+            imageFile={null}
+            isDeleted={false}
+          ></Content>
+        ))
+      );
+      setIsLoading(false);
+    });
+  }, [filter]);
+
   return (
     <div className="trashbody">
-      <div className="trashbody-main">{rendering}</div>
+      {isLoading ? (
+        <div className="trash-loading">
+          <ReactLoading
+            type="bars"
+            color="#415165"
+          ></ReactLoading>
+        </div>
+      ) : (
+        <div className="trashbody-container">{items}</div>
+      )}
     </div>
   );
 }

@@ -225,6 +225,7 @@
   margin-right: 20px;
 }
 
+/* 휴지통 페이지 CSS */
 .trashbody {
   height: 100%;
   width: 100%;
@@ -239,7 +240,15 @@
   overflow: auto;
 }
 
-.trashbody-main {
+.trash-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trashbody-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 
