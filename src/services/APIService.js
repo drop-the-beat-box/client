@@ -32,9 +32,31 @@ async function del(token, url) {
   return await response.json();
 }
 
-async function deleteAFile(token, url) {
+async function deleteTempFile(token, url) {
+  const response = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      Accept: "*/*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return await response.json();
+}
+
+async function deletePermanentFile(token, url) {
   const response = await fetch(url, {
     method: "DELETE",
+    headers: {
+      Accept: "*/*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return await response.json();
+}
+
+async function restoreFiles(token, url) {
+  const response = await fetch(url, {
+    method: "PATCH",
     headers: {
       Accept: "*/*",
       Authorization: `Bearer ${token}`,
@@ -71,12 +93,20 @@ module.exports = {
     const result = await get(token, "/member/files");
     return result.fileDtoList;
   },
-  deleteFile: async (token, fileId) => {
-    const result = await deleteAFile(token, `/member/file/trash-can/${fileId}`);
+  deleteFile: async (token, file_id) => {
+    const result = await deleteTempFile(token, `/member/file/trash-can/${file_id}`);
     return result;
   },
   getTrashFiles: async (token) => {
-    const result = await get(token, "/member/");
+    const result = await get(token, "/member/file/trash-can");
     return result.trashFileDtoList;
+  },
+  deletePermanent: async (token, file_id) => {
+    const result = await deletePermanentFile(token, `member/file/${file_id}`);
+    return result;
+  },
+  restoreFile: async (token, file_id) => {
+    const result = await restoreFiles(token, `member/file/trash-can/roll-back/${file_id}`);
+    return result;
   },
 };

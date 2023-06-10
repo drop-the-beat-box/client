@@ -6,9 +6,11 @@ import circle from "../img/circle.png";
 import PopupMenu from "../components/PopupMenu";
 import DeleteConfirm from "./DeleteConfirm";
 import { deleteFile } from "../services/APIService";
+import { deletePermanent } from "../services/APIService";
+import { restoreFile } from "../services/APIService";
 import { useCookies } from "react-cookie";
 
-function Content({ identifier, id, name, date, type, imageFile, isDeleted }) {
+function Content({ identifier, id, name, date, type, imageFile, isDeleted, remainDay }) {
   const [selectedItemId, setSelectedItemId] = useState(null);
   const thumbnailIcons = [faImage, faVideo, faFileAlt];
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -17,24 +19,42 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted }) {
 
   function moveToTrashcan(item) {
     console.log("trashcan", name, id);
+    console.log(token);
   }
 
   //임시삭제 (휴지통으로 이동)
   function handleTempDelete() {
     moveToTrashcan("props");
-    //
-    deleteFile(token, id);
-    setShowDeleteModal(false);
-    alert(`${name}이 삭제되었습니다.`);
-    window.location.reload(); // 페이지 새로고침
+
+    deleteFile(token, id)
+      .then((data) => {
+        console.log("파일 삭제:", data);
+        alert(`${name} 파일이 삭제되었습니다.`);
+
+        //페이지 새로고침
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("파일 삭제 실패:", error);
+        alert("파일 삭제 실패: ", error);
+        window.location.reload();
+      });
   }
 
   //영구삭제
   function handleHardDelete() {
-    console.log("파일이 영구 삭제되었습니다.");
-    setShowDeleteModal(false);
-    alert(`${name}이 영구 삭제되었습니다.`);
-    window.location.reload(); // 페이지 새로고침
+    deletePermanent(token, id)
+      .then((data) => {
+        console.log("파일 영구 삭제 완료:", data, id);
+        alert(`${name} 파일이 영구 삭제되었습니다.`);
+        //페이지 새로고침
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("파일 영구 삭제 실패:", error);
+        alert("파일 영구 삭제 실패: ", error);
+        window.location.reload();
+      });
   }
 
   function download(item) {
@@ -43,6 +63,18 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted }) {
 
   function restore(item) {
     console.log("복구");
+    restoreFile(token, id)
+      .then((data) => {
+        console.log("파일 복구:", data);
+        alert(`${name} 파일이 복구되었습니다.`);
+        //페이지 새로고침
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("파일 복구 실패:", error);
+        alert("파일 복구 실패: ", error);
+        window.location.reload();
+      });
   }
 
   if (isDeleted) {
@@ -171,8 +203,8 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted }) {
             style={{ color: "#6c86b2" }}
           />
           <h1>{name}</h1>
-          <div class="separator">
-            <p>3 days</p>
+          <div className="separator">
+            <p>삭제한 지 {remainDay} days </p>
           </div>
         </button>
       );

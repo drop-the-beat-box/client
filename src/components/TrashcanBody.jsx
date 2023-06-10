@@ -3,6 +3,8 @@ import { useCookies } from "react-cookie";
 // 현재 내 파일들 목록 조회 (getMyFiles)
 // 휴지통 api 개발되면 휴지통 목록 조회로 변경
 import { getMyFiles } from "../services/APIService";
+import { getTrashFiles } from "../services/APIService";
+
 import ReactLoading from "react-loading";
 import Content from "./Content";
 import file from "../img/file.png";
@@ -38,17 +40,15 @@ function TrashcanBody() {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(true);
-    getMyFiles(token).then((result) => {
+    getTrashFiles(token).then((result) => {
       setItems(
         result.map((item) => (
           <Content
             identifier="Trash"
             id={item.fileId}
             name={item.name}
-            date={item.createdAt}
-            type={getType(item.url)}
-            imageFile={null}
-            isDeleted={false}
+            type={getType(item.imageUrl)}
+            remainDay={item.remainDay}
           ></Content>
         ))
       );

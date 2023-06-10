@@ -168,6 +168,6 @@
 }
 
 /* 체크박스에 포커스 효과 */
-.checkbox-container input:focus~.custom-checkbox {
+.checkbox-container input:focus ~ .custom-checkbox {
   box-shadow: 0 0 3px #888;
 }
