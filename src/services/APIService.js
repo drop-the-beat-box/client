@@ -32,7 +32,16 @@ async function del(token, url) {
   return await response.json();
 }
 
-function deleteAFile(token, fileId) {}
+async function deleteAFile(token, url) {
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      Accept: "*/*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return await response.json();
+}
 
 function getAFile(token, fileId) {}
 
@@ -60,7 +69,14 @@ module.exports = {
   },
   getMyFiles: async (token) => {
     const result = await get(token, "/member/files");
-    console.log(result.fileDtoList);
     return result.fileDtoList;
+  },
+  deleteFile: async (token, fileId) => {
+    const result = await deleteAFile(token, `/member/file/trash-can/${fileId}`);
+    return result;
+  },
+  getTrashFiles: async (token) => {
+    const result = await get(token, "/member/");
+    return result.trashFileDtoList;
   },
 };

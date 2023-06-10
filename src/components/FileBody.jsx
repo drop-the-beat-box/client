@@ -22,10 +22,22 @@ function FileBody() {
   const token = cookies["jwt-token"];
 
   const filterButtons = [
-    <FilterButton text="Image" filterType={0} />,
-    <FilterButton text="Video" filterType={1} />,
-    <FilterButton text="Doc" filterType={2} />,
-    <FilterButton text="Favorite" filterType={3} />,
+    <FilterButton
+      text="Image"
+      filterType={0}
+    />,
+    <FilterButton
+      text="Video"
+      filterType={1}
+    />,
+    <FilterButton
+      text="Doc"
+      filterType={2}
+    />,
+    <FilterButton
+      text="Favorite"
+      filterType={3}
+    />,
   ];
 
   useEffect(() => {
@@ -36,6 +48,7 @@ function FileBody() {
           .filter((item) => getType(item.url) === filter)
           .map((item) => (
             <Content
+              identifier="notTrash"
               id={item.fileId}
               name={item.name}
               date={item.createdAt}
@@ -160,13 +173,22 @@ function FileBody() {
   return (
     <div className="body">
       <div className="body-top">
-        <BodyTopButton text="Personal" linkPage="/myfilepage"></BodyTopButton>
-        <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
+        <BodyTopButton
+          text="Personal"
+          linkPage="/myfilepage"
+        ></BodyTopButton>
+        <BodyTopButton
+          text="Group"
+          linkPage="/sharingpage"
+        ></BodyTopButton>
       </div>
       <div className="body-second">{filterButtons}</div>
       <div className="body-main">
         {isLoading ? (
-          <ReactLoading type="bars" color="#415165"></ReactLoading>
+          <ReactLoading
+            type="bars"
+            color="#415165"
+          ></ReactLoading>
         ) : (
           <div className="body-container">{items}</div>
         )}

@@ -42,6 +42,7 @@ function TrashcanBody() {
       setItems(
         result.map((item) => (
           <Content
+            identifier="Trash"
             id={item.fileId}
             name={item.name}
             date={item.createdAt}
