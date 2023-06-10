@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 
-import {
-  setDataChangeHandler,
-  getFollowingMembers,
-} from "../services/DataService";
+import { setDataChangeHandler, getFollowingMembers } from "../services/DataService";
 import Profile from "./Profile";
 import { getFriends } from "../services/APIService";
 
-function Following() {
+function Following({ name }) {
   const [persons, setPersons] = useState([]);
   const [cookie] = useCookies();
   const token = cookie["jwt-token"];
@@ -27,7 +24,10 @@ function Following() {
   return (
     <div className="following-container">
       {persons.map((person, index) => (
-        <Profile member={person} />
+        <Profile
+          member={person}
+          identifier={name}
+        />
       ))}
     </div>
   );
