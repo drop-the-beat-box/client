@@ -6,6 +6,8 @@ import Profile from "./Profile";
 import { getFriends } from "../services/APIService";
 import { SharedRoomContext } from "./SharedRoomContext";
 import { uploadFile } from "../services/APIService";
+import { makeRoom } from "../services/APIService";
+import { addMember } from "../services/APIService";
 
 function SideBarButton({ name }) {
   const [persons, setPersons] = useState([]);
@@ -93,25 +95,36 @@ function SideBarButton({ name }) {
     console.log("선택한 사용자:", selectedUsers);
     console.log("방 이름:", roomName);
 
-    // 새로운 방 객체 생성
-    const newRoom = {
-      id: roomId.current,
-      name: roomName,
-      users: selectedUsers,
-    };
+    makeRoom(token, roomName)
+      .then((data) => {
+        let memberList = [];
+        {
+          selectedUsers.map((user) => memberList.push(user.friendId));
+        }
+        addMember(token, data.teamId, memberList)
+          .then(() => {
+            alert(`${roomName} 방이 개설되었습니다!`);
+          })
+          .catch((error) => {
+            console.log("Fail : ", error);
+          });
 
-    // shareroom 상태 업데이트: 새로운 방을 배열에 추가
-    setShareroom((prevShareroom) => [...prevShareroom, newRoom]);
+        // 새로운 방 객체 생성
+        const newRoom = {
+          id: data.teamId,
+          name: roomName,
+          users: selectedUsers,
+        };
 
-    // 상태 초기화
-    setSelectedUsers([]);
-    setRoomName("");
-
-    // 방 고유 식별자 증가
-    roomId.current += 1;
-
-    //팝업 닫기
-    handlePopupClose();
+        // shareroom 상태 업데이트: 새로운 방을 배열에 추가
+        setShareroom((prevShareroom) => [...prevShareroom, newRoom]);
+        handlePopupClose();
+      })
+      .catch((error) => {
+        // 요청이 실패한 경우 처리할 로직
+        console.error("Failed to create team:", error);
+        handlePopupClose();
+      });
   };
 
   useEffect(() => {
@@ -236,11 +249,6 @@ function SideBarButton({ name }) {
             </div>
           </div>
         </div>
-      )}
-
-      {isPopupOpen && popupType === "back" && (
-        // Back 버튼 클릭 시에 팝업 레이아웃 내용
-        <div />
       )}
     </>
   );

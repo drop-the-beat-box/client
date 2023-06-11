@@ -65,7 +65,37 @@ async function restoreFiles(token, url) {
   return await response.json();
 }
 
-function getAFile(token, fileId) {}
+async function makeARoom(token, url, room_name) {
+  const requestData = {
+    name: `${room_name}`,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "*/*",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestData),
+  });
+  return await response.json();
+}
+
+async function addMembers(token, url, members) {
+  const requestData = {
+    memberIdList: members,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "*/*",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestData),
+  });
+  return await response.json();
+}
 
 module.exports = {
   searchMembers: async (token, keyword) => {
@@ -102,11 +132,19 @@ module.exports = {
     return result.trashFileDtoList;
   },
   deletePermanent: async (token, file_id) => {
-    const result = await deletePermanentFile(token, `member/file/${file_id}`);
+    const result = await deletePermanentFile(token, `/member/file/${file_id}`);
     return result;
   },
   restoreFile: async (token, file_id) => {
-    const result = await restoreFiles(token, `member/file/trash-can/roll-back/${file_id}`);
+    const result = await restoreFiles(token, `/member/file/trash-can/roll-back/${file_id}`);
     return result;
+  },
+  makeRoom: async (token, room_name) => {
+    const result = await makeARoom(token, `/member/team`, room_name);
+    return result;
+  },
+  addMember: async (token, team_id, members) => {
+    const result = await addMembers(token, `/team/${team_id}/member`, members);
+    return result.joinMemberList;
   },
 };

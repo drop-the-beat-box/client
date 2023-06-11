@@ -6,7 +6,7 @@ function Profile({ member, identifier }) {
   if (identifier === "SharingFilePage") {
     return (
       <div>
-        <div className="profile">
+        <div className="profile-plus">
           <Avatar src={member.profileUrl}></Avatar>
           <p>{member.name}</p>
           <FontAwesomeIcon

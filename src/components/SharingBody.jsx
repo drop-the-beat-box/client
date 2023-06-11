@@ -50,7 +50,7 @@ function BodyTopButton(props) {
   );
 }
 
-function Circle({ name }) {
+function Circle({ name, id }) {
   const [gradientColor] = useState(getRandomColor());
 
   // 랜덤 색상을 생성하는 함수
@@ -70,6 +70,7 @@ function Circle({ name }) {
         style={{ background: gradientColor }}
       />
       <h2>{name}</h2>
+      <h2> //id:{id}</h2>
     </div>
   );
 }
@@ -118,6 +119,7 @@ function SharingBody() {
               <Circle
                 key={index}
                 name={room.name}
+                id={room.id}
               />
             </div>
 

@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useRoutes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useRoutes } from "react-router-dom";
 import Layout from "./components/Layout";
 import "./App.css";
 import "./assets/css/body.css";
@@ -32,13 +27,34 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/mainpage" element={<MyFilePage />} />
-          <Route path="/myfilepage" element={<MyFilePage />} />
-          <Route path="/sharingpage" element={<SharingPage />} />
-          <Route path="/sharingfilepage" element={<SharingFilePage />} />
-          <Route path="/trashcan" element={<Trashcan />} />
-          <Route path="/token" element={<KakaoLogin />} />
+          <Route
+            path="/"
+            element={<LoginPage />}
+          />
+          <Route
+            path="/mainpage"
+            element={<MyFilePage />}
+          />
+          <Route
+            path="/myfilepage"
+            element={<MyFilePage />}
+          />
+          <Route
+            path="/sharingpage"
+            element={<SharingPage />}
+          />
+          <Route
+            path="/sharingfilepage/*"
+            element={<SharingFilePage />}
+          />
+          <Route
+            path="/trashcan"
+            element={<Trashcan />}
+          />
+          <Route
+            path="/token"
+            element={<KakaoLogin />}
+          />
         </Routes>
       </Router>
     </div>
