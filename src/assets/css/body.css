@@ -61,7 +61,30 @@
 
   border-radius: 10px;
 }
+.content-entity-sharingpage {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 20px;
+  color: #9cb0c9;
 
+  background-color: #e2e8ef;
+
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
+  gap: 5%;
+}
+
+.content-entity-sharingpage h1 {
+  margin-block-start: 0.2em;
+  margin-block-end: 0em;
+  font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
 .content-entity {
   height: 150px;
   display: flex;
@@ -201,7 +224,8 @@
 }
 
 .circlecontainer h2 {
-  font-size: large;
+  font-size: larger;
+  color: #6c86b2;
 }
 
 .sharingbody-main-list-itemcontainer {
@@ -214,7 +238,7 @@
   /*border: 1px solid blueviolet;*/
 }
 
-.test {
+.sharingbody-main-filelist {
   display: inline-block;
   background-color: #e2e8ef;
   width: 300px;
@@ -222,6 +246,8 @@
   border: 1px solid #e2e8ef;
   border-radius: 10px;
   margin-right: 20px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 /* 휴지통 페이지 CSS */

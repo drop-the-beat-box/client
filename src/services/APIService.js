@@ -43,17 +43,6 @@ async function deleteTempFile(token, url) {
   return await response.json();
 }
 
-async function deletePermanentFile(token, url) {
-  const response = await fetch(url, {
-    method: "DELETE",
-    headers: {
-      Accept: "*/*",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return await response.json();
-}
-
 async function restoreFiles(token, url) {
   const response = await fetch(url, {
     method: "PATCH",
@@ -132,7 +121,7 @@ module.exports = {
     return result.trashFileDtoList;
   },
   deletePermanent: async (token, file_id) => {
-    const result = await deletePermanentFile(token, `/member/file/${file_id}`);
+    const result = await del(token, `/member/file/${file_id}`);
     return result;
   },
   restoreFile: async (token, file_id) => {
@@ -146,5 +135,13 @@ module.exports = {
   addMember: async (token, team_id, members) => {
     const result = await addMembers(token, `/team/${team_id}/member`, members);
     return result.joinMemberList;
+  },
+  getMyRooms: async (token) => {
+    const result = await get(token, "/member/teams");
+    return result.teamDtoList;
+  },
+  getSharedFile: async (token, team_id) => {
+    const result = await get(token, `/shared/files/team/${team_id}`);
+    return result.fileDtoList;
   },
 };

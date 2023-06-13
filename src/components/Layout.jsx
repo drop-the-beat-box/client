@@ -2,7 +2,6 @@ import Footer from "./Footer";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import Body from "./Body";
-import { SharedRoomProvider } from "./SharedRoomContext";
 
 function Layout({ currentPage }) {
   return (
@@ -12,10 +11,8 @@ function Layout({ currentPage }) {
       </div>
 
       <div className="middle">
-        <SharedRoomProvider>
-          <SideBar currentPage={currentPage} />
-          <Body currentPage={currentPage} />
-        </SharedRoomProvider>
+        <SideBar currentPage={currentPage} />
+        <Body currentPage={currentPage} />
       </div>
 
       <div className="bottom">

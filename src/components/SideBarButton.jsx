@@ -1,10 +1,8 @@
-import { useContext, useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import React from "react";
-
 import Profile from "./Profile";
 import { getFriends } from "../services/APIService";
-import { SharedRoomContext } from "./SharedRoomContext";
 import { uploadFile } from "../services/APIService";
 import { makeRoom } from "../services/APIService";
 import { addMember } from "../services/APIService";
@@ -22,8 +20,12 @@ function SideBarButton({ name }) {
 
   /* 팝업 레이아웃 */
   const handleButtonClick = (type) => {
-    setIsPopupOpen(true);
-    setPopupType(type);
+    if (type === "TrashCan") {
+      window.location.replace("/trashcan");
+    } else {
+      setIsPopupOpen(true);
+      setPopupType(type);
+    }
   };
 
   const handlePopupClose = () => {
@@ -35,25 +37,19 @@ function SideBarButton({ name }) {
     const fileInput = document.getElementById("fileInput");
     const description = "test";
 
-    // console.log(fileInput.files[0]);
     const formData = new FormData();
     formData.append("file", fileInput.files[0]);
     formData.append("description", description);
 
     uploadFile(token, formData)
       .then((data) => {
-        // 업로드 성공 시에 수행할 작업 처리
         console.log("파일 업로드 성공:", data);
         alert("파일 업로드 성공");
-
         //페이지 새로고침
         window.location.reload();
-
-        //팝업 닫기
         handlePopupClose();
       })
       .catch((error) => {
-        // 업로드 실패 시에 수행할 작업 처리
         console.error("파일 업로드 실패:", error);
         alert("파일 업로드 실패: ", error);
 
@@ -86,9 +82,6 @@ function SideBarButton({ name }) {
     setRoomName(event.target.value);
   };
 
-  const { shareroom, setShareroom } = useContext(SharedRoomContext);
-  const roomId = useRef(0);
-
   const handleRoomCreation = () => {
     // 선택한 사용자와 방 이름을 사용하여 방을 개설하는 동작 수행
     // 예를 들어, 서버 요청을 보내거나 필요한 작업을 수행할 수 있음
@@ -117,7 +110,6 @@ function SideBarButton({ name }) {
         };
 
         // shareroom 상태 업데이트: 새로운 방을 배열에 추가
-        setShareroom((prevShareroom) => [...prevShareroom, newRoom]);
         handlePopupClose();
       })
       .catch((error) => {

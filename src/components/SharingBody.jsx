@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { SharedRoomContext } from "./SharedRoomContext";
 import circle from "../img/circle.png";
+import { getMyRooms } from "../services/APIService";
+import { getSharedFile } from "../services/APIService";
+import { useCookies } from "react-cookie";
+import Content from "./Content";
 
 function BodyTopButton(props) {
   const [isHovering, setIsHovering] = useState(false);
@@ -70,12 +73,63 @@ function Circle({ name, id }) {
         style={{ background: gradientColor }}
       />
       <h2>{name}</h2>
-      <h2> //id:{id}</h2>
     </div>
   );
 }
 function SharingBody() {
-  const { shareroom } = useContext(SharedRoomContext);
+  const [cookies] = useCookies();
+  const [rooms, setRooms] = useState([]);
+  const [fileList, setFileList] = useState([]);
+  const token = cookies["jwt-token"];
+
+  function getType(url) {
+    const [last] = url.split(".").slice(-1);
+    switch (last) {
+      case "png":
+      case "jpg":
+      case "jpeg":
+        return 0;
+      case "mov":
+      case "avi":
+      case "mp4":
+        return 1;
+      default:
+        return 2;
+    }
+  }
+
+  useEffect(() => {
+    getMyRooms(token)
+      .then((result) => {
+        setRooms(
+          result.map((team, index) => {
+            return (
+              <Circle
+                name={team.teamName}
+                id={team.teamId}
+              ></Circle>
+            );
+          })
+        );
+      })
+      .catch((error) => {});
+  }, [rooms]);
+
+  useEffect(() => {
+    rooms.forEach((room) => {
+      const { id } = room.props;
+      getSharedFile(token, id)
+        .then((files) => {
+          setFileList((prevFileList) => ({
+            ...prevFileList,
+            [id]: files,
+          }));
+        })
+        .catch((error) => {
+          // 에러 처리
+        });
+    });
+  }, [rooms, token]);
 
   return (
     <div className="sharingbody">
@@ -91,50 +145,36 @@ function SharingBody() {
       </div>
 
       <div className="sharingbody-main">
-        <div className="sharingbody-main-listcontainer">
-          <div className="sharingbody-main-list-roomname">
-            <Circle
-              key={100}
-              name={"Dummy Room"}
-            />
-          </div>
-
-          <div className="sharingbody-main-list-itemcontainer">
-            <div className="test">test1</div>
-            <div className="test">test2</div>
-            <div className="test">test3</div>
-            <div className="test">test4</div>
-            <div className="test">test5</div>
-            <div className="test">test6</div>
-            <div className="test">test7</div>
-            <div className="test">test8</div>
-          </div>
-        </div>
-        {shareroom.map((room, index) => (
-          <div
-            className="sharingbody-main-listcontainer"
-            key={room.id}
-          >
-            <div className="sharingbody-main-list-roomname">
-              <Circle
+        <div>
+          {rooms.map((room, index) => (
+            <div className="sharingbody-main-listcontainer">
+              <div
                 key={index}
-                name={room.name}
-                id={room.id}
-              />
+                className="sharingbody-main-list-roomname"
+              >
+                {room}
+              </div>
+              <div className="sharingbody-main-list-itemcontainer">
+                {fileList[room.props.id] &&
+                  fileList[room.props.id].map((file) => (
+                    <div
+                      className="sharingbody-main-filelist"
+                      key={file.id}
+                    >
+                      <Content
+                        identifier="share"
+                        name={file.name}
+                        id={file.fileId}
+                        date={file.createdAt}
+                        link={file.url}
+                        type={getType(file.url)}
+                      ></Content>
+                    </div>
+                  ))}
+              </div>
             </div>
-
-            <div className="sharingbody-main-list-itemcontainer">
-              {room.users.map((user) => (
-                <div
-                  className="test"
-                  key={user.id}
-                >
-                  {user.name}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

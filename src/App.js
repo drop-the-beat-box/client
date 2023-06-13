@@ -44,7 +44,7 @@ function App() {
             element={<SharingPage />}
           />
           <Route
-            path="/sharingfilepage/*"
+            path="/sharingfilepage"
             element={<SharingFilePage />}
           />
           <Route

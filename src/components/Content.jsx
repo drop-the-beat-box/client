@@ -22,7 +22,7 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted, remai
     deleteFile(token, id)
       .then((data) => {
         console.log("파일 삭제:", data);
-        alert(`${name} ${link}파일이 삭제되었습니다.`);
+        alert(`${name}파일이 삭제되었습니다.`);
 
         //페이지 새로고침
         window.location.reload();
@@ -202,6 +202,17 @@ function Content({ identifier, id, name, date, type, imageFile, isDeleted, remai
           <div className="separator">
             <p>삭제한 지 {remainDay} days </p>
           </div>
+        </button>
+      );
+    } else {
+      return (
+        <button className="content-entity-sharingpage">
+          <FontAwesomeIcon
+            size={"4x"}
+            icon={thumbnailIcons[type]}
+            style={{ color: "#6c86b2" }}
+          />
+          <h1>{name}</h1>
         </button>
       );
     }
