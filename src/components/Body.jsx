@@ -4,9 +4,10 @@ import { Link, useParams } from "react-router-dom";
 import circle from "../img/circle.png";
 import FileBody from "./FileBody";
 import SharingBody from "./SharingBody";
+import SharingFileBody from "./SharingFileBody";
 import TrashcanBody from "./TrashcanBody";
 
-// TODO: 컴포넌트 나누기.
+// TODO: 팔로우 여러번 누르면 팔로잉 리스트에 중복해서 뜨는 현상
 // TODO: sharingFilePage 만들기.
 // TODO: trashcan 만들기.
 // TODO: 파일 삭제시 trashcan으로 이동하는것 만들기.
@@ -24,7 +25,7 @@ function Body({ currentPage }) {
   } else if (currentPage === "sharingpage") {
     bodyContent = <SharingBody />;
   } else if (currentPage === "sharingfilepage") {
-    bodyContent = <FileBody />;
+    bodyContent = <SharingFileBody />;
   } else if (currentPage === "trashcan") {
     bodyContent = <TrashcanBody />;
   }

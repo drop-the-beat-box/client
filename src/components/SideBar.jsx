@@ -29,11 +29,8 @@ function SideBar({ currentPage }) {
       sidebarMidContent = <Following name={"MainPage"} />;
       sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
       break;
-    case "trashfilepage":
-      sidebarTopContent = <SideBarButton name={"Back"}></SideBarButton>;
-      sidebarMidContent = <div className="sidebar-middleview"></div>;
-      sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
-      break;
+    case "trashcan":
+      return null;
     default:
       break;
   }

@@ -1,30 +1,71 @@
 .profilemenu-container {
-    visibility: visible;
-    position: relative;
-    top: 0px;
-    right: 60px;
-    display: flex;
-    flex-direction: column;
-    width: max-content;
-    height: auto;
-    background-color: #eff2f6;
-    border-radius: 15px;
-    box-shadow: 2px 2px 4px 2px #0000001f;
+  visibility: visible;
+  position: relative;
+  top: 0px;
+  right: 60px;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  height: auto;
+  background-color: #eff2f6;
+  border-radius: 15px;
+  box-shadow: 2px 2px 4px 2px #0000001f;
 }
 
 .profilemenu-container-disabled {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .profilemenu-button {
-    height: 38px;
-    border: 0px;
-    background-color: transparent;
-    color: #486284;
-    margin-inline-start: 8px;
-    margin-inline-end: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 38px;
+  border: 0px;
+  background-color: transparent;
+  color: #486284;
+  margin-inline-start: 8px;
+  margin-inline-end: 8px;
 }
 
 .profilemenu-button:hover {
-    font-weight: bold;
+  font-weight: bold;
+}
+
+.delete-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.delete-modal h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.delete-modal-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.delete-modal-buttons button {
+  margin: 0 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #6c86b2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-modal-buttons button:hover {
+  background-color: #506a8f;
 }

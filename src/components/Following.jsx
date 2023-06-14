@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
+import React, { useSyncExternalStore } from "react";
 
-import {
-  setDataChangeHandler,
-  getFollowingMembers,
-} from "../services/DataService";
 import Profile from "./Profile";
-import { getFriends } from "../services/APIService";
+import { followingStore } from "../services/DataService";
 
-function Following() {
-  const [persons, setPersons] = useState([]);
-  const [cookie] = useCookies();
-  const token = cookie["jwt-token"];
-
-  useEffect(() => {
-    console.log("Effect");
-    getFriends(token).then((result) => {
-      setPersons(result);
-    });
-  }, []);
-
-  setDataChangeHandler(() => {
-    setPersons(getFollowingMembers(0));
-  });
+function Following({ name }) {
+  const persons = useSyncExternalStore(
+    followingStore.subscribe,
+    followingStore.getSnapshot
+  );
 
   return (
     <div className="following-container">
       {persons.map((person, index) => (
-        <Profile member={person} />
+        <Profile member={person} identifier={name} key={index} />
       ))}
     </div>
   );

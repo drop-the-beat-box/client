@@ -13,13 +13,23 @@
   align-items: center;
 }
 
+.profile-plus {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .profile p {
   margin-left: 15px;
 }
 
-.plus-button {
+.profile-plus p {
   margin-left: 15px;
-  font-size: 25px;
-  background-color: white;
+}
+.plus-button {
+  margin-left: auto;
+  font-size: 30px;
+  background-color: #eff2f6;
   border-radius: 10px;
 }

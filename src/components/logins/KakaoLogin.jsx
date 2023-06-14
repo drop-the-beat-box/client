@@ -8,7 +8,6 @@ function KakaoLogin() {
 
   const token = location.search.split("=")[1];
   setCookie("jwt-token", token, { path: "/", secure: true });
-  console.log(cookies);
 
   window.location.replace("/mainpage");
 

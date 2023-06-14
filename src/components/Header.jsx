@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { searchMembers, follow, unfollow } from "../services/APIService";
+import { followingStore } from "../services/DataService";
 import SearchMember from "./SearchMember";
 import PopupMenu from "./PopupMenu";
 import FollowConfirm from "./FollowConfirm";
@@ -27,14 +28,18 @@ function Header() {
 
   const searchMemberItems = memberList.map((member, index) => (
     <SearchMember
+      key={index}
       member={member}
       onClick={() => {
         if (!member.following) {
           setSelectedMember(member);
         } else {
-          unfollow(token, member.memberId);
+          unfollow(token, member.memberId).then((v) => {
+            followingStore.updateList(token);
+          });
+          member.following = false;
+          forceUpdate();
         }
-        forceUpdate();
       }}
     />
   ));
@@ -44,6 +49,7 @@ function Header() {
     { text: "Sharing Page", linkPage: "/sharingpage" },
     { text: "Sharing File Page", linkPage: "/sharingfilepage" },
     { text: "Trash Can", linkPage: "/trashcan" },
+    { text: "Logout", linkPage: "/" },
   ];
 
   const searchEmptyItem = (
@@ -65,7 +71,10 @@ function Header() {
         <FollowConfirm
           member={selectedMember}
           onOk={() => {
-            follow(token, selectedMember.memberId);
+            follow(token, selectedMember.memberId).then((v) => {
+              followingStore.updateList(token);
+            });
+            selectedMember.following = true;
             setSelectedMember();
           }}
           onCancel={() => {

@@ -29,8 +29,9 @@ linkPage 를 지정해주고 callback 을 지정해주지 않으면 단순 페�
 linkPage 를 지정해주지 않고 callback 을 지정해주면 해당 콜백을 호출하는 메뉴 버튼이 됨.
 */
 function PopupMenu({ isOpen, items }) {
-  const contents = items.flatMap((item) => (
+  const contents = items.map((item, index) => (
     <PopupMenuButton
+      key={index}
       text={item.text}
       linkPage={item.linkPage}
       callback={item.callback}

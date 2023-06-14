@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { useParams } from "react-router-dom";
 import ReactLoading from "react-loading";
 
 import Content from "./Content";
 import AddToGroup from "./AddToGroup";
 import ProfileImage from "../img/circle.png";
-import { getMyFiles, addFileToRoom } from "../services/APIService";
+import { addFileToRoom, getRoomFiles } from "../services/APIService";
 
-function FileBody() {
+function SharingFileBody() {
   const Filter = {
     Image: 0,
     Video: 1,
@@ -21,6 +22,7 @@ function FileBody() {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sharingFile, setSharingFile] = useState(null);
+  const { teamId } = useParams();
   const [cookies] = useCookies();
   const token = cookies["jwt-token"];
 
@@ -33,7 +35,7 @@ function FileBody() {
 
   useEffect(() => {
     setIsLoading(true);
-    getMyFiles(token).then((result) => {
+    getRoomFiles(token, teamId).then((result) => {
       setItems(
         result
           .filter((item) => getType(item.url) === filter)
@@ -201,4 +203,4 @@ function FileBody() {
   );
 }
 
-export default FileBody;
+export default SharingFileBody;

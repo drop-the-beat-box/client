@@ -53,8 +53,8 @@
 
 .body-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-auto-rows: max-content;
   gap: 12px;
   padding: 15px;
   width: 100%;
@@ -174,12 +174,24 @@
   height: 250px;
 }
 
+.sharingbody-main-listcontainer:hover {
+  border-color: #6c86b2;
+}
+
 .sharingbody-main-list-roomname {
   width: 20%;
   height: 100%;
   border: 1px solid #e2e8ef;
   border-radius: 10px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sharingbody-loading-container {
+  width: 100%;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,4 +235,109 @@
   border: 1px solid #e2e8ef;
   border-radius: 10px;
   margin-right: 20px;
+}
+
+/* 휴지통 페이지 CSS */
+.trashbody {
+  height: 100%;
+  width: 100%;
+  border: 1.5px solid #e2e8ef;
+  border-radius: 10px;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  overflow: auto;
+}
+
+.trash-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trashbody-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+
+  gap: 30px;
+  padding: 15px;
+}
+
+.separator {
+  border-top: 1px solid #6c86b2;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #050f2145;
+}
+
+.add-to-group-modal {
+  position: absolute;
+  top: calc(50% - 240px);
+  left: calc(50% - 300px);
+  border-radius: 20px;
+  width: 600px;
+  height: 480px;
+  padding: 24px;
+  background-color: #e2e8ef;
+}
+
+.add-to-group-modal h3 {
+  color: black;
+  text-align: center;
+}
+
+.add-to-group-list {
+  width: 100%;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  background-color: white;
+  border: 1px solid #9cb0c9;
+}
+
+.add-to-group-list-item {
+  margin: 12px;
+  padding-left: 12px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  border: 1px solid #9cb0c9;
+  border-radius: 8px;
+}
+
+.add-to-group-list-item:hover {
+  background-color: #e2e8ef;
+}
+
+.add-to-group-close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+}
+
+.add-to-group-loading {
+  width: 100%;
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #9cb0c9;
 }

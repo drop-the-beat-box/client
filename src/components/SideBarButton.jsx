@@ -1,14 +1,25 @@
-import { useContext, useRef, useState, useEffect } from "react";
+import {
+  useContext,
+  useRef,
+  useState,
+  useEffect,
+  useSyncExternalStore,
+} from "react";
 import { useCookies } from "react-cookie";
 import React from "react";
 
 import Profile from "./Profile";
-import { getFriends } from "../services/APIService";
 import { SharedRoomContext } from "./SharedRoomContext";
-import { uploadFile } from "../services/APIService";
+import { uploadFile, makeRoom, addMember } from "../services/APIService";
+import { followingStore, roomStore } from "../services/DataService";
 
 function SideBarButton({ name }) {
-  const [persons, setPersons] = useState([]);
+  // DataService 스토리지
+  const persons = useSyncExternalStore(
+    followingStore.subscribe,
+    followingStore.getSnapshot
+  );
+
   const [isHovering, setIsHovering] = useState(false);
   const onMouseOver = () => setIsHovering(true);
   const onMouseOut = () => setIsHovering(false);
@@ -20,6 +31,12 @@ function SideBarButton({ name }) {
 
   /* 팝업 레이아웃 */
   const handleButtonClick = (type) => {
+    // type = "Trashcan" 일때
+    if (type === "TrashCan") {
+      window.location.replace("/trashcan");
+      return;
+    }
+
     setIsPopupOpen(true);
     setPopupType(type);
   };
@@ -43,6 +60,9 @@ function SideBarButton({ name }) {
         // 업로드 성공 시에 수행할 작업 처리
         console.log("파일 업로드 성공:", data);
         alert("파일 업로드 성공");
+
+        //페이지 새로고침
+        window.location.reload();
 
         //팝업 닫기
         handlePopupClose();
@@ -92,36 +112,38 @@ function SideBarButton({ name }) {
     console.log("선택한 사용자:", selectedUsers);
     console.log("방 이름:", roomName);
 
-    // 새로운 방 객체 생성
-    const newRoom = {
-      id: roomId.current,
-      name: roomName,
-      users: selectedUsers,
-    };
+    makeRoom(token, roomName)
+      .then((data) => {
+        let memberList = [];
+        {
+          selectedUsers.map((user) => memberList.push(user.friendId));
+        }
+        addMember(token, data.teamId, memberList)
+          .then(() => {
+            alert(`${roomName} 방이 개설되었습니다!`);
+          })
+          .catch((error) => {
+            console.log("Fail : ", error);
+          });
 
-    // shareroom 상태 업데이트: 새로운 방을 배열에 추가
-    setShareroom((prevShareroom) => [...prevShareroom, newRoom]);
+        // 새로운 방 객체 생성
+        const newRoom = {
+          id: data.teamId,
+          name: roomName,
+          users: selectedUsers,
+        };
 
-    // 상태 초기화
-    setSelectedUsers([]);
-    setRoomName("");
-
-    // 방 고유 식별자 증가
-    roomId.current += 1;
-
-    //팝업 닫기
-    handlePopupClose();
+        // shareroom 상태 업데이트: 새로운 방을 배열에 추가
+        setShareroom((prevShareroom) => [...prevShareroom, newRoom]);
+        handlePopupClose();
+        roomStore.updateList(token);
+      })
+      .catch((error) => {
+        // 요청이 실패한 경우 처리할 로직
+        console.error("Failed to create team:", error);
+        handlePopupClose();
+      });
   };
-
-  useEffect(() => {
-    getFriends(token).then((result) => {
-      setPersons(result);
-    });
-  });
-
-  useEffect(() => {
-    console.log("selectedUsers changed: ", selectedUsers);
-  }, [selectedUsers]);
 
   return (
     <>
@@ -168,7 +190,7 @@ function SideBarButton({ name }) {
               {/* 사용자 목록 렌더링 */}
               <div className="following-list-container">
                 {persons.map((user) => (
-                  <div className="following-list">
+                  <div className="following-list" key={user.friendId}>
                     <label className="checkbox-container">
                       <input
                         type="checkbox"
@@ -229,11 +251,6 @@ function SideBarButton({ name }) {
             </div>
           </div>
         </div>
-      )}
-
-      {isPopupOpen && popupType === "back" && (
-        // Back 버튼 클릭 시에 팝업 레이아웃 내용
-        <div />
       )}
     </>
   );

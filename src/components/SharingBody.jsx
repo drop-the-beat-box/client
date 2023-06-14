@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useContext } from "react";
-import { SharedRoomContext } from "./SharedRoomContext";
+import React, { useState, useSyncExternalStore } from "react";
+import ReactLoading from "react-loading";
+import { roomStore } from "../services/DataService";
 import circle from "../img/circle.png";
 
 function BodyTopButton(props) {
@@ -27,10 +27,15 @@ function BodyTopButton(props) {
     >
       <div className="btbutton-logo">
         {props.linkPage === "/myfilepage" ? (
-          <img src={circle} alt="circle" className="btbutton-logo-image" />
+          <img src={circle} alt="profile" className="btbutton-logo-image" />
         ) : (
           images.map((image) => (
-            <img key={image.id} src={image.src} alt={image.alt} />
+            <img
+              key={image.id}
+              src={image.src}
+              alt={image.alt}
+              className="btbutton-logo-image"
+            />
           ))
         )}
       </div>
@@ -41,7 +46,7 @@ function BodyTopButton(props) {
   );
 }
 
-function Circle({ name }) {
+function Circle({ name, id }) {
   const [gradientColor] = useState(getRandomColor());
 
   // 랜덤 색상을 생성하는 함수
@@ -61,8 +66,12 @@ function Circle({ name }) {
     </div>
   );
 }
+
 function SharingBody() {
-  const { shareroom } = useContext(SharedRoomContext);
+  const shareroom = useSyncExternalStore(
+    roomStore.subscribe,
+    roomStore.getSnapshot
+  );
 
   return (
     <div className="sharingbody">
@@ -71,39 +80,35 @@ function SharingBody() {
         <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
       </div>
 
-      <div className="sharingbody-main">
-        <div className="sharingbody-main-listcontainer">
-          <div className="sharingbody-main-list-roomname">
-            <Circle key={100} name={"Dummy Room"} />
-          </div>
+      {roomStore.getIsRoomLoaded() ? (
+        <div className="sharingbody-main">
+          {shareroom.map((room, index) => (
+            <div
+              className="sharingbody-main-listcontainer"
+              key={room.teamId}
+              onClick={() => {
+                window.location.replace(`/sharingfilepage/${room.teamId}`);
+              }}
+            >
+              <div className="sharingbody-main-list-roomname">
+                <Circle key={index} name={room.teamName} id={room.teamId} />
+              </div>
 
-          <div className="sharingbody-main-list-itemcontainer">
-            <div className="test">test1</div>
-            <div className="test">test2</div>
-            <div className="test">test3</div>
-            <div className="test">test4</div>
-            <div className="test">test5</div>
-            <div className="test">test6</div>
-            <div className="test">test7</div>
-            <div className="test">test8</div>
-          </div>
+              <div className="sharingbody-main-list-itemcontainer">
+                {room.files.map((file) => (
+                  <div className="test" key={file.fileId}>
+                    {file.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-        {shareroom.map((room, index) => (
-          <div className="sharingbody-main-listcontainer" key={room.id}>
-            <div className="sharingbody-main-list-roomname">
-              <Circle key={index} name={room.name} />
-            </div>
-
-            <div className="sharingbody-main-list-itemcontainer">
-              {room.users.map((user) => (
-                <div className="test" key={user.id}>
-                  {user.name}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      ) : (
+        <div className="sharingbody-loading-container">
+          <ReactLoading type="bars" color="#415165"></ReactLoading>
+        </div>
+      )}
     </div>
   );
 }
