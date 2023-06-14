@@ -10,6 +10,11 @@ import { followingStore, roomStore } from "../services/DataService";
 function SideBarButton({ name }) {
   // DataService 스토리지
   const persons = useSyncExternalStore(followingStore.subscribe, followingStore.getSnapshot);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const handleFileChange = (event) => {
+    setSelectedFiles(Array.from(event.target.files));
+  };
 
   const [isHovering, setIsHovering] = useState(false);
   const onMouseOver = () => setIsHovering(true);
@@ -28,7 +33,7 @@ function SideBarButton({ name }) {
       window.location.replace("/trashcan");
       return;
     }
-
+    setSelectedFiles([]);
     setIsPopupOpen(true);
     setPopupType(type);
   };
@@ -84,7 +89,6 @@ function SideBarButton({ name }) {
     const fileInput = document.getElementById("fileInput");
     const description = "test";
 
-    // console.log(fileInput.files[0]);
     const formData = new FormData();
     formData.append("file", fileInput.files[0]);
     formData.append("description", description);
@@ -202,10 +206,15 @@ function SideBarButton({ name }) {
             <input
               type="file"
               id="fileInput"
+              onChange={handleFileChange}
               style={{ marginLeft: "10%" }}
             />
             <div className="popup-inner-upload">
-              <div className="popup-inner-content-upload"></div>
+              <div className="popup-inner-content-upload">
+                {selectedFiles.map((file, index) => (
+                  <p key={index}>{file.name}</p>
+                ))}
+              </div>
             </div>
             <button onClick={handleSharingUpload}>파일 업로드</button>
           </div>
@@ -224,10 +233,15 @@ function SideBarButton({ name }) {
             <input
               type="file"
               id="fileInput"
+              onChange={handleFileChange}
               style={{ marginLeft: "10%" }}
             />
             <div className="popup-inner-upload">
-              <div className="popup-inner-content-upload"></div>
+              <div className="popup-inner-content-upload">
+                {selectedFiles.map((file, index) => (
+                  <p key={index}>{file.name}</p>
+                ))}
+              </div>
             </div>
             <button onClick={handleUpload}>파일 업로드</button>
           </div>
