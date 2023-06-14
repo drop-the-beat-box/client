@@ -111,7 +111,10 @@ module.exports = {
     return result.fileDtoList;
   },
   deleteFile: async (token, file_id) => {
-    const result = await deleteTempFile(token, `/member/file/trash-can/${file_id}`);
+    const result = await deleteTempFile(
+      token,
+      `/member/file/trash-can/${file_id}`
+    );
     return result;
   },
   getTrashFiles: async (token) => {
@@ -123,7 +126,10 @@ module.exports = {
     return result;
   },
   restoreFile: async (token, file_id) => {
-    const result = await restoreFiles(token, `/member/file/trash-can/roll-back/${file_id}`);
+    const result = await restoreFiles(
+      token,
+      `/member/file/trash-can/roll-back/${file_id}`
+    );
     return result;
   },
   makeRoom: async (token, room_name) => {
@@ -149,5 +155,10 @@ module.exports = {
   addFileToRoom: async (token, file_id, team_id) => {
     const result = await post(token, `/shared/${file_id}/team/${team_id}`);
     return result;
+  },
+  getMembers: async (token, team_id) => {
+    const result = await get(token, `/team/${team_id}/members`);
+    console.log(result);
+    return result.memberDtoList;
   },
 };

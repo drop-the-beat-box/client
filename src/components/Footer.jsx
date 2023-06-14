@@ -2,7 +2,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer-center">
-        <h4>Contact : suplife0@khu.ac.kr</h4>
+        <h4>~~~~~~~~~~cool water mellon sibalroma~~~~~~~~~~~</h4>
       </div>
     </div>
   );

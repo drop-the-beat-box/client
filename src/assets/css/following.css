@@ -27,9 +27,21 @@
 .profile-plus p {
   margin-left: 15px;
 }
+
 .plus-button {
   margin-left: auto;
   font-size: 30px;
   background-color: #eff2f6;
   border-radius: 10px;
+}
+
+.sharing-members-container {
+  height: 100%;
+  padding: 8px;
+  padding-top: 0;
+  width: 90%;
+}
+
+.sharing-members-list {
+  flex: 1;
 }
