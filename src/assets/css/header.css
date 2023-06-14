@@ -44,6 +44,7 @@
 
   color: #415165;
   border: 0px solid #e2e8ef;
+  z-index: 1;
 }
 
 .header-searchbar {

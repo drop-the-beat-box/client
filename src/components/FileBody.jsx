@@ -6,6 +6,7 @@ import Content from "./Content";
 import AddToGroup from "./AddToGroup";
 import ProfileImage from "../img/circle.png";
 import { getMyFiles, addFileToRoom } from "../services/APIService";
+import MainLogo from "../img/mainlogo.png";
 
 function FileBody() {
   const Filter = {
@@ -13,9 +14,10 @@ function FileBody() {
     Video: 1,
     Document: 2,
     Etc: 3,
+    Home: 4,
   };
 
-  const [filter, setFilter] = useState(Filter.Image);
+  const [filter, setFilter] = useState(Filter.Home);
   const [recentButton, setRecentButton] = useState("Default");
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,26 +27,10 @@ function FileBody() {
   const token = cookies["jwt-token"];
 
   const filterButtons = [
-    <FilterButton
-      key={0}
-      text="Image"
-      filterType={0}
-    />,
-    <FilterButton
-      key={1}
-      text="Video"
-      filterType={1}
-    />,
-    <FilterButton
-      key={2}
-      text="Doc"
-      filterType={2}
-    />,
-    <FilterButton
-      key={3}
-      text="Etc"
-      filterType={3}
-    />,
+    <FilterButton key={0} text="Image" filterType={0} />,
+    <FilterButton key={1} text="Video" filterType={1} />,
+    <FilterButton key={2} text="Doc" filterType={2} />,
+    <FilterButton key={3} text="Etc" filterType={3} />,
   ];
 
   useEffect(() => {
@@ -202,24 +188,26 @@ function FileBody() {
         ></AddToGroup>
       ) : null}
       <div className="body-top">
-        <BodyTopButton
-          text="Personal"
-          linkPage="/myfilepage"
-        ></BodyTopButton>
-        <BodyTopButton
-          text="Group"
-          linkPage="/sharingpage"
-        ></BodyTopButton>
+        <BodyTopButton text="Personal" linkPage="/myfilepage"></BodyTopButton>
+        <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
       </div>
       <div className="body-second">{filterButtons}</div>
       <div className="body-main">
         {isLoading ? (
-          <ReactLoading
-            type="bars"
-            color="#415165"
-          ></ReactLoading>
+          <ReactLoading type="bars" color="#415165"></ReactLoading>
         ) : (
-          <div className="body-container">{items}</div>
+          <>
+            {filter === Filter.Home ? (
+              <div className="body-home">
+                <img src={MainLogo} alt="main logo image" />
+                <h1>Welcome!</h1>
+                <p>Press 'Upload' button to upload your first file.</p>
+                <p></p>
+              </div>
+            ) : (
+              <div className="body-container">{items}</div>
+            )}
+          </>
         )}
       </div>
     </div>
