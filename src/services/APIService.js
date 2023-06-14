@@ -96,7 +96,7 @@ module.exports = {
     return result.friendDtoList;
   },
   uploadFile: async (token, formData) => {
-    const response = await fetch("/member/file", {
+    const result = await fetch("/member/file", {
       method: "POST",
       headers: {
         Accept: "*/*",
@@ -104,17 +104,14 @@ module.exports = {
       },
       body: formData,
     });
-    return await response;
+    return result.json();
   },
   getMyFiles: async (token) => {
     const result = await get(token, "/member/files");
     return result.fileDtoList;
   },
   deleteFile: async (token, file_id) => {
-    const result = await deleteTempFile(
-      token,
-      `/member/file/trash-can/${file_id}`
-    );
+    const result = await deleteTempFile(token, `/member/file/trash-can/${file_id}`);
     return result;
   },
   getTrashFiles: async (token) => {
@@ -126,10 +123,7 @@ module.exports = {
     return result;
   },
   restoreFile: async (token, file_id) => {
-    const result = await restoreFiles(
-      token,
-      `/member/file/trash-can/roll-back/${file_id}`
-    );
+    const result = await restoreFiles(token, `/member/file/trash-can/roll-back/${file_id}`);
     return result;
   },
   makeRoom: async (token, room_name) => {

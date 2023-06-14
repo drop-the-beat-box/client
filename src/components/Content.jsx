@@ -33,7 +33,7 @@ function Content({
     deleteFile(token, id)
       .then((data) => {
         console.log("파일 삭제:", data);
-        alert(`${name} ${link}파일이 삭제되었습니다.`);
+        alert(`${name}파일이 삭제되었습니다.`);
 
         //페이지 새로고침
         window.location.reload();
@@ -93,9 +93,15 @@ function Content({
     return (
       <button className="content-entity">
         <div className="content-top">
-          <img src={circle} className="content-top-button" />
+          <img
+            src={circle}
+            className="content-top-button"
+          />
         </div>
-        <img src={imageFile} className="content-thumbnail" />
+        <img
+          src={imageFile}
+          className="content-thumbnail"
+        />
         <div>{name}</div>
         <div>삭제됨</div>
       </button>
@@ -214,6 +220,17 @@ function Content({
           <div className="separator">
             <p>삭제한 지 {remainDay} days </p>
           </div>
+        </button>
+      );
+    } else {
+      return (
+        <button className="content-entity-sharingpage">
+          <FontAwesomeIcon
+            size={"4x"}
+            icon={thumbnailIcons[type]}
+            style={{ color: "#6c86b2" }}
+          />
+          <h1>{name}</h1>
         </button>
       );
     }

@@ -18,14 +18,12 @@ function SideBar({ currentPage }) {
       sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
       break;
     case "sharingfilepage":
-      sidebarTopContent = <SideBarButton name={"Upload"}></SideBarButton>;
+      sidebarTopContent = <SideBarButton name={"SharingUpload"}></SideBarButton>;
       sidebarMidContent = <Following name={"SharingFilePage"} />;
       sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
       break;
     case "sharingpage":
-      sidebarTopContent = (
-        <SideBarButton name={"CreateSharePage"}></SideBarButton>
-      );
+      sidebarTopContent = <SideBarButton name={"CreateSharePage"}></SideBarButton>;
       sidebarMidContent = <Following name={"MainPage"} />;
       sidebarBottomContent = <SideBarButton name={"TrashCan"}></SideBarButton>;
       break;

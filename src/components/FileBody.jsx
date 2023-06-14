@@ -12,7 +12,7 @@ function FileBody() {
     Image: 0,
     Video: 1,
     Document: 2,
-    Favorite: 3,
+    Etc: 3,
   };
 
   const [filter, setFilter] = useState(Filter.Image);
@@ -25,10 +25,26 @@ function FileBody() {
   const token = cookies["jwt-token"];
 
   const filterButtons = [
-    <FilterButton key={0} text="Image" filterType={0} />,
-    <FilterButton key={1} text="Video" filterType={1} />,
-    <FilterButton key={2} text="Doc" filterType={2} />,
-    <FilterButton key={3} text="Favorite" filterType={3} />,
+    <FilterButton
+      key={0}
+      text="Image"
+      filterType={0}
+    />,
+    <FilterButton
+      key={1}
+      text="Video"
+      filterType={1}
+    />,
+    <FilterButton
+      key={2}
+      text="Doc"
+      filterType={2}
+    />,
+    <FilterButton
+      key={3}
+      text="Etc"
+      filterType={3}
+    />,
   ];
 
   useEffect(() => {
@@ -186,13 +202,22 @@ function FileBody() {
         ></AddToGroup>
       ) : null}
       <div className="body-top">
-        <BodyTopButton text="Personal" linkPage="/myfilepage"></BodyTopButton>
-        <BodyTopButton text="Group" linkPage="/sharingpage"></BodyTopButton>
+        <BodyTopButton
+          text="Personal"
+          linkPage="/myfilepage"
+        ></BodyTopButton>
+        <BodyTopButton
+          text="Group"
+          linkPage="/sharingpage"
+        ></BodyTopButton>
       </div>
       <div className="body-second">{filterButtons}</div>
       <div className="body-main">
         {isLoading ? (
-          <ReactLoading type="bars" color="#415165"></ReactLoading>
+          <ReactLoading
+            type="bars"
+            color="#415165"
+          ></ReactLoading>
         ) : (
           <div className="body-container">{items}</div>
         )}

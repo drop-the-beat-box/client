@@ -7,13 +7,19 @@ function LoginPage() {
     <div className="loginpage-container">
       <div className="loginpage-header">
         <div className="loginpage-header-title">
-          <img src={logoImage} alt="logoImage" />
+          <img
+            src={logoImage}
+            alt="logoImage"
+          />
           <h1>DropTheBeatBox</h1>
         </div>
         <p>로그인하세요</p>
       </div>
       <div className="loginpage-body">
-        <img src={logoImage} alt="logoImage" />
+        <img
+          src={logoImage}
+          alt="logoImage"
+        />
 
         <h2>Share With Friends.</h2>
         <h1>DropTheBeatBox</h1>

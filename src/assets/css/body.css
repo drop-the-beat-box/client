@@ -341,3 +341,28 @@
   background-color: white;
   border: 1px solid #9cb0c9;
 }
+
+.content-entity-sharingpage {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 20px;
+  color: #9cb0c9;
+
+  background-color: #e2e8ef;
+
+  border: 1px solid #e2e8ef;
+  border-radius: 10px;
+  gap: 5%;
+}
+
+.content-entity-sharingpage h1 {
+  margin-block-start: 0.2em;
+  margin-block-end: 0em;
+  font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
