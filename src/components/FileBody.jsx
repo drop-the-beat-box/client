@@ -57,6 +57,9 @@ function FileBody() {
             ></Content>
           ))
       );
+      if (filter === Filter.Home && result.length !== 0) {
+        setFilter(Filter.Image);
+      }
       setIsLoading(false);
     });
   }, [filter]);
