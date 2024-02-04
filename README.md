@@ -4,4 +4,4 @@
 
 # what is this project?
 
-공유 드라이브 DropBox를 팔로일&팔로워 기능으로 재구현한 프로젝트
+공유 드라이브 DropBox를 팔로잉&팔로워 기능으로 재구현한 프로젝트
